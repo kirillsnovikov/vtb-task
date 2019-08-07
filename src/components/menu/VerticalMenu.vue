@@ -12,12 +12,12 @@
                     </div>
                 </div>
                 <div class="vertical-menu-body">
-                    <VerticalMenuList v-bind:items="json"/>
+                    <VerticalMenuList v-bind:items="json.items"/>
                 </div>
                 <div class="vertical-menu-bottom">
                     <div class="vertical-menu-bottom__link">
                         <div class="person-icon"></div>
-                        <span class="vertical-menu-bottom__link__name">{{person.firstname}}</span>
+                        <span class="vertical-menu-bottom__link__name">{{json.person.firstname}}</span>
                     </div>
                 </div>
             </div>
@@ -36,14 +36,16 @@
         data() {
             return {
                 json: {
-                    'home': 'Главная',
-                    'client': 'Клиенты',
+                    items: {
+                        home: 'Главная',
+                        client: 'Клиенты',
+                    },
+                    person: {
+                        firstname: 'Алексей',
+                        lastname: 'Викторов'
+                    }
                 },
                 show: false,
-                person: {
-                    firstname: 'Алексей',
-                    lastname: 'Викторов'
-                }
             }
         },
         methods: {
