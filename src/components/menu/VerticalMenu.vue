@@ -14,12 +14,7 @@
                 <div class="vertical-menu-body">
                     <VerticalMenuList v-bind:items="json.items"/>
                 </div>
-                <div class="vertical-menu-bottom">
-                    <div class="vertical-menu-bottom__link">
-                        <div class="person-icon"></div>
-                        <span class="vertical-menu-bottom__link__name">{{json.person.firstname}}</span>
-                    </div>
-                </div>
+                <VerticalMenuPerson v-bind:person="json.person"/>
             </div>
             <div class="vertical-menu__layout__right"></div>
         </div>
@@ -28,10 +23,13 @@
 
 <script>
     import VerticalMenuList from './VerticalMenuList.vue'
+    import VerticalMenuPerson from './VerticalMenuPerson.vue'
 
     export default {
+        // inject: ['popupMethods'],
         components: {
-            VerticalMenuList
+            VerticalMenuList,
+            VerticalMenuPerson
         },
         data() {
             return {
@@ -47,6 +45,9 @@
                 },
                 show: false,
             }
+        },
+        mounted() {
+            // this.popupMethods.testfunc()
         },
         methods: {
             toggle() {
@@ -73,7 +74,7 @@
                     logo.classList.remove('logo-big')
                     this.show = false
                 }
-            }
+            },
         }
     }
 </script>
@@ -81,6 +82,7 @@
 <style lang="scss">
 .vertical-menu {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     height: 100vh;
@@ -101,7 +103,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            z-index: 1;
+            // z-index: 1;
         }
         &__right {
             width: 100px;
@@ -111,13 +113,6 @@
             position: relative;
             background: #ffffff;
         }
-    }
-    &__blue-layout {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        background: #000;
-        z-index: 111;
     }
 }
 .open-menu {

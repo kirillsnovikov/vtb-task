@@ -1,18 +1,29 @@
 <template>
   <div id="app">
     <VerticalMenu />
+    <Popup />
   </div>
 </template>
 
 <script>
-import VerticalMenu from './components/menu/VerticalMenu.vue'
+  import VerticalMenu from './components/menu/VerticalMenu.vue'
+  import Popup from './components/popups/Popup.vue'
 
-export default {
-  name: 'app',
-  components: {
-    VerticalMenu
+  export default {
+    name: 'app',
+    components: {
+      VerticalMenu,
+      Popup
+    },
+    mounted() {
+      // console.log(Popup.methods)
+    },
+    provide() {
+      return {
+        popupMethods: Popup
+      }
+    }
   }
-}
 </script>
 
 <style lang="scss">
