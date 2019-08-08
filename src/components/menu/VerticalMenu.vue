@@ -46,9 +46,6 @@
                 show: false,
             }
         },
-        mounted() {
-            // this.popupMethods.testfunc()
-        },
         methods: {
             toggle() {
                 let verticalMenuLeft = document.querySelector('#vertical-menu .vertical-menu__layout__left')

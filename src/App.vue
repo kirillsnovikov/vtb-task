@@ -14,14 +14,6 @@
     components: {
       VerticalMenu,
       Popup
-    },
-    mounted() {
-      // console.log(Popup.methods)
-    },
-    provide() {
-      return {
-        popupMethods: Popup
-      }
     }
   }
 </script>

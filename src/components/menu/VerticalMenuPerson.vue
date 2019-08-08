@@ -9,9 +9,9 @@
 </template>
 
 <script>
-
+    import { eventBus } from '@/main'
+    // import Popup from '@/components/popups/Popup'
     export default {
-        inject: ['popupMethods'],
         components: {
             // Popup
         },
@@ -33,23 +33,12 @@
                             method: 'SiebelApp.S_App.LogOff'
                         }
                     }
-                }
+                },
             }
         },
         methods: {
             popup() {
-                // console.log(this)
-                let popup = this.$root.$children[0].$children[1]
-                // console.log(popup)
-                // console.log(this.popupMethods.methods.show)
-
-                // this.popupMethods.methods.show()
-
-                // console.log(typeof this.popupMethods.show)
-                // this.popupMethods.show()
-                // this.popupMethods.testfunc()
-                if (popup)
-                    popup.show()
+                eventBus.$emit('showPopup', this.popupData)
             }
         }
     }

@@ -18,24 +18,30 @@
 </template>
 
 <script>
+    import { eventBus } from '@/main'
     export default {
         name: 'popup',
         // inject: ['someMethod'],
         data() {
             return {
-                data: this.$parent.$children[0].$children[1].popupData,
-                isShow: true,
+                // data: this.$parent.$children[0].$children[1].popupData,
+                // data: this.$parent.popupData,
+                data: Object,
+                isShow: false,
             }
         },
-        mounted() {
-            // console.log(this.data)
+        created() {
+            eventBus.$on('showPopup', popupData => {
+                this.data = popupData
+                this.show()
+            })
         },
         methods: {
             show() {
 
                 // console.log(this.$parent.$children[0].$children[1].popupData)
                 // console.log(this.someMethod)
-                // console.log(this.isShow)
+                // console.log(eventBus)
                 this.isShow = !this.isShow
 
             },
