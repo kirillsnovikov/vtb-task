@@ -1,0 +1,97 @@
+@import "header";
+@import "body";
+@import "bottom";
+
+.vm {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: $vm-background-color;
+  &__layout {
+    height: 100%;
+    display: flex;
+    &__left {
+      color: $vm-text-color;
+      font-size: 11px;
+      letter-spacing: 0.15px;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      width: $vm-small-width;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      // position: relative;
+      transition: width .3s;
+    }
+    &__right {
+      width: 157px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
+      background: $vtb-main-color;
+    }
+  }
+}
+
+.widen {
+  width: $vm-widen-width;
+}
+
+.vm-search, .vm-bottom {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.menu-item-wrap {
+  height: $vm-item-height;
+  padding: 11px 0;
+  .menu-item {
+    height: $vm-item-height;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &__icon {
+      width: $vm-small-width;
+    }
+    &__name {
+      flex: auto;
+    }
+  }
+  &:hover {
+    .menu-item {
+      color: $vtb-main-color;
+      box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
+      background: rgba($vtb-main-color, .1);
+    }
+  }
+  .active {
+    color: $vtb-main-color;
+    box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
+    background: rgba($vtb-main-color, .1);
+  }
+}
+
+
+// ICONS hardcode styles!!!!!
+.search-icon {
+  height: 100%;
+  background: url('./../../assets/icons/search.png') no-repeat center;
+}
+.person-icon {
+  height: 100%;
+  background: url('./../../assets/icons/group-68.png') no-repeat center;
+}
+.home-icon {
+  height: 100%;
+  background: url('./../../assets/icons/home-icon.png') no-repeat center;
+}
+.client-icon {
+  height: 100%;
+  background: url('./../../assets/icons/client-icon.png') no-repeat center;
+}
