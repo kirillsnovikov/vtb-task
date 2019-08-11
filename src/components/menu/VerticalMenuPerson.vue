@@ -1,7 +1,9 @@
 <template>
-  <div class="menu-item-wrap" v-on:click="popup" @click="isActive = !isActive">
+  <div class="menu-item-wrap" v-on:click="popup">
     <div class="menu-item" :class="{ active: isActive }">
-      <div class="menu-item__icon person-icon"></div>
+      <div class="menu-item__icon">
+        <div class="person-icon"></div>
+      </div>
       <transition name="widen-item">
         <span v-if="widenItem" class="menu-item__name">{{person.firstname}}</span>
       </transition>
@@ -41,6 +43,7 @@
     methods: {
       popup() {
         eventBus.$emit('showPopup', this.popupData)
+        this.isActive = !this.isActive
       }
     }
   }

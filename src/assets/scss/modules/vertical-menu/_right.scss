@@ -1,0 +1,25 @@
+.vm-right {
+  width: 157px;
+  overflow: hidden;
+  &__list {
+    .menu-item-wrap {
+      &:hover {
+        .menu-item {
+          color: inherit;
+          box-shadow: none;
+          background: rgba($white, .1);
+        }
+      }
+      .menu-item {
+        &__name {
+          margin-left: 25px;
+        }
+      }
+      .active {
+        color: inherit;
+        box-shadow: none;
+        background: rgba($white, .1);
+      }
+    }
+  }
+}

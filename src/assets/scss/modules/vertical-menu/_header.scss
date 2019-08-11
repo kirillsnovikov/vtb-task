@@ -1,17 +1,16 @@
 .vm-header {
   width: 100%;
-  height: $vm-item-wrap-height;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.18);
   background: $white;
   .logo {
     background: url('./../../assets/icons/hamburger-butt.png') no-repeat center;
     width: 100%;
-    height: 100%;
+    height: $vm-item-wrap-height;
   }
   .logo-big {
     background: url('./../../assets/icons/vtb-logo-3.png') no-repeat center;
     width: 100%;
-    height: 100%;
+    height: $vm-item-wrap-height;
   }
   &:hover {
     cursor: pointer;

@@ -14,25 +14,23 @@
 
 // Для лого меню
 .widen-logo-enter-active {
-  transition: all .6s;
+  transition: all .4s;
 }
-.widen-logo-enter, .widen-logo-leave-to /* .widen-item-leave-active в версии ниже 2.1.8 */ {
-  transform: translateY(-20px);
+.widen-logo-enter,  /* .widen-item-leave-active в версии ниже 2.1.8 */ {
+  transform: translateY(-50px);
 }
-// .widen-big-logo-enter-active {
-//   transition: all .6s;
-// }
-// .widen-big-logo-enter, .widen-big-logo-leave-to /* .widen-item-leave-active в версии ниже 2.1.8 */ {
-//   transform: translateX(-200px);
-//   // opacity: 0;
-// }
-
-// .widen-logo {
-//   // transform: translateX(0px);
-//   opacity: 1;
-// }
-// .widen-big-logo {
-//   // transform: translateX(0px);
-// }
 // =================
 
+
+// Правая часть меню
+.right-menu-enter-active, .right-menu-leave-active {
+  transition: all .4s;
+}
+.right-menu-enter {
+  width: 0;
+}
+
+.right-menu-leave-to {
+    width: 0;
+}
+// =================

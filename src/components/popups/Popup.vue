@@ -12,7 +12,7 @@
                 </div>
                 <div class="popup-card__footer">
                 </div>
-                <div class="btn-close" @click="show"></div>
+                <div class="btn-close" @click="show"><i class="icon-cross"></i></div>
             </div>
             <div class="popup-layout"></div>
         </div>
@@ -38,10 +38,6 @@
         methods: {
             show() {
                 this.isShow = !this.isShow
-
-            },
-            testfunc() {
-                console.log('testmsg')
             }
         },
         filters: {
