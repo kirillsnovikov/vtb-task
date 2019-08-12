@@ -25,7 +25,7 @@
       return {
         popupData: {
           actionTitle: 'Выход из системы?',
-          main: 'какой-то текст',
+          main: '',
           actions: {
             apply: {
               actionName: 'Нет, останусь',

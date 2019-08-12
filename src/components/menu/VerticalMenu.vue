@@ -19,11 +19,11 @@
                     </div>
                 </div>
                 <div class="vm-body">
-                    <VerticalMenuList :items="json.mainMenu" :widenItem="isWiden"/>
+                    <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden"/>
                 </div>
                 <div class="vm-bottom">
-                    <VerticalMenuList :items="json.bottomMenu" :widenItem="isWiden"/>
-                    <VerticalMenuPerson v-bind:person="json.person" :widenItem="isWiden"/>
+                    <VerticalMenuList :items="dataSetJson.bottomMenu" :widenItem="isWiden"/>
+                    <VerticalMenuPerson v-bind:person="dataSetJson.person" :widenItem="isWiden"/>
                 </div>
             </div>
             <div class="vm__layout__right">
@@ -41,17 +41,16 @@
     import VerticalMenuList from './VerticalMenuList.vue'
     import VerticalMenuPerson from './VerticalMenuPerson.vue'
     import VerticalMenuRight from './VerticalMenuRight.vue'
-    import { eventBus } from '@/main'
 
     export default {
+        props: ['dataSetJson'],
         components: {
             VerticalMenuList,
             VerticalMenuPerson,
             VerticalMenuRight
         },
         created() {
-            eventBus.$on('openRightMenu', popupData => {
-                console.log(popupData)
+            this.$on('openRightMenu', popupData => {
                 this.vmRightItems = popupData
                 this.isActiveRight = popupData.isActive
             })
@@ -60,82 +59,6 @@
             return {
                 vmRightItems: null,
                 isActiveRight: false,
-                json: {
-                    mainMenu: {
-                        home: {
-                            name: 'главная',
-                            icon: 'icon-home',
-                            rightMenu: [
-                            {
-                                name: 'aaaaaa',
-                                icon: ''
-                            }
-                            ]
-                        },
-                        clients: {
-                            name: 'клиенты',
-                            icon: 'icon-users',
-                            rightMenu: [
-                            {
-                                name: 'bbbbbb',
-                                icon: ''
-                            }
-                            ]
-                        },
-                        organisations: {
-                            name: 'Организации',
-                            icon: 'icon-briefcase',
-                            rightMenu: [
-                            {
-                                name: 'cccccc',
-                                icon: ''
-                            }
-                            ]
-                        },
-                        tasks: {
-                            name: 'задачи',
-                            icon: 'icon-inbox-check',
-                            rightMenu: [
-                            {
-                                name: 'мои задачи',
-                                icon: ''
-                            },
-                            {
-                                name: 'список задач',
-                                icon: ''
-                            },
-                            {
-                                name: 'задачи на обработку',
-                                icon: ''
-                            }
-                            ]
-                        },
-                        inbox: {
-                            name: 'входящие',
-                            icon: 'icon-inbox-download',
-                            rightMenu: [
-                            {
-                                name: 'ddddddd',
-                                icon: ''
-                            }
-                            ]
-                        }
-                    },
-                    bottomMenu: {
-                        calendar: {
-                            name: 'календарь',
-                            icon: 'icon-calendar'
-                        },
-                        settings: {
-                            name: 'настройки',
-                            icon: 'icon-cog'
-                        }
-                    },
-                    person: {
-                        firstname: 'Алексей',
-                        lastname: 'Викторов'
-                    }
-                },
                 isWiden: false
             }
         },

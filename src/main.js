@@ -5,6 +5,8 @@ import './assets/scss/main.scss'
 
 Vue.config.productionTip = false
 
+Vue.Component('vertical-menu', require('./components/menu/VerticalMenu.vue'))
+
 export const eventBus = new Vue()
 
 new Vue({

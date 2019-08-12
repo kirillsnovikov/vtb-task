@@ -5,7 +5,7 @@
 
 .vm {
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   top: 0;
   left: 0;
   height: 100vh;
@@ -24,20 +24,15 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      // position: relative;
       transition: width .3s;
     }
     &__right {
-      // width: 130px;
-      // transform: translateX(-50px);
       color: $white;
       height: 100%;
       display: flex;
       letter-spacing: -0.2px;
       flex-direction: column;
-      // position: relative;
       box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
-      // background: $vtb-main-color;
       background: $vm-background-right;
     }
   }

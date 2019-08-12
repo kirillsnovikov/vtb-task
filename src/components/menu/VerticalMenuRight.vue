@@ -3,9 +3,9 @@
         <li v-for="(item, i) in items">
             <a href="#">
                 <div class="menu-item-wrap" >
-                    <div class="menu-item" :class="{ active: isActive }" @click="isActive = !isActive">
+                    <div class="menu-item" :class="{ active: isActive === i}" @click="isActive = i">
                         <div v-if="item.icon"class="menu-item__icon"><i :class="item.icon"></i></div>
-                        <span class="menu-item__name">{{item.name | capitalize}}</span>
+                        <span class="menu-item__name">{{item.captionName | capitalize}}</span>
                     </div>
                 </div>
             </a>
@@ -20,7 +20,7 @@
         },
         data() {
             return {
-                isActive: false
+                isActive: null
             }
         },
         mounted() {

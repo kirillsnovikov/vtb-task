@@ -1,0 +1,13 @@
+.vm-search {
+  .text-input {
+    position: relative;
+    input {
+      width: 200px;
+    }
+    &__mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

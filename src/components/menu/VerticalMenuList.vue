@@ -4,7 +4,7 @@
       <a href="#">
         <div class="menu-item-wrap" >
           <div class="menu-item" :class="{ active: itemActive === i && isActive}">
-            <div class="menu-item__icon"><i v-if="item.icon" :class="item.icon"></i></div>
+            <div class="menu-item__icon"><i v-if="item.tabIcon" :class="item.tabIcon"></i></div>
             <transition name="widen-item">
               <span v-if="widenItem" class="menu-item__name">{{item.name | capitalize}}</span>
             </transition>
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  import { eventBus } from '@/main'
   export default {
     props: {
       items: Object,
@@ -40,9 +39,8 @@
           this.itemActive = i
           this.isActive = !this.isActive
         }
-        console.log(this.itemActive, this.isActive)
         this.items[i].rightMenu.isActive = this.isActive
-        eventBus.$emit('openRightMenu', this.items[i].rightMenu)
+        this.$parent.$emit('openRightMenu', this.items[i].rightMenu)
       }
     },
     filters: {
