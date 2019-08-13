@@ -33,8 +33,7 @@
     },
     methods: {
       cardFormat(newVal) {
-        if (newVal.search( /[^\d]/gi ) >= 0) {
-          this.inputEl.classList.remove('onerror')
+        if (newVal.search( /[^\d|\s]/gi ) >= 0) {
           this.inputEl.classList.add('onerror')
           setTimeout(() => {
             this.inputEl.classList.remove('onerror')
