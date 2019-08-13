@@ -1,3 +1,63 @@
 {
-  "afd": "sdfds"
+  "searchList": {
+    "type": {
+        "name": "Основные",
+        "inputList": [
+            {
+                "label": "фамилия",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "имя",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "отчество",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "номер карты",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "дул",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "логин телебанка",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "siebel id",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "id заявки",
+                "type": "text",
+                "format": "",
+                "length": 128
+            },
+            {
+                "label": "полный номер карты",
+                "type": "text",
+                "format": "",
+                "length": 128
+            }
+        ]
+    }
+  }
 }
