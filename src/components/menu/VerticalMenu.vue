@@ -33,6 +33,11 @@
                     </div>
                 </transition>
             </div>
+            <div class="vm__layout__search">
+                <div class="vm-search-form" v-if="isActiveSearch">
+                    <VerticalMenuSearch />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -41,13 +46,16 @@
     import VerticalMenuList from './VerticalMenuList.vue'
     import VerticalMenuPerson from './VerticalMenuPerson.vue'
     import VerticalMenuRight from './VerticalMenuRight.vue'
+    import VerticalMenuSearch from './VerticalMenuSearch.vue'
 
     export default {
+        name: 'vertical-menu',
         props: ['dataSetJson'],
         components: {
             VerticalMenuList,
             VerticalMenuPerson,
-            VerticalMenuRight
+            VerticalMenuRight,
+            VerticalMenuSearch,
         },
         created() {
             this.$on('openRightMenu', popupData => {
@@ -59,6 +67,7 @@
             return {
                 vmRightItems: null,
                 isActiveRight: false,
+                isActiveSearch: true,
                 isWiden: false
             }
         },

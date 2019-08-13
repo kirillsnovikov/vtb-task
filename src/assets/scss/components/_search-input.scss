@@ -1,13 +1,70 @@
-.vm-search {
-  .text-input {
-    position: relative;
-    input {
-      width: 200px;
-    }
-    &__mask {
-      position: absolute;
-      top: 0;
-      left: 0;
+input[type="text"] {
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+}
+
+.text-input {
+  position: relative;
+  // background: transparent;
+  & * {
+    box-sizing: border-box;
+  }
+  &__input {
+    background: transparent;
+    border: 1px solid $black;
+    border-radius: 4px;
+    padding-left: $vm-input-padding-left;
+    font-size: 16px;
+    letter-spacing: 1px;
+    width: 100%;
+    height: $vm-input-height;
+    z-index: 1;
+    &:focus ~ .text-input__label {
+      top: -14px;
+      font-size: 7px;
+      transition: 0.3s;
     }
   }
+  &__label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    z-index: -1;
+    transition: 0.3s;
+    height: $vm-input-height;
+    line-height: $vm-input-height;
+    padding-left: $vm-input-padding-left;
+    font-size: 10px;
+    opacity: 0.4;
+    letter-spacing: 0.7px;
+  }
+  &__clear {
+    position: absolute;
+    text-align: right;
+    padding-right: $vm-input-padding-left;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    height: $vm-input-height;
+    line-height: $vm-input-height;
+    transition: 0.4s;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.onfocus {
+  top: -14px;
+  font-size: 7px;
+  transition: 0.3s;
+}
+
+.onerror {
+  border: 1px solid rgba($error-color, .7);
+  box-shadow: 0px 0px 20px 0px rgba($error-color, .4);
 }

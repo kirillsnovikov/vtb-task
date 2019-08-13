@@ -6,7 +6,7 @@
           <div class="menu-item" :class="{ active: itemActive === i && isActive}">
             <div class="menu-item__icon"><i v-if="item.tabIcon" :class="item.tabIcon"></i></div>
             <transition name="widen-item">
-              <span v-if="widenItem" class="menu-item__name">{{item.name | capitalize}}</span>
+              <span v-if="widenItem" class="menu-item__name">{{item.captionName | capitalize}}</span>
             </transition>
           </div>
         </div>
@@ -29,6 +29,7 @@
     },
     methods: {
       rightMenu(i) {
+        console.log(this.items)
         if (this.itemActive && this.itemActive === i) {
           this.itemActive = i
           this.isActive = !this.isActive
@@ -39,8 +40,8 @@
           this.itemActive = i
           this.isActive = !this.isActive
         }
-        this.items[i].rightMenu.isActive = this.isActive
-        this.$parent.$emit('openRightMenu', this.items[i].rightMenu)
+        this.items[i].links.isActive = this.isActive
+        this.$parent.$emit('openRightMenu', this.items[i].links)
       }
     },
     filters: {

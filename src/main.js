@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VerticalMenu from './components/menu/VerticalMenu.vue'
 
 import './assets/scss/main.scss'
 
 Vue.config.productionTip = false
 
-Vue.Component('vertical-menu', require('./components/menu/VerticalMenu.vue'))
+Vue.component('vertical-menu', VerticalMenu)
+// Vue.component('vertical-menu', require('./components/menu/VerticalMenu.vue').default)
 
 export const eventBus = new Vue()
 

@@ -4,13 +4,11 @@
       <div class="content"></div>
     </section>
     <vertical-menu :dataSetJson='ds'></vertical-menu>
-    <!-- <VerticalMenu :dataSetJson='ds'/> -->
     <Popup />
   </div>
 </template>
 
 <script>
-  // import VerticalMenu from './components/menu/VerticalMenu.vue'
   import Popup from './components/popups/Popup.vue'
 
   var dataSet = {
@@ -87,6 +85,9 @@
     person: {
       firstname: 'Алексей',
       lastname: 'Викторов'
+    },
+    searchMenu: {
+
     }
   };
 
@@ -94,7 +95,6 @@
 
     name: 'app',
     components: {
-      VerticalMenu,
       Popup
     },
     data() {

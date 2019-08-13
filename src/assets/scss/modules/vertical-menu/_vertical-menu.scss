@@ -2,6 +2,7 @@
 @import "bottom";
 @import "header";
 @import "right";
+@import "search";
 
 .vm {
   position: fixed;
@@ -16,6 +17,7 @@
     font-size: 11px;
     &__left {
       color: $vm-text-color;
+      box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
       letter-spacing: 0.15px;
       font-style: normal;
       font-stretch: normal;
@@ -25,6 +27,7 @@
       display: flex;
       flex-direction: column;
       transition: width .3s;
+      z-index: 3;
     }
     &__right {
       color: $white;
@@ -34,6 +37,13 @@
       flex-direction: column;
       box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
       background: $vm-background-right;
+      z-index: 2;
+    }
+    &__search {
+      background: $white;
+      z-index: 1;
+      width: $vm-search-form-width;
+
     }
   }
   ul, &__list {
