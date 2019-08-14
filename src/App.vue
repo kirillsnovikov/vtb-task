@@ -11,7 +11,7 @@
 <script>
   import Popup from './components/popups/Popup.vue'
 
-  import dataSet from './components/menudata.json'
+  import dataSet from './components/menudata'
 
   export default {
 

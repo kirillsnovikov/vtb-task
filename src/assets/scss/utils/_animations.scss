@@ -31,6 +31,23 @@
 }
 
 .right-menu-leave-to {
-    width: 0;
+  width: 0;
 }
+// =================
+
+
+// Поиск-лист вертикальное меню
+.search-menu-enter-active, .search-menu-leave-active {
+  transition: all .4s;
+}
+.search-menu-enter, .search-menu-leave-to {
+  width: 0;
+  padding: 25px 0;
+  opacity: 0;
+}
+
+// .search-menu-leave-to {
+//   width: 0;
+//   padding: 25px 0;
+// }
 // =================

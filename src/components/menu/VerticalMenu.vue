@@ -8,7 +8,7 @@
                         <div class="logo-big" v-else key="big"></div>
                     </transition>
                 </div>
-                <div class="vm-search">
+                <div class="vm-search"  @click="isActiveSearch = !isActiveSearch">
                     <div class="menu-item-wrap">
                         <div class="menu-item">
                             <div class="menu-item__icon"><i class="icon-search"></i></div>
@@ -34,9 +34,11 @@
                 </transition>
             </div>
             <div class="vm__layout__search">
-                <div class="vm-search-form" v-if="isActiveSearch">
-                    <VerticalMenuSearch />
-                </div>
+                <transition name="search-menu">
+                    <div class="vm-search-form" v-if="isActiveSearch">
+                        <VerticalMenuSearch />
+                    </div>
+                </transition>
             </div>
         </div>
     </div>

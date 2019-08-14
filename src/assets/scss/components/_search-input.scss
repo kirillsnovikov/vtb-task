@@ -7,6 +7,7 @@ input[type="text"] {
 
 .text-input {
   position: relative;
+  margin-bottom: 4px;
   // background: transparent;
   & * {
     box-sizing: border-box;
@@ -14,6 +15,7 @@ input[type="text"] {
   &__input {
     background: transparent;
     border: 1px solid $black;
+    font-weight: bold;
     border-radius: 4px;
     padding-left: $vm-input-padding-left;
     font-size: 16px;

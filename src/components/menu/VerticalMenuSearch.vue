@@ -1,57 +1,52 @@
 <template>
   <div>
-    <div class="text-input" format="text">
-      <input v-model="input" class="text-input__input" type="text">
-      <label class="text-input__label" :class="{ onfocus: input }">{{label | toupper}}</label>
-      <span class="text-input__clear" @click="input = ''"><i class="icon-cross"></i></span>
+    <div class="search-title">{{'поиск клиента' | capitalize}}</div>
+    <div class="select-list" tabindex="1" v-model="selected">
+      <input v-for="(item, i) in searchData.searchList.types" class="selectopt" :name="item.type" type="radio" :id="'type'+i" checked>
+      <label v-for="(label, k) in searchData.searchList.types" :for="'type'+k" class="option">{{label.name | capitalize}}</label>
+    </div>
+
+
+    <input name="radiosel" type="radio" v-model="picked" :value="1" id="unique">
+    <label for="unique">Select:</label>
+    <input name="radiosel" type="radio" v-model="picked" :value="2" id="unique2">
+    <label for="unique2">Select:</label>
+    <input name="radiosel" type="radio" v-model="picked" :value="3" id="unique3">
+    <label for="unique3">Select:</label>
+    {{picked === 1}}{{picked === 2}}{{picked === 3}}
+    <div v-for="(input, ind) in searchData.searchList.types[0].inputList">
+      <SearchInput :inputData="input" />
     </div>
   </div>
 </template>
 
 <script>
   import searchJson from '@/components/search'
+  import SearchInput from '@/components/menu/VerticalMenuSearchInput.vue'
+
   export default {
-    name: 'text-input',
+    name: 'menu-search',
+    components: {
+      SearchInput
+    },
     data() {
       return {
-        input: '',
-        inputEl: null,
-        // maskInput: '0000 0000 0000 0000',
-        // maskValue: '0000 0000 0000 0000',
-        label: 'фамилия'
+        searchData: searchJson,
+        selected: '',
+        picked: ''
       }
     },
     mounted() {
       // console.log(this.$el.getAttribute('format'))
-      this.inputEl = this.$el.firstChild.firstChild
-      console.log(this.inputEl )
-    },
-    watch: {
-      input: function(newVal) {
-        this.input = this.cardFormat(newVal)
-      }
+      // console.log(this.searchData.searchList.types.main.inputList)
     },
     methods: {
-      cardFormat(newVal) {
-        if (newVal.search( /[^\d|\s]/gi ) >= 0) {
-          this.inputEl.classList.add('onerror')
-          setTimeout(() => {
-            this.inputEl.classList.remove('onerror')
-          }, 300)
-        }
-        let cardCode = newVal.replace(/[^\d]/g, '').substring(0,16)
-        let formatCardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join(' ') : ''
-        // this.maskValue = formatCardCode + this.maskInput.substr(formatCardCode.length)
-        return formatCardCode
-
-        // console.log(this.$el.children[0].value = this.maskValue)
-      }
     },
     filters: {
-      toupper(str) {
+      capitalize(str) {
         if (!str) return ''
           str = str.toString()
-        return str.toUpperCase()
+        return str.charAt(0).toUpperCase() + str.slice(1)
       }
     }
   }
