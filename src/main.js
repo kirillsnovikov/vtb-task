@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VerticalMenu from './components/menu/VerticalMenu.vue'
-import './components/utils/filters'
 
 import './assets/scss/main.scss'
 

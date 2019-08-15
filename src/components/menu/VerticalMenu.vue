@@ -23,7 +23,7 @@
                 </div>
                 <div class="vm-bottom">
                     <VerticalMenuList :items="dataSetJson.bottomMenu" :widenItem="isWiden"/>
-                    <VerticalMenuPerson v-bind:person="dataSetJson.person" :widenItem="isWiden"/>
+
                 </div>
             </div>
             <div class="vm__layout__right">
@@ -46,20 +46,23 @@
 
 <script>
     import VerticalMenuList from './VerticalMenuList.vue'
-    import VerticalMenuPerson from './VerticalMenuPerson.vue'
+
     import VerticalMenuRight from './VerticalMenuRight.vue'
     import VerticalMenuSearch from './VerticalMenuSearch.vue'
 
     export default {
         name: 'vertical-menu',
-        props: ['dataSetJson'],
+        props: {
+          dataSetJson: Object
+        },
         components: {
             VerticalMenuList,
-            VerticalMenuPerson,
+
             VerticalMenuRight,
             VerticalMenuSearch,
         },
         created() {
+            console.log(this.dataSetJson);
             this.$on('openRightMenu', popupData => {
                 this.vmRightItems = popupData
                 this.isActiveRight = popupData.isActive
@@ -69,7 +72,7 @@
             return {
                 vmRightItems: null,
                 isActiveRight: false,
-                isActiveSearch: true,
+                isActiveSearch: false,
                 isWiden: false
             }
         },

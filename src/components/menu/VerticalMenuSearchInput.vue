@@ -8,7 +8,6 @@
 
 <script>
   const regExps = {
-    // text: new RegExp('\[\\d\\|\\s]', 'gi'),
     text: new RegExp('\[\\d\]', 'gi'),
     number: new RegExp('\[\^\\d\]', 'gi')
   }
@@ -61,12 +60,12 @@
       //   // console.log(this.$el.children[0].value = this.maskValue)
       // }
     },
-    // filters: {
-    //   toupper(str) {
-    //     if (!str) return ''
-    //       str = str.toString()
-    //     return str.toUpperCase()
-    //   }
-    // }
+    filters: {
+      toupper(str) {
+        if (!str) return ''
+          str = str.toString()
+        return str.toUpperCase()
+      }
+    }
   }
 </script>
