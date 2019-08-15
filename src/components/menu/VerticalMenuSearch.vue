@@ -1,22 +1,22 @@
 <template>
-  <div>
-    <div class="search-title">{{'поиск клиента' | capitalize}}</div>
-    <div class="select-list" tabindex="1" v-model="selected">
-      <input v-for="(item, i) in searchData.searchList.types" class="selectopt" :name="item.type" type="radio" :id="'type'+i" checked>
-      <label v-for="(label, k) in searchData.searchList.types" :for="'type'+k" class="option">{{label.name | capitalize}}</label>
+  <div class="search-layout">
+    <div class="search-header">
+      <div class="search-header__hide-button"></div>
+      <div class="search-header__title">{{'поиск клиента' | toupper}}</div>
+      <div class="search-header__clear-button"></div>
     </div>
-
-
-    <input name="radiosel" type="radio" v-model="picked" :value="1" id="unique">
-    <label for="unique">Select:</label>
-    <input name="radiosel" type="radio" v-model="picked" :value="2" id="unique2">
-    <label for="unique2">Select:</label>
-    <input name="radiosel" type="radio" v-model="picked" :value="3" id="unique3">
-    <label for="unique3">Select:</label>
-    {{picked === 1}}{{picked === 2}}{{picked === 3}}
-    <div v-for="(input, ind) in searchData.searchList.types[0].inputList">
-      <SearchInput :inputData="input" />
+    <div class="search-select">
+      <select v-model="selected">
+        <option disabled value="">{{'Выберите один из вариантов' | toupper}}</option>
+        <option selected>А</option>
+        <option>Б</option>
+        <option>В</option>
+      </select>
     </div>
+    <div class="search-input-list">
+      <!-- <SearchInput v-for="(input, i) in searchInputs.searchList.types[0].inputList" :inputData="input" /> -->
+    </div>
+    <div class="search-button btn">{{'' | }}</div>
   </div>
 </template>
 
@@ -31,9 +31,17 @@
     },
     data() {
       return {
-        searchData: searchJson,
-        selected: '',
-        picked: ''
+        searchTypes: searchJson.searchList.types,
+        selectedTypeNum: null,
+        searchInputs: {
+          type: Array,
+          default: []
+        },
+      }
+    },
+    computed: {
+      getSearchInputs() {
+        let inputs = this.searchTypes[this.selectedTypeNum]
       }
     },
     mounted() {

@@ -61,12 +61,12 @@
       //   // console.log(this.$el.children[0].value = this.maskValue)
       // }
     },
-    filters: {
-      toupper(str) {
-        if (!str) return ''
-          str = str.toString()
-        return str.toUpperCase()
-      }
-    }
+    // filters: {
+    //   toupper(str) {
+    //     if (!str) return ''
+    //       str = str.toString()
+    //     return str.toUpperCase()
+    //   }
+    // }
   }
 </script>
