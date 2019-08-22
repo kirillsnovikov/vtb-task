@@ -1,5 +1,5 @@
 // vue.config.js
 module.exports = {
   // настройки...
-  css: { extract: false }
+  css: { extract: true }
 }

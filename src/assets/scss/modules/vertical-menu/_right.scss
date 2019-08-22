@@ -12,7 +12,9 @@
       }
       .menu-item {
         &__name {
-          margin-left: 25px;
+          @extend %ellipsis;
+          margin-left: 15px;
+          margin-right: 10px;
         }
       }
       .active {

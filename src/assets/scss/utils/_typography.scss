@@ -7,3 +7,10 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+%ellipsis {
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

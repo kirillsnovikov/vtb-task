@@ -78,9 +78,9 @@
       font-size: 15px;
     }
     &__name {
-      white-space: nowrap;
       width: 0;
-      overflow: visible;
+      // width: 50px;
+      // @extend %ellipsis;
     }
   }
   &:hover {

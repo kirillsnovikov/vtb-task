@@ -4,10 +4,11 @@
 
 // Для анимации названий меню при раскрытии
 .widen-item-enter-active {
-  transition: all .4s;
+  transition: width .4s;
 }
-.widen-item-enter, .widen-item-leave-to /* .widen-item-leave-active в версии ниже 2.1.8 */ {
-  transform: translateY(-32px);
+.widen-item-enter /* .widen-item-leave-active в версии ниже 2.1.8 */ {
+  // transform: translateY(-32px);
+  width: 0;
   opacity: 0;
 }
 // ==========================

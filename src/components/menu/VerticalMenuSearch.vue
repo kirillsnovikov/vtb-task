@@ -6,17 +6,14 @@
       <div class="search-header__clear-button"></div>
     </div>
     <div class="search-select">
-      <select v-model="selected">
-        <option disabled value="">{{'Выберите один из вариантов' | toupper}}</option>
-        <option selected>А</option>
-        <option>Б</option>
-        <option>В</option>
+      <select v-model="selectedTypeNum">
+        <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | toupper}}</option>
       </select>
     </div>
     <div class="search-input-list">
-      <!-- <SearchInput v-for="(input, i) in searchInputs.searchList.types[0].inputList" :inputData="input" /> -->
+      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :key="i"/>
     </div>
-    <div class="search-button btn">{{'' | }}</div>
+    <div class="search-button btn">{{'поиск' | toupper}}</div>
   </div>
 </template>
 
@@ -31,30 +28,15 @@
     },
     data() {
       return {
+        selectedTypeNum: 0,
         searchTypes: searchJson.searchList.types,
-        selectedTypeNum: null,
-        searchInputs: {
-          type: Array,
-          default: []
-        },
       }
     },
     computed: {
       getSearchInputs() {
-        let inputs = this.searchTypes[this.selectedTypeNum]
-      }
-    },
-    mounted() {
-      // console.log(this.$el.getAttribute('format'))
-      // console.log(this.searchData.searchList.types.main.inputList)
-    },
-    methods: {
-    },
-    filters: {
-      capitalize(str) {
-        if (!str) return ''
-          str = str.toString()
-        return str.charAt(0).toUpperCase() + str.slice(1)
+        console.log(this.selectedTypeNum)
+        let inputs = this.searchTypes[this.selectedTypeNum].inputList
+        return inputs
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
   <div class="text-input">
-    <input v-model="input" class="text-input__input" type="text">
-    <label class="text-input__label" :class="{ onfocus: input }">{{ inputData.label | toupper}}</label>
-    <span class="text-input__clear" @click="input = ''"><i class="icon-cross"></i></span>
+    <input v-model="inputValue" class="text-input__input" type="text">
+    <label class="text-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
+    <span class="text-input__clear" @click="inputValue = ''"><i class="icon-cross"></i></span>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
     },
     data() {
       return {
-        input: '',
+        inputValue: '',
         inputEl: null,
         // maskInput: '0000 0000 0000 0000',
         regular: null
@@ -29,17 +29,17 @@
       this.regular = new RegExp(regExps[this.inputData.type])
     },
     watch: {
-      input: function(newVal) {
-        this.input = this.validate(newVal)
-        console.log(this.input)
+      inputValue: function(newVal) {
+        this.inputValue = this.validate(newVal)
+        console.log(this.inputValue)
       }
     },
     methods: {
       validate(newVal) {
         if (newVal.search(this.regular) >= 0) {
-          this.inputEl.classList.add('onerror')
+          this.inputEl.classList.add('error')
           setTimeout(() => {
-            this.inputEl.classList.remove('onerror')
+            this.inputEl.classList.remove('error')
           }, 300)
         }
         let resultString = newVal.replace(this.regular, '').substring(0,this.inputData.length)
@@ -56,16 +56,8 @@
       //   let formatCardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join(' ') : ''
       //   // this.maskValue = formatCardCode + this.maskInput.substr(formatCardCode.length)
       //   return formatCardCode
-
       //   // console.log(this.$el.children[0].value = this.maskValue)
       // }
-    },
-    filters: {
-      toupper(str) {
-        if (!str) return ''
-          str = str.toString()
-        return str.toUpperCase()
-      }
     }
   }
 </script>

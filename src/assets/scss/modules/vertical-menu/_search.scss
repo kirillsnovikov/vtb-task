@@ -5,13 +5,18 @@
   overflow: hidden;
   padding: 25px;
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
-  .search-title {
-    font-size: 22px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.18;
-    letter-spacing: -0.39px;
-    padding-left: 13px;
+  .search-layout {
+    .search-header {
+      &__title {
+        font-size: 22px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.18;
+        letter-spacing: -0.39px;
+        padding-left: 13px;
+      }
+    }
   }
+
 }

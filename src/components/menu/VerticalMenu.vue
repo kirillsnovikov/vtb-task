@@ -2,7 +2,7 @@
     <div id="vm" class="vm">
         <div class="vm__layout">
             <div class="vm__layout__left" :class="{ widen: isWiden }">
-                <div class="vm-header" @click="isWiden = !isWiden">
+                <div class="vm-header" @click="activeMenu">
                     <transition name="widen-logo" mode="out-in">
                         <div class="logo" v-if="!isWiden" key="small"></div>
                         <div class="logo-big" v-else key="big"></div>
@@ -29,7 +29,7 @@
             <div class="vm__layout__right">
                 <transition name="right-menu">
                     <div class="vm-right" v-if="isActiveRight">
-                        <VerticalMenuRight :items="vmRightItems"/>
+                        <VerticalMenuRight :items="vmRightItems" v-on:gotoViewAndHide="hideAll"/>
                     </div>
                 </transition>
             </div>
@@ -46,7 +46,7 @@
 
 <script>
     import VerticalMenuList from './VerticalMenuList.vue'
-
+    import VerticalMenuPerson from './VerticalMenuPerson.vue'
     import VerticalMenuRight from './VerticalMenuRight.vue'
     import VerticalMenuSearch from './VerticalMenuSearch.vue'
 
@@ -54,27 +54,59 @@
         name: 'vertical-menu',
         props: {
           dataSetJson: Object
-        },
-        components: {
-            VerticalMenuList,
-
-            VerticalMenuRight,
-            VerticalMenuSearch,
-        },
-        created() {
-            console.log(this.dataSetJson);
-            this.$on('openRightMenu', popupData => {
-                this.vmRightItems = popupData
-                this.isActiveRight = popupData.isActive
-            })
-        },
-        data() {
-            return {
-                vmRightItems: null,
-                isActiveRight: false,
-                isActiveSearch: false,
-                isWiden: false
+      },
+      components: {
+        VerticalMenuList,
+        VerticalMenuPerson,
+        VerticalMenuRight,
+        VerticalMenuSearch,
+    },
+    created() {
+        this.$on('openRightMenu', data => {
+            this.vmRightItems = data
+            this.isActiveRight = data.isActive
+            console.log(this.isActiveRight)
+        })
+    },
+    mounted() {
+        this.mainContent = document.getElementById('_swecontent')
+        this.mainContent.addEventListener('click', this.hideAll)
+    },
+    data() {
+        return {
+            vmRightItems: null,
+            isActiveRight: false,
+            isActiveSearch: false,
+            isWiden: false,
+            mainContent: null,
+            clickListen: null
+        }
+    },
+    updated() {
+        this.blurContent
+    },
+    computed: {
+        blurContent() {
+            if (this.isWiden || this.isActiveRight || this.isActiveSearch) {
+                this.mainContent.classList.add('blur-content')
+            } else {
+                this.mainContent.classList.remove('blur-content')
+            }
+        }
+    },
+    methods: {
+        activeMenu() {
+            this.isWiden = !this.isWiden
+            if (this.isActiveRight || this.isActiveSearch) {
+                this.hideAll()
             }
         },
+        hideAll() {
+            this.isWiden = false
+            this.isActiveRight = false
+            this.isActiveSearch = false
+            this.mainContent.classList.remove('blur-content')
+        },
     }
+}
 </script>

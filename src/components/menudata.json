@@ -5,7 +5,7 @@
       "tabIcon": "icon-home",
       "links": [
         {
-          "captionName": "aaaaaa",
+          "captionName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbb",
           "icon": ""
         }
       ]
@@ -53,7 +53,7 @@
       "tabIcon": "icon-inbox-download",
       "links": [
         {
-          "name": "ddddddd",
+          "captionName": "ddddddd",
           "icon": ""
         }
       ]
