@@ -1,0 +1,18 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur id="blurEffect" stdDeviation="2" />
+    </filter>
+    <animate
+      id            = "blurAnim"
+      attributeName = "stdDeviation"
+      from          = "1"
+      to            = "0,0"
+      begin         = "0s"
+      dur           = "2s"
+      fill          = "freeze"
+      xlink:href    = "#blurEffect"
+      />
+    </defs>
+    <image xlink:href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/222579/darwin300.jpg" width="300" height="300" filter="url(#blur)"></image>
+  </svg>

@@ -51,6 +51,24 @@
 
           <div class="siebui-span-xl-2">
             Россия
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur id="blurEffect" stdDeviation="20,1" />
+    </filter>
+    <animate
+      id            = "blurAnim"
+      attributeName = "stdDeviation"
+      from          = "20,1"
+      to            = "0,0"
+      begin         = "0s"
+      dur           = "2s"
+      fill          = "freeze"
+      xlink:href    = "#blurEffect"
+      />
+    </defs>
+    <text  filter="url(#blur)">sdhdghdghdgh</text>
+  </svg>
           </div>
 
           <div class="siebui-span-xl-1">
@@ -59,7 +77,6 @@
         </div>
       </div>
       <div class="vtb-footer">
-
       </div>
     </div>
 </template>
