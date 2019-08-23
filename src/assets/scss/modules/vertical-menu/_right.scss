@@ -10,7 +10,13 @@
           background: rgba($white, .1);
         }
       }
+      &:active {
+        .menu-item {
+          background: rgba($white, .3);
+        }
+      }
       .menu-item {
+        transition: background .2s;
         &__name {
           @extend %ellipsis;
           margin-left: 15px;

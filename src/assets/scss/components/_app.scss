@@ -1,26 +1,3 @@
-#_swecontent {
-  // filter: url('./../svg/filters.svg#noblur');
-  transition: filter 1s;
-  filter: none;
-  // animation: filters 0.2s;
-  // filter: url('./../svg/filters.svg#blur');
-}
-
-// @keyframes filters {
-//   0% {
-//     filter: url('./../svg/filters.svg#blur0');
-//   }
-//   // 30% {
-//   //   filter: url('./../svg/filters.svg#blur1');
-//   // }
-//   // 70% {
-//   //   filter: url('./../svg/filters.svg#blur2');
-//   // }
-//   100% {
-//     filter: url('./../svg/filters.svg#blur3');
-//   }
-// }
-
 .main-section {
   padding-left: 64px;
   background-image:linear-gradient(90deg,#0a2896,#1750c6 97%,#1851c7);

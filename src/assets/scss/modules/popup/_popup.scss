@@ -55,33 +55,18 @@
           justify-content: center;
           padding: 0 10px 20px 10px;
           .btn {
+            @extend %btn;
             width: 163px;
-            height: 48px;
-            line-height: 48px;
-            font-size: 11.2px;
-            font-weight: normal;
-            border-radius: 24px;
-            border: solid 1px $btn-blue-color;
-            cursor: pointer;
             margin-right: 10px;
             &:last-child {
               margin-right: 0;
             }
           }
           .btn-fill {
-            background: $btn-blue-color;
-            color: $white;
-            &:hover {
-              color: $btn-blue-color;
-              background: $white;
-            }
+            @extend %btn-fill;
           }
           .btn-empty {
-            color: $btn-blue-color;
-            &:hover {
-              background: $btn-blue-color;
-              color: $white;
-            }
+            @extend %btn-empty;
           }
         }
       }

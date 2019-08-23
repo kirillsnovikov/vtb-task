@@ -29,6 +29,9 @@ input[type="text"] {
       transition: 0.3s;
     }
   }
+  &:last-child {
+    margin-bottom: 45px;
+  }
   &__label {
     position: absolute;
     left: 0;

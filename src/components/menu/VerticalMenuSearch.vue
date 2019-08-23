@@ -1,19 +1,27 @@
 <template>
   <div class="search-layout">
     <div class="search-header">
-      <div class="search-header__hide-button"></div>
-      <div class="search-header__title">{{'поиск клиента' | toupper}}</div>
-      <div class="search-header__clear-button"></div>
+      <div class="search-header__back-button">
+        <i class="icon-arrow-back"></i>
+      </div>
+      <div class="search-header__title">{{'поиск клиента' | capitalize}}</div>
+      <div class="search-header__clear-button">
+        <i class="icon-delete"></i>
+      </div>
     </div>
     <div class="search-select">
       <select v-model="selectedTypeNum">
-        <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | toupper}}</option>
+        <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | capitalize}}</option>
       </select>
     </div>
     <div class="search-input-list">
       <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :key="i"/>
     </div>
-    <div class="search-button btn">{{'поиск' | toupper}}</div>
+    <div class="search-button">
+      <div class="btn btn-search">
+        {{'поиск' | toupper}}
+      </div>
+    </div>
   </div>
 </template>
 

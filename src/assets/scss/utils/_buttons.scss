@@ -1,0 +1,32 @@
+%btn {
+  @extend %flex-center-center;
+  height: $btn-heigth;
+  border-radius: $btn-radius;
+  font-size: $btn-font-size;
+  font-weight: normal;
+  border: solid 1px $btn-blue-color;
+  cursor: pointer;
+}
+
+%btn-fill {
+  background: $btn-blue-color;
+  color: $white;
+  &:hover {
+    color: $btn-blue-color;
+    background: $white;
+  }
+  &:active {
+    background: rgba($btn-blue-color, .3);
+  }
+}
+
+%btn-empty {
+  color: $btn-blue-color;
+  &:hover {
+    color: $white;
+    background: $btn-blue-color;
+  }
+  &:active {
+    background: rgba($btn-blue-color, .7);
+  }
+}

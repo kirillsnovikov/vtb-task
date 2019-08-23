@@ -5,7 +5,7 @@
         <div class="menu-item-wrap" >
           <div class="menu-item" :class="{ active: itemActive === i && isActive}">
             <div class="menu-item__icon"><i v-if="item.tabIcon" :class="item.tabIcon"></i></div>
-            <transition name="widen-item">
+            <transition name="widen-item" mode="in-out">
               <span v-if="widenItem" class="menu-item__name" :key="item.captionName">{{item.captionName | capitalize}}</span>
             </transition>
           </div>
@@ -41,7 +41,7 @@
           this.isActive = !this.isActive
         }
         this.items[i].links.isActive = this.isActive
-        this.$parent.$emit('openRightMenu', this.items[i].links)
+        this.$emit('activeRightMenu', this.items[i].links)
       }
     }
   }

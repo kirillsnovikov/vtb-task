@@ -8,7 +8,7 @@
                         <div class="logo-big" v-else key="big"></div>
                     </transition>
                 </div>
-                <div class="vm-search"  @click="isActiveSearch = !isActiveSearch">
+                <div class="vm-search"  @click="activeSearch">
                     <div class="menu-item-wrap">
                         <div class="menu-item">
                             <div class="menu-item__icon"><i class="icon-search"></i></div>
@@ -19,11 +19,19 @@
                     </div>
                 </div>
                 <div class="vm-body">
-                    <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden"/>
+                    <VerticalMenuList
+                    :items="dataSetJson.mainMenu"
+                    :widenItem="isWiden"
+                    v-on:activeRightMenu="activeRightMenu"
+                    :isActiveRight="isActiveRight"/>
                 </div>
                 <div class="vm-bottom">
-                    <VerticalMenuList :items="dataSetJson.bottomMenu" :widenItem="isWiden"/>
-
+                    <VerticalMenuList
+                    :items="dataSetJson.bottomMenu"
+                    :widenItem="isWiden"
+                    v-on:activeRightMenu="activeRightMenu"
+                    :isActiveRight="isActiveRight"/>
+                    <VerticalMenuPerson />
                 </div>
             </div>
             <div class="vm__layout__right">
@@ -61,17 +69,6 @@
         VerticalMenuRight,
         VerticalMenuSearch,
     },
-    created() {
-        this.$on('openRightMenu', data => {
-            this.vmRightItems = data
-            this.isActiveRight = data.isActive
-            console.log(this.isActiveRight)
-        })
-    },
-    mounted() {
-        this.mainContent = document.getElementById('_swecontent')
-        this.mainContent.addEventListener('click', this.hideAll)
-    },
     data() {
         return {
             vmRightItems: null,
@@ -82,8 +79,13 @@
             clickListen: null
         }
     },
+    mounted() {
+        this.mainContent = document.getElementById('_swecontent')
+        this.mainContent.addEventListener('click', this.hideAll)
+    },
     updated() {
         this.blurContent
+        console.log(this.isActiveRight)
     },
     computed: {
         blurContent() {
@@ -101,12 +103,21 @@
                 this.hideAll()
             }
         },
+        activeRightMenu(data) {
+            this.vmRightItems = data
+            this.isActiveRight = data.isActive
+            this.isActiveSearch = false
+        },
         hideAll() {
             this.isWiden = false
             this.isActiveRight = false
             this.isActiveSearch = false
-            this.mainContent.classList.remove('blur-content')
+            this.blurContent
         },
+        activeSearch() {
+            this.isActiveSearch = !this.isActiveSearch
+            this.isActiveRight = false
+        }
     }
 }
 </script>
