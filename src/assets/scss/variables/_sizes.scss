@@ -5,13 +5,24 @@ $vm-widen-width: 150px;
 $vm-item-wrap-height: 64px;
 $vm-item-height: 41px;
 
-// vm-search
+// vm-search-input
 $vm-search-form-width: auto;
 $vm-input-height: 44px;
 $vm-input-padding-left: 13px;
+
+// popup-search-input
+$subject-search-width: 585px;
+$subject-search-height: 54px;
+$subject-title-height: 58px;
+$subtitle-height: 47px;
+$search-tag-height: 35px;
 
 // Buttons
 $btn-heigth: 48px;
 $btn-radius: 24px;
 $btn-font-size: 11.2px;
 $circle-btn: 28px;
+
+// Tabs
+$tab-item-height: 50px;
+$tab-item-width: 120px;

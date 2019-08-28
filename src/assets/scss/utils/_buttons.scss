@@ -1,14 +1,12 @@
-%btn {
+%tag {
   @extend %flex-center-center;
-  height: $btn-heigth;
-  border-radius: $btn-radius;
-  font-size: $btn-font-size;
-  font-weight: normal;
+  box-sizing: border-box;
   border: solid 1px $btn-blue-color;
   cursor: pointer;
 }
 
-%btn-fill {
+%tag-fill {
+  @extend %tag;
   background: $btn-blue-color;
   color: $white;
   &:hover {
@@ -18,6 +16,17 @@
   &:active {
     background: rgba($btn-blue-color, .3);
   }
+}
+
+%btn {
+  @extend %tag;
+  height: $btn-heigth;
+  border-radius: $btn-heigth / 2;
+  font-weight: normal;
+}
+
+%btn-fill {
+  @extend %tag-fill;
 }
 
 %btn-empty {

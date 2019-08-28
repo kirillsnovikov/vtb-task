@@ -1,0 +1,53 @@
+.custom-input {
+  position: relative;
+  & * {
+    box-sizing: border-box;
+  }
+  input {
+    background: transparent;
+    border: 1px solid $black;
+    font-size: 15px;
+    width: 100%;
+    font-weight: normal;
+    line-height: 1.73;
+    letter-spacing: -0.17px;
+    transition: 0.3s;
+    z-index: 1;
+    &:focus {
+      outline: none;
+    }
+    &:focus ~ label {
+      top: -14px;
+      font-size: 7px;
+      transition: 0.3s;
+    }
+  }
+  label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    transition: 0.3s;
+    font-size: 10px;
+    opacity: 0.4;
+    letter-spacing: 0.7px;
+  }
+  span {
+    position: absolute;
+    text-align: right;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .focus {
+    top: -14px;
+    font-size: 7px;
+    transition: 0.3s;
+  }
+}

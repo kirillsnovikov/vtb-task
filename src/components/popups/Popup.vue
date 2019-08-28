@@ -6,15 +6,16 @@
                 <div class="popup-card__header">
                     <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
                 </div>
-                <div class="popup-card__body">
-                    <div v-if="data.main" class="popup-card__body__text">{{data.main}}</div>
+                <PopupSubject v-if="data.subjects" :data="data.subjects"/>
+                <div class="popup-card__body" v-if="data.main">
+                    <div class="popup-card__body__text">{{data.main}}</div>
                 </div>
-                <div class="popup-card__actions">
+                <div class="popup-card__actions" v-if="data.actions">
                     <div class="btn-empty btn">{{data.actions.apply.actionName | toupper}}</div>
                     <div class="btn-fill btn">{{data.actions.reject.actionName | toupper}}</div>
                 </div>
-                <div class="popup-card__footer">
-                </div>
+                <!-- <div class="popup-card__footer" style="height: 100px">
+                </div> -->
             </div>
             <div class="popup-layout"></div>
         </div>
@@ -23,8 +24,12 @@
 
 <script>
     import { eventBus } from '@/main'
+    import PopupSubject from '@/components/popups/PopupSubject.vue'
     export default {
         name: 'popup',
+        components: {
+            PopupSubject
+        },
         data() {
             return {
                 data: Object,
@@ -33,6 +38,7 @@
         },
         created() {
             eventBus.$on('showPopup', popupData => {
+                // console.log(this)
                 this.data = popupData,
                 this.show()
             })
@@ -40,14 +46,19 @@
         methods: {
             show() {
                 this.isShow = !this.isShow
+                if (this.isShow) {
+                    document.getElementById('_swecontent').classList.add('blur-content')
+                } else {
+                    document.getElementById('_swecontent').classList.remove('blur-content')
+                }
             }
         },
-        filters: {
-            toupper(str) {
-                if (!str) return ''
-                    str = str.toString()
-                return str.toUpperCase()
-            }
-        }
+        // filters: {
+        //     toupper(str) {
+        //         if (!str) return ''
+        //             str = str.toString()
+        //         return str.toUpperCase()
+        //     }
+        // }
     }
 </script>

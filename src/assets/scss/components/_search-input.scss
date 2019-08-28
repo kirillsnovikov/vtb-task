@@ -1,72 +1,23 @@
-input[type="text"] {
-  width: 100%;
-  &:focus {
-    outline: none;
-  }
-}
-
-.text-input {
-  position: relative;
+.search-input {
   margin-bottom: 4px;
-  & * {
-    box-sizing: border-box;
-  }
   &__input {
-    background: transparent;
-    border: 1px solid $black;
-    font-weight: bold;
     border-radius: 4px;
     padding-left: $vm-input-padding-left;
-    font-size: 16px;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    width: 100%;
     height: $vm-input-height;
-    z-index: 1;
-    &:focus ~ .text-input__label {
-      top: -14px;
-      font-size: 7px;
-      transition: 0.3s;
-    }
+  }
+  &__label {
+    height: $vm-input-height;
+    line-height: $vm-input-height;
+    padding-left: $vm-input-padding-left;
+  }
+  &__clear {
+    padding-right: $vm-input-padding-left;
+    height: $vm-input-height;
+    line-height: $vm-input-height;
   }
   &:last-child {
     margin-bottom: 45px;
   }
-  &__label {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    top: 0;
-    z-index: -1;
-    transition: 0.3s;
-    height: $vm-input-height;
-    line-height: $vm-input-height;
-    padding-left: $vm-input-padding-left;
-    font-size: 10px;
-    opacity: 0.4;
-    letter-spacing: 0.7px;
-  }
-  &__clear {
-    position: absolute;
-    text-align: right;
-    padding-right: $vm-input-padding-left;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-    height: $vm-input-height;
-    line-height: $vm-input-height;
-    transition: 0.4s;
-    opacity: 0.4;
-    &:hover {
-      opacity: 1;
-    }
-  }
-  .focus {
-    top: -14px;
-    font-size: 7px;
-    transition: 0.3s;
-  }
-
   .error {
     transition: 0.3s;
     border: 1px solid rgba($error-color, .7);

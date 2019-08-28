@@ -1,11 +1,11 @@
 <template>
   <div class="search-layout">
     <div class="search-header">
-      <div class="search-header__back-button">
+      <div class="search-header__back-button" @click="$emit('activeSearch')">
         <i class="icon-arrow-back"></i>
       </div>
       <div class="search-header__title">{{'поиск клиента' | capitalize}}</div>
-      <div class="search-header__clear-button">
+      <div class="circle-btn" @click="resetForm">
         <i class="icon-delete"></i>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :key="i"/>
     </div>
     <div class="search-button">
-      <div class="btn btn-search">
+      <div class="btn btn-fill">
         {{'поиск' | toupper}}
       </div>
     </div>
@@ -42,9 +42,20 @@
     },
     computed: {
       getSearchInputs() {
-        console.log(this.selectedTypeNum)
+        // console.log(this.selectedTypeNum)
         let inputs = this.searchTypes[this.selectedTypeNum].inputList
         return inputs
+      },
+    },
+    methods: {
+      resetForm() {
+        this.$children.forEach(function(input) {
+          input.inputValue = ''
+          //   console.log(input.inputValue)
+          // if (input.inputValue) {
+          // }
+        })
+        // console.log(this.$children)
       }
     }
   }

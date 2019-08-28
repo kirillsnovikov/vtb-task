@@ -1,8 +1,8 @@
 <template>
-  <div class="text-input">
-    <input v-model="inputValue" class="text-input__input" type="text">
-    <label class="text-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
-    <span class="text-input__clear" @click="inputValue = ''"><i class="icon-cross"></i></span>
+  <div class="custom-input search-input">
+    <input v-model="inputValue" class="search-input__input" type="text">
+    <label class="search-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
+    <span class="search-input__clear" @click="inputValue = ''"><i class="icon-cross"></i></span>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
     number: new RegExp('\[\^\\d\]', 'gi')
   }
   export default {
-    name: 'text-input',
+    name: 'search-input',
     props: {
       inputData: Object
     },
@@ -31,7 +31,7 @@
     watch: {
       inputValue: function(newVal) {
         this.inputValue = this.validate(newVal)
-        console.log(this.inputValue)
+        // console.log(this.inputValue)
       }
     },
     methods: {

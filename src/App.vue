@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <vertical-menu :dataSetJson="ds"></vertical-menu>
-    <test-component></test-component>
+    <div id="_swecontent">
+      <view-tab-pane :dataSetJson="ds"></view-tab-pane>
+    </div>
+    <!-- <test-component></test-component> -->
     <Popup />
     <SvgFilter />
   </div>

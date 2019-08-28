@@ -9,14 +9,10 @@
     .search-header {
       @extend %flex-center;
       padding: 0 25px 0 10px;
-      // position: relative;
       &__back-button {
         font-size: 20px;
         cursor: pointer;
         flex: 0;
-        // position: absolute;
-        // top: 0;
-        // left: 0;
       }
       &__title {
         flex: 1;
@@ -28,17 +24,6 @@
         letter-spacing: -0.39px;
         padding-left: 13px;
       }
-      &__clear-button {
-        @extend %flex-center-center;
-        flex: 0 0 $circle-btn;
-        font-size: 14px;
-        color: $btn-blue-color;
-        cursor: pointer;
-        height: $circle-btn;
-        border-radius: 14px;
-        background: rgba($btn-blue-color, .3);
-        // width: $circle-btn;
-      }
     }
     .search-select {
       margin: 25px auto;
@@ -49,7 +34,6 @@
         border: none;
         background: transparent;
         border: 1px solid $black;
-        // font-weight: bold;
         border-radius: 4px;
         padding-left: $vm-input-padding-left;
         font-size: 16px;
@@ -57,7 +41,6 @@
         transition: 0.3s;
         height: $vm-input-height;
         option {
-
         }
       }
     }
@@ -72,7 +55,7 @@
         flex: 1;
         margin: 0 85px;
       }
-      .btn-search {
+      .btn-fill {
         @extend %btn-fill;
       }
     }

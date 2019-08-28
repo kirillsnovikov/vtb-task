@@ -1,123 +1,124 @@
 <template>
-    <div id="vm" class="vm">
-        <div class="vm__layout">
-            <div class="vm__layout__left" :class="{ widen: isWiden }">
-                <div class="vm-header" @click="activeMenu">
-                    <transition name="widen-logo" mode="out-in">
-                        <div class="logo" v-if="!isWiden" key="small"></div>
-                        <div class="logo-big" v-else key="big"></div>
-                    </transition>
-                </div>
-                <div class="vm-search"  @click="activeSearch">
-                    <div class="menu-item-wrap">
-                        <div class="menu-item">
-                            <div class="menu-item__icon"><i class="icon-search"></i></div>
-                            <transition name="widen-item">
-                                <span v-if="isWiden" class="menu-item__name">Поиск</span>
-                            </transition>
-                        </div>
-                    </div>
-                </div>
-                <div class="vm-body">
-                    <VerticalMenuList
-                    :items="dataSetJson.mainMenu"
-                    :widenItem="isWiden"
-                    v-on:activeRightMenu="activeRightMenu"
-                    :isActiveRight="isActiveRight"/>
-                </div>
-                <div class="vm-bottom">
-                    <VerticalMenuList
-                    :items="dataSetJson.bottomMenu"
-                    :widenItem="isWiden"
-                    v-on:activeRightMenu="activeRightMenu"
-                    :isActiveRight="isActiveRight"/>
-                    <VerticalMenuPerson />
-                </div>
-            </div>
-            <div class="vm__layout__right">
-                <transition name="right-menu">
-                    <div class="vm-right" v-if="isActiveRight">
-                        <VerticalMenuRight :items="vmRightItems" v-on:gotoViewAndHide="hideAll"/>
-                    </div>
-                </transition>
-            </div>
-            <div class="vm__layout__search">
-                <transition name="search-menu">
-                    <div class="vm-search-form" v-if="isActiveSearch">
-                        <VerticalMenuSearch />
-                    </div>
-                </transition>
-            </div>
+  <div id="vm" class="vm">
+    <div class="vm__layout">
+      <div class="vm__layout__left" :class="{ widen: isWiden }">
+        <div class="vm-header" @click="activeMenu">
+          <transition name="widen-logo" mode="out-in">
+            <div class="logo" v-if="!isWiden" key="small"></div>
+            <div class="logo-big" v-else key="big"></div>
+          </transition>
         </div>
+        <div class="vm-search"  @click="activeSearch">
+          <div class="menu-item-wrap">
+            <div class="menu-item">
+              <div class="menu-item__icon"><i class="icon-search"></i></div>
+              <transition name="widen-item">
+                <span v-if="isWiden" class="menu-item__name">Поиск</span>
+              </transition>
+            </div>
+          </div>
+        </div>
+        <div class="vm-body">
+          <VerticalMenuList
+          :items="dataSetJson.mainMenu"
+          :widenItem="isWiden"
+          v-on:activeRightMenu="activeRightMenu"
+          :isActiveRight="isActiveRight"/>
+        </div>
+        <div class="vm-bottom">
+          <VerticalMenuList
+          :items="dataSetJson.bottomMenu"
+          :widenItem="isWiden"
+          v-on:activeRightMenu="activeRightMenu"
+          :isActiveRight="isActiveRight"/>
+          <VerticalMenuPerson />
+        </div>
+      </div>
+      <div class="vm__layout__right">
+        <transition name="right-menu">
+          <div class="vm-right" v-if="isActiveRight">
+            <VerticalMenuRight :items="vmRightItems" v-on:gotoViewAndHide="hideAll"/>
+          </div>
+        </transition>
+      </div>
+      <div class="vm__layout__search">
+        <transition name="search-menu">
+          <div class="vm-search-form" v-if="isActiveSearch">
+            <VerticalMenuSearch v-on:activeSearch="activeSearch"/>
+          </div>
+        </transition>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    import VerticalMenuList from './VerticalMenuList.vue'
-    import VerticalMenuPerson from './VerticalMenuPerson.vue'
-    import VerticalMenuRight from './VerticalMenuRight.vue'
-    import VerticalMenuSearch from './VerticalMenuSearch.vue'
+  import VerticalMenuList from './VerticalMenuList.vue'
+  import VerticalMenuPerson from './VerticalMenuPerson.vue'
+  import VerticalMenuRight from './VerticalMenuRight.vue'
+  import VerticalMenuSearch from './VerticalMenuSearch.vue'
 
-    export default {
-        name: 'vertical-menu',
-        props: {
-          dataSetJson: Object
-      },
-      components: {
-        VerticalMenuList,
-        VerticalMenuPerson,
-        VerticalMenuRight,
-        VerticalMenuSearch,
+  export default {
+    name: 'vertical-menu',
+    props: {
+      dataSetJson: Object
+    },
+    components: {
+      VerticalMenuList,
+      VerticalMenuPerson,
+      VerticalMenuRight,
+      VerticalMenuSearch,
     },
     data() {
-        return {
-            vmRightItems: null,
-            isActiveRight: false,
-            isActiveSearch: false,
-            isWiden: false,
-            mainContent: null,
-            clickListen: null
-        }
+      return {
+        vmRightItems: null,
+        isActiveRight: false,
+        isActiveSearch: false,
+        isActivePopup: false,
+        isWiden: false,
+        mainContent: null,
+        clickListen: null
+      }
     },
     mounted() {
-        this.mainContent = document.getElementById('_swecontent')
-        this.mainContent.addEventListener('click', this.hideAll)
+      this.mainContent = document.getElementById('_swecontent')
+      this.mainContent.addEventListener('click', this.hideAll)
     },
     updated() {
-        this.blurContent
-        console.log(this.isActiveRight)
+      this.blurContent
+      // console.log(this.isActiveRight)
     },
     computed: {
-        blurContent() {
-            if (this.isWiden || this.isActiveRight || this.isActiveSearch) {
-                this.mainContent.classList.add('blur-content')
-            } else {
-                this.mainContent.classList.remove('blur-content')
-            }
+      blurContent() {
+        if (this.isWiden || this.isActiveRight || this.isActiveSearch) {
+          this.mainContent.classList.add('blur-content')
+        } else {
+          this.mainContent.classList.remove('blur-content')
         }
+      }
     },
     methods: {
-        activeMenu() {
-            this.isWiden = !this.isWiden
-            if (this.isActiveRight || this.isActiveSearch) {
-                this.hideAll()
-            }
-        },
-        activeRightMenu(data) {
-            this.vmRightItems = data
-            this.isActiveRight = data.isActive
-            this.isActiveSearch = false
-        },
-        hideAll() {
-            this.isWiden = false
-            this.isActiveRight = false
-            this.isActiveSearch = false
-            this.blurContent
-        },
-        activeSearch() {
-            this.isActiveSearch = !this.isActiveSearch
-            this.isActiveRight = false
+      activeMenu() {
+        this.isWiden = !this.isWiden
+        if (this.isActiveRight || this.isActiveSearch) {
+          this.hideAll()
         }
+      },
+      activeRightMenu(data) {
+        this.vmRightItems = data
+        this.isActiveRight = data.isActive
+        this.isActiveSearch = false
+      },
+      hideAll() {
+        this.isWiden = false
+        this.isActiveRight = false
+        this.isActiveSearch = false
+        this.blurContent
+      },
+      activeSearch() {
+        this.isActiveSearch = !this.isActiveSearch
+        this.isActiveRight = false
+      }
     }
-}
+  }
 </script>

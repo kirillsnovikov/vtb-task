@@ -1,0 +1,10 @@
+.circle-btn {
+  @extend %flex-center-center;
+  flex: 0 0 $circle-btn;
+  font-size: 14px;
+  color: $btn-blue-color;
+  cursor: pointer;
+  height: $circle-btn;
+  border-radius: 14px;
+  background: rgba($btn-blue-color, .3);
+}

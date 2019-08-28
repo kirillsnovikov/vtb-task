@@ -1,0 +1,38 @@
+.subjects-input {
+  width: $subject-search-width;
+  margin-bottom: 10px;
+  &__input {
+    height: $subject-search-height;
+    line-height: $subject-search-height;
+    padding-left: 21px;
+    border-radius: 27px;
+  }
+  &__label {
+    padding-left: 21px;
+    line-height: $subject-search-height;
+  }
+  &__right {
+    @extend %flex-center-center;
+    position: absolute;
+    right: 4px;
+    top: 0;
+    height: 100%;
+    &__clear {
+      cursor: pointer;
+      transition: 0.4s;
+      opacity: 0.4;
+      &:hover {
+        opacity: 1;
+      }
+      margin-right: 15px;
+    }
+    .btn {
+      @extend %btn;
+    }
+    .btn-fill {
+      @extend %btn-fill;
+      font-size: 20px;
+      width: 67px;
+    }
+  }
+}

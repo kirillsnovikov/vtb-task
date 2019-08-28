@@ -53,3 +53,15 @@
 //   padding: 25px 0;
 // }
 // =================
+
+// Попап выпадающий список тем
+.subject-item-enter-active, .subject-item-leave-active {
+  transition: all .8s;
+}
+.subject-item-leave-to {
+  opacity: 0;
+}
+// .subject-item-leave-to {
+//   opacity: 0;
+// }
+// =================

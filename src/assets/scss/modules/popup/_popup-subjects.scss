@@ -1,0 +1,100 @@
+.popup-card__subjects-body {
+  font-size: 12px;
+  &__search {
+    padding: 0 25px;
+    text-align: left;
+    .search-result {
+      width: $subject-search-width;
+      @extend %flex;
+      flex-wrap: wrap;
+      .tag{
+        @extend %tag-fill;
+        padding: 0 14px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        height: $search-tag-height;
+        border-radius: $search-tag-height / 2;
+      }
+    }
+  }
+  &__items {
+    text-align: left;
+    padding-right: 10px;
+    background: $bg-subjects;
+    border-radius: 0 0 10px 10px;
+    letter-spacing: 0.36px;
+    .items-scroll {
+      padding: 15px 10px 15px 25px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 350px;
+      .subject-item {
+        border-radius: 10px;
+        margin-bottom: 5px;
+        background: $bg-subject-subtitles;
+        height: $subject-title-height;
+        width: $subject-search-width;
+        transition: height .4s;
+        overflow: hidden;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &__title {
+          @extend %flex-center;
+          justify-content: space-between;
+          background: $white;
+          height: $subject-title-height;
+          border-radius: 10px;
+          padding: 0 15px;
+          box-shadow: 0 0 5px 1px rgba($black, 0.18);
+          cursor: pointer;
+        }
+        &__subtitles {
+          @extend %flex;
+          flex-wrap: wrap;
+          padding: 3px 16px 13px 16px;
+          flex-wrap: wrap;
+          overflow: hidden;
+          &__item {
+            flex: 0 0 49%;
+            margin-top: 10px;
+            &:nth-child(odd) {
+              margin-right: 2%;
+            }
+          }
+          .tag {
+            @extend %tag-fill;
+            flex-wrap: wrap;
+            padding: 10px 20px;
+            height: $subtitle-height;
+            border-radius: $subtitle-height / 2;
+          }
+        }
+      }
+      .active {
+        height: 500px;
+      }
+    }
+  }
+}
+
+.items-scroll::-webkit-scrollbar{
+  width: 8px;
+}
+
+.items-scroll::-webkit-scrollbar-track{
+  background-color: #ccc;
+  border-radius: 4px;
+  margin: 15px 10px;
+}
+
+.items-scroll::-webkit-scrollbar-thumb{
+  border-radius: 4px;
+  height: 80px;
+  background-color: $subjects-scrollbar-color;
+  transition: background-color 0.2s;
+}
+
+.items-scroll::-webkit-scrollbar-thumb:hover{
+  background-color: rgba($subjects-scrollbar-color, 0.8);
+}
