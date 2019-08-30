@@ -8,12 +8,13 @@
       @extend %flex;
       flex-wrap: wrap;
       .tag{
-        @extend %tag-fill;
-        padding: 0 14px;
+        @include btn-fill($btn-blue-color, $search-tag-height);
         margin-bottom: 10px;
         margin-right: 10px;
-        height: $search-tag-height;
-        border-radius: $search-tag-height / 2;
+      }
+      .tag-danger {
+        @include btn-fill($error-color, $search-tag-height);
+        margin-bottom: 10px;
       }
     }
   }

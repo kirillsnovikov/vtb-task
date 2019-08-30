@@ -11,3 +11,7 @@ Vue.filter('capitalize', str => {
     str = str.toString()
   return str.charAt(0).toUpperCase() + str.slice(1)
 })
+
+Vue.filter('truncate', (str, length, clamp = '...') => {
+  return str.length > length ? str.slice(0, length) + clamp : str
+})

@@ -8,7 +8,9 @@
     </div>
     <transition name="subject-item">
       <div class="subject-item__subtitles" v-if="isActive" :key="subject.subjectTitle">
-        <div class="subject-item__subtitles__item tag" v-for="(item, i) in subject.subjectSubtitles">{{item.name}}</div>
+        <div class="subject-item__subtitles__item tag" v-for="(item, i) in subject.subjectSubtitles">
+          {{item.name | truncate(50)}}
+        </div>
       </div>
     </transition>
   </div>

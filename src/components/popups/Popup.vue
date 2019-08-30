@@ -6,7 +6,7 @@
                 <div class="popup-card__header">
                     <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
                 </div>
-                <PopupSubject v-if="data.subjects" :data="data.subjects"/>
+                <!-- <PopupSubject v-if="data.subjects" :data="data.subjects"/> -->
                 <div class="popup-card__body" v-if="data.main">
                     <div class="popup-card__body__text">{{data.main}}</div>
                 </div>
@@ -14,8 +14,7 @@
                     <div class="btn-empty btn">{{data.actions.apply.actionName | toupper}}</div>
                     <div class="btn-fill btn">{{data.actions.reject.actionName | toupper}}</div>
                 </div>
-                <!-- <div class="popup-card__footer" style="height: 100px">
-                </div> -->
+                <div class="popup-card__footer"></div>
             </div>
             <div class="popup-layout"></div>
         </div>
@@ -24,12 +23,8 @@
 
 <script>
     import { eventBus } from '@/main'
-    import PopupSubject from '@/components/popups/PopupSubject.vue'
     export default {
         name: 'popup',
-        components: {
-            PopupSubject
-        },
         data() {
             return {
                 data: Object,

@@ -1,0 +1,19 @@
+@mixin btn-fill($color, $height) {
+  @extend %flex-center-center;
+  box-sizing: border-box;
+  border: solid 1px $color;
+  cursor: pointer;
+  background: $color;
+  color: $white;
+  height: $height;
+  border-radius: $height / 2;
+  padding: 0 $height / 2;
+  font-weight: inherit;
+  &:hover {
+    color: $color;
+    background: $white;
+  }
+  &:active {
+    background: rgba($color, .3);
+  }
+}
