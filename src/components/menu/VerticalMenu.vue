@@ -31,7 +31,7 @@
           :widenItem="isWiden"
           v-on:activeRightMenu="activeRightMenu"
           :isActiveRight="isActiveRight"/>
-          <VerticalMenuPerson />
+          <VerticalMenuPerson :person="employee" :widenItem="isWiden"/>
         </div>
       </div>
       <div class="vm__layout__right">
@@ -77,23 +77,26 @@
         isActivePopup: false,
         isWiden: false,
         mainContent: null,
-        clickListen: null
+        clickListen: null,
+        employee: this.dataSetJson.employee
       }
     },
     mounted() {
       this.mainContent = document.getElementById('_swecontent')
-      this.mainContent.addEventListener('click', this.hideAll)
     },
     updated() {
       this.blurContent
-      // console.log(this.isActiveRight)
+      console.log('updated')
     },
     computed: {
       blurContent() {
         if (this.isWiden || this.isActiveRight || this.isActiveSearch) {
+          this.mainContent.addEventListener('click', this.hideAll)
           this.mainContent.classList.add('blur-content')
         } else {
+          this.mainContent.removeEventListener('click', this.hideAll)
           this.mainContent.classList.remove('blur-content')
+          // console.log('hidehide')
         }
       }
     },

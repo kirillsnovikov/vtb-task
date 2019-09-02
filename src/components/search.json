@@ -1,71 +1,71 @@
 {
-    "searchList": {
-        "types": [
-            {
-                "type": "main",
-                "name": "Основные",
-                "inputList": [
-                    {
-                        "label": "фамилия",
-                        "type": "text",
-                        "format": null,
-                        "length": 10
-                    },
-                    {
-                        "label": "имя",
-                        "type": "text",
-                        "format": null,
-                        "length": 128
-                    },
-                    {
-                        "label": "отчество",
-                        "type": "text",
-                        "format": null,
-                        "length": 128
-                    },
-                    {
-                        "label": "номер карты",
-                        "type": "number",
-                        "format": null,
-                        "length": 4
-                    },
-                    {
-                        "label": "дул",
-                        "type": "number",
-                        "format": null,
-                        "length": 20
-                    },
-                    {
-                        "label": "логин телебанка",
-                        "type": "text",
-                        "format": null,
-                        "length": 10
-                    },
-                    {
-                        "label": "siebel id",
-                        "type": "text",
-                        "format": null,
-                        "length": 10
-                    },
-                    {
-                        "label": "id заявки",
-                        "type": "text",
-                        "format": null,
-                        "length": 10
-                    },
-                    {
-                        "label": "полный номер карты",
-                        "type": "text",
-                        "format": null,
-                        "length": 16
-                    }
-                ]
-            },
-            {
-                "type": "other",
-                "name": "Дополнительные",
-                "inputList": []
-            }
+  "searchList": {
+    "types": [
+      {
+        "type": "main",
+        "name": "Основные",
+        "inputList": [
+          {
+            "label": "фамилия",
+            "type": "text",
+            "format": null,
+            "length": 10
+          },
+          {
+            "label": "имя",
+            "type": "text",
+            "format": null,
+            "length": 128
+          },
+          {
+            "label": "отчество",
+            "type": "text",
+            "format": null,
+            "length": 128
+          },
+          {
+            "label": "номер карты",
+            "type": "number",
+            "format": null,
+            "length": 4
+          },
+          {
+            "label": "дул",
+            "type": "number",
+            "format": null,
+            "length": 20
+          },
+          {
+            "label": "логин телебанка",
+            "type": "text",
+            "format": null,
+            "length": 10
+          },
+          {
+            "label": "siebel id",
+            "type": "text",
+            "format": null,
+            "length": 10
+          },
+          {
+            "label": "id заявки",
+            "type": "text",
+            "format": null,
+            "length": 10
+          },
+          {
+            "label": "полный номер карты",
+            "type": "text",
+            "format": null,
+            "length": 16
+          }
         ]
-    }
+      },
+      {
+        "type": "other",
+        "name": "Дополнительные",
+        "inputList": []
+      }
+    ]
+  }
 }

@@ -18,7 +18,7 @@
       <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :key="i"/>
     </div>
     <div class="search-button">
-      <div class="btn btn-fill">
+      <div class="btn btn-fill" @click="search">
         {{'поиск' | toupper}}
       </div>
     </div>
@@ -38,6 +38,7 @@
       return {
         selectedTypeNum: 0,
         searchTypes: searchJson.searchList.types,
+        searchValues: [],
       }
     },
     computed: {
@@ -56,6 +57,52 @@
           // }
         })
         // console.log(this.$children)
+      },
+      search () {
+        console.log('ищем!');
+        this.getValues();
+        console.log(this.searchValues);
+
+        var valStr,
+            valArr = this.searchValues,
+            findPS,
+            findBS;
+
+      /*  if (!valArr || valArr.length < 1) {
+          console.log('Заполните поля для поиска');
+          return;
+        }
+*/
+        valStr ='10#' + valArr[0].length + '#';
+
+        for (i=0; i<valArr.length-1; i++)
+        {
+            valStr = valStr + (valArr[i]||'') + valArr[i+1].length +'#';
+        }
+        valStr = valStr + valArr[valArr.length-1];
+
+        console.log(valStr);
+
+        findBS = SiebelApp.S_App.GetService("VTB FM Find");
+
+        findPS = CCFMiscUtil_CreatePropSet();
+        findPS.SetProperty("DestView", "All Contacts across Organizations");
+        //findPS.SetProperty("SearchCategory", searchCategoryMapping[selectCat].SearchCategory);
+        findPS.SetProperty("SearchCategory", 'Contact');
+        //findPS.SetProperty("FieldNameArray", searchCategoryMapping[selectCat].FieldNameArray);//пример "10#9#Last Name10#First Name11#Middle Name10#Birth Date15#VTB24 Card Find28#VTB24 Identity Document Name20#VTB24 Telebank Login17#VTB24 Card Number2#Id14#Opportunity Id"
+        findPS.SetProperty("FieldNameArray", "10#9#Last Name10#First Name11#Middle Name17#VTB24 Card Number28#VTB24 Identity Document Name20#VTB24 Telebank Login2#Id14#Opportunity Id15#VTB24 Card Find");
+        findPS.SetProperty("FieldValArray", valStr);//пример "10#3#втб8#двадцать6#четыре0#0#0#0#0#0#0#"
+
+        findBS.InvokeMethod("Find", findPS);
+
+      },
+      getValues(data) {
+        this.$children.forEach((input, i) => {
+          this.searchValues[i] = input.inputValue
+        })
+          // console.log(input)
+        // this.searchValues[Object.keys(data)[0]] = data[Object.keys(data)[0]]
+        // console.log(this.searchValues)
       }
     }
   }

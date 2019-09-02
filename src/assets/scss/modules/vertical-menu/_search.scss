@@ -51,12 +51,11 @@
       @extend %flex-center;
       width: 100%;
       .btn {
-        @extend %btn;
         flex: 1;
         margin: 0 85px;
       }
       .btn-fill {
-        @extend %btn-fill;
+        @include btn-fill($btn-blue-color, $btn-height);
       }
     }
   }

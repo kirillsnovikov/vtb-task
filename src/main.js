@@ -3,7 +3,11 @@ import App from './App.vue'
 import VerticalMenu from './components/menu/VerticalMenu.vue'
 import ViewTabPane from './components/tabs/ViewTabPane.vue'
 import PopupSubject from './components/popups/PopupSubject.vue'
-import testComponent from './components/testComponent.vue'
+// import testComponent from './components/testComponent.vue'
+import VTable from './components/table/VTable'
+import RadioButtonSearch from './components/control/RadioButtonSearch.vue'
+import SRRegistration from './components/registration/SRRegistration.vue'
+
 import './components/utils/filters'
 
 import './assets/scss/main.scss'
@@ -13,6 +17,9 @@ Vue.config.productionTip = false
 Vue.component('vertical-menu', VerticalMenu)
 Vue.component('view-tab-pane', ViewTabPane)
 Vue.component('popup-subject', PopupSubject)
+Vue.component('v-table', VTable)
+Vue.component('radio-button-search', RadioButtonSearch)
+Vue.component('sr-registration', SRRegistration)
 // Vue.component('test-component', testComponent)
 // Vue.component('vertical-menu', require('./components/menu/VerticalMenu.vue').default)
 

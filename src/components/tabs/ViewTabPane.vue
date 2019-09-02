@@ -12,11 +12,12 @@
   export default {
     name: 'view-tab-pane',
     props: {
-      dataSetJson: Object
+      tabs: Array
     },
     data() {
       return {
-        tabs: this.dataSetJson.mainMenu.tasks.links
+        // tabes: ''
+        // tabs: this.dataSetJson.mainMenu.tasks.links
       }
     },
     mounted() {

@@ -14,24 +14,24 @@
   export default {
     name: 'search-input',
     props: {
-      inputData: Object
+      inputData: Object,
     },
     data() {
       return {
         inputValue: '',
         inputEl: null,
         // maskInput: '0000 0000 0000 0000',
-        regular: null
+        regular: null,
       }
     },
     mounted() {
+      // console.log(this.inputKey)
       this.inputEl = this.$el.firstChild
       this.regular = new RegExp(regExps[this.inputData.type])
     },
     watch: {
       inputValue: function(newVal) {
         this.inputValue = this.validate(newVal)
-        // console.log(this.inputValue)
       }
     },
     methods: {

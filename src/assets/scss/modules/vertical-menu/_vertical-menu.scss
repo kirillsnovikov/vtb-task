@@ -57,32 +57,23 @@
   width: $vm-widen-width;
 }
 
-.vm-search, .vm-bottom {
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .menu-item-wrap {
   height: $vm-item-height;
   padding: 11px 0;
   overflow: hidden;
+  cursor: pointer;
   .menu-item {
     height: $vm-item-height;
-    // width: 100%;
     display: flex;
-    // padding-right: 5px;
     align-items: center;
     &__icon {
       flex: 0 0 $vm-small-width;
-      // width: $vm-small-width;
       text-align: center;
       font-size: 15px;
     }
     &__name {
       @extend %ellipsis;
       flex: 1;
-      // box-sizing: border-box;
       margin-right: 5px;
     }
   }

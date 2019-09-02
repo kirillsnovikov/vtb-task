@@ -1,11 +1,9 @@
-.main-section {
-  padding-left: 64px;
-  background-image:linear-gradient(90deg,#0a2896,#1750c6 97%,#1851c7);
-  // width: 1000px;
-  // height: 1000px;
+body {
+  background-image:linear-gradient(90deg,$vtb-main-color,$blue-blue-two 97%,$blue-blue);
 }
 
 #_swecontent {
+  // width: 100%;
   position: absolute;
   top: 0;
   left: 64px;

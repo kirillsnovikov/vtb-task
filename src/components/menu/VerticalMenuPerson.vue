@@ -1,50 +1,71 @@
 <template>
-  <div class="menu-item-wrap" v-on:click="popup">
-    <div class="menu-item" :class="{ active: isActive }">
-      <div class="menu-item__icon">
-        <div class="person-icon"></div>
+  <div class="vm-bottom__person">
+    <div class="menu-item-wrap" v-on:click="show">
+      <div class="menu-item" :class="{ active: isActive }">
+        <div class="menu-item__icon">
+          <div class="person-icon"></div>
+        </div>
+        <transition name="widen-item">
+          <span v-if="widenItem" class="menu-item__name">{{person.displayname}}</span>
+        </transition>
       </div>
-      <transition name="widen-item">
-        <span v-if="widenItem" class="menu-item__name">{{person.firstname}}</span>
-      </transition>
+    </div>
+
+    <div v-if="isActive" class="popup-wrap">
+      <div class="popup-main">
+        <div class="popup-card">
+          <div class="popup-card__close" @click="show"><i class="icon-cross"></i></div>
+          <div class="popup-card__header">
+            <div class="popup-card__header__title">Выход из системы</div>
+          </div>
+          <div class="popup-card__body">
+            <div class="popup-card__body__text">Хотите выйти из аккаунта?</div>
+          </div>
+          <div class="popup-card__actions">
+            <div class="btn-empty">НЕТ, ОСТАНУСЬ</div>
+            <div class="btn-fill" @click="logoff">ДА</div>
+          </div>
+          <div class="popup-card__footer"></div>
+        </div>
+        <div class="popup-layout"></div>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
-  import { eventBus } from '@/main'
 
   export default {
-    components: {
-    },
     props: {
       person: Object,
-      widenItem: Boolean,
+      widenItem: Boolean
     },
     data() {
       return {
-        popupData: {
-          actionTitle: 'Выход из системы',
-          main: 'Хотите выйти из аккаунта?',
-          actions: {
-            apply: {
-              actionName: 'Нет, останусь',
-              method: 'SiebelApp.S_App.LogOff'
-            },
-            reject: {
-              actionName: 'Да',
-              method: 'SiebelApp.S_App.LogOff'
-            }
-          },
-        },
         isActive: false
       }
     },
     methods: {
-      popup() {
-        eventBus.$emit('showPopup', this.popupData)
+      // popup() {
+      //   this.isActive = !this.isActive;
+      // },
+
+      logoff() {
+        SiebelApp.S_App.LogOff();
+      },
+
+      show() {
         this.isActive = !this.isActive
+        console.log('show')
+        if (this.isActive) {
+          document.getElementById('_swecontent').classList.add('blur-content')
+        } else {
+          document.getElementById('_swecontent').classList.remove('blur-content')
+        console.log('show')
+        }
       }
+
     }
   }
 </script>
