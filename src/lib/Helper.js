@@ -20,7 +20,7 @@ export const TableConfig = {
 export const ShowError = function(prefix, msg, JSONdata){
   if(CommonConfig.isShowError != "1")
     return;
-  var errorMsg = `[{prefix}]: {msg}`;
+  var errorMsg = `[${prefix}]: ${msg}`;
     errorMsg += " " + JSON.stringify(JSONdata);
   console.error(errorMsg);
 }
@@ -28,15 +28,16 @@ export const ShowError = function(prefix, msg, JSONdata){
 export const ShowLog = function(prefix, msg, objectData){
   if(CommonConfig.isShowLog != "1")
     return;
-  
+
     console.log(`[${prefix}]: ${msg}`);
   if(objectData)
     console.log(objectData);
 }
 
-export const ColumnData = function(Name, Display, Width, Sort, Index){
+export const ColumnData = function(Name, Display, Width, Sort, Index) {
   var errPrefix = "ColumnData";
-  var that = this;
+  // console.log('aaa', this)
+  // var that = this;
   var arg = {Name:Name, Display:Display, Sort:Sort, Index:Index};
   if(!Name)
     ShowError(errPrefix, "Name empty", arg);
@@ -46,18 +47,22 @@ export const ColumnData = function(Name, Display, Width, Sort, Index){
     ShowError(errPrefix, "Index only indeger", arg);
   if(Sort && !TableConfig.column.sortName[Sort])
     ShowError(errPrefix, "Sort only: " + Object.keys(TableConfig.column.sortName).join("; "), arg);
-  that.Name = Name ? Name : 'n/a';
-  that.Display = Display ? HtmlEncode(Display) : 'n/a';
-  that.Index = Index ? Number(Index) : 0;
-  that.Sort = Sort ? Sort : TableConfig.column.sortDefault;
-  that.Width = (Width ? Width : TableConfig.ColWidth) + 'px';
+  this.Name = Name ? Name : 'n/a';
+  this.Display = Display ? HtmlEncode(Display) : 'n/a';
+  this.Index = Index ? Number(Index) : 0;
+  this.Sort = Sort ? Sort : TableConfig.column.sortDefault;
+  this.Width = Width ? Width + 'px' : TableConfig.ColWidth + 'px';
   //this.__defineGetter__('CompName', function(){debugger;})
-  //that.__defineSetter__('CompName', function(v){debugger;})
+  //this.__defineSetter__('CompName', function(v){debugger;})
 
-  that.CompName = "v-def-cell";
-  that.SetCompName = function(CompName){
-      that.CompName = CompName;
-      return that;
+  this.CompName = "v-def-cell";
+  this.SetCompName = function(CompName){
+      this.CompName = CompName;
+      return this;
+  }
+  this.SetIconMap = function(IconMap){ //Value:"", Link:""
+      this.IconMap = IconMap;
+      return this;
   }
 }
 

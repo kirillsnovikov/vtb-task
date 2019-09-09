@@ -21,7 +21,7 @@
       }
     },
     mounted() {
-      // console.log(this.tabs)
+      // console.log('sdff', this.$el.clientWidth)
     }
   }
 </script>

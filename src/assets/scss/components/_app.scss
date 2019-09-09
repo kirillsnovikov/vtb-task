@@ -3,8 +3,10 @@ body {
 }
 
 #_swecontent {
-  // width: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
-  left: 64px;
+  left: 0;
+  padding-left: 64px;
+  box-sizing: border-box;
 }

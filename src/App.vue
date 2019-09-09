@@ -4,13 +4,11 @@
     <div id="_swecontent">
       <sr-registration></sr-registration>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
-      <div style="width:300px;background-color:red;overflow-y:hidden">
-        <v-table :rowData="tableData" :columns="columns"></v-table>
-      </div>
-      <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search>
+      <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
+      <v-table :tableData="tableData" :TableColumns="TableColumns"></v-table>
     </div>
     <!-- <test-component></test-component> -->
-    <popup-subject></popup-subject>
+    <!-- <popup-subject></popup-subject> -->
     <!-- <Popup /> -->
     <SvgFilter />
   </div>
@@ -35,14 +33,15 @@
         ds: dataSet,
         // popup: popupData,
         tableData: TableData,
-        columns: TableColumns,
+        TableColumns: TableColumns,
         searchValues: searchDataSet,
         defSearch: defSearch
       }
     },
     mounted() {
       // console.log(this.ds)
-      document.getElementById('_swecontent').style.width = document.body.offsetWidth - 64 + 'px'
+      // document.getElementById('_swecontent').style.width = document.body.offsetWidth - 64 + 'px'
+      // console.log(document.getElementById('_swecontent').clientWidth)
     },
     methods: {
       ChangeSearch(key) {

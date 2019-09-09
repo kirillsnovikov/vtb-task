@@ -1,0 +1,119 @@
+.table {
+  background: $white;
+  border-radius: 0 0 6px 6px;
+  border-left: 1px solid #ccc;
+  overflow-x: scroll;
+  width: 100%;
+  box-sizing: border-box;
+  .table-header {
+    @extend %flex;
+    justify-content: space-between;
+    height: 33px;
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.92;
+    letter-spacing: normal;
+    box-shadow: 0px 5px 7px 0px rgba($black, 0.4);
+    border-radius: 0 0 6px 6px;
+    &__item {
+      // min-width: 250px;
+      flex: 1;
+      // width: 100px;
+      // overflow: hidden;
+      @extend %flex-center;
+      &__value {
+        @extend %ellipsis;
+      // width: 100%;
+      }
+    }
+  }
+  .table-body {
+    @extend %flex-col;
+    &__row {
+      height: 56px;
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.25;
+      letter-spacing: normal;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0 0 6px 6px;
+      @extend %flex;
+      justify-content: space-between;
+      &__item {
+      // min-width: 250px;
+        // width: 100px;
+        flex: 1;
+        overflow: hidden;
+        @extend %flex-center;
+        &__value {
+          @extend %ellipsis;
+          // width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// .table {
+//   box-sizing: border-box;
+//   @extend %flex;
+//   // justify-content: space-between;
+//   width: 100%;
+//   background: $white;
+//   border-radius: 0 0 6px 6px;
+//   border-left: 1px solid #ccc;
+//   border-right: 1px solid #ccc;
+//   .table-column {
+//     flex: auto;
+//     @extend %flex-col;
+//     overflow: hidden;
+//     &__title {
+//       @extend %flex-center;
+//       &__value {
+//         @extend %ellipsis;
+//       }
+//     }
+//     &__item {
+//       @extend %flex-center;
+//       &__value {
+//         @extend %ellipsis;
+//       }
+//     }
+//     .table-header-row {
+  // height: 33px;
+  // font-size: 10px;
+  // font-weight: normal;
+  // font-style: normal;
+  // font-stretch: normal;
+  // line-height: 1.92;
+  // letter-spacing: normal;
+  // box-shadow: 0px 0px 10px 0px rgba($black, 0.8);
+//     }
+//     .table-body-row {
+  // height: 56px;
+  // font-size: 12px;
+  // font-weight: normal;
+  // font-style: normal;
+  // font-stretch: normal;
+  // line-height: 1.25;
+  // letter-spacing: normal;
+  // border-bottom: 1px solid #ccc;
+//     }
+//     &:first-child {
+//       .table-body-row {
+//         border-bottom-left-radius: 6px;
+//         // border-left: 1px solid #ccc;
+//       }
+//     }
+//     &:last-child {
+//       .table-body-row {
+//         border-bottom-right-radius: 6px;
+//         // border-right: 1px solid #ccc;
+//       }
+//     }
+//   }
+// }

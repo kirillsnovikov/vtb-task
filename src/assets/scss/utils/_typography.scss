@@ -8,9 +8,28 @@ a {
   color: inherit;
 }
 
+table, thead, tbody, tfoot, th, tr, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+}
+
 %ellipsis {
-  width: auto;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
 }

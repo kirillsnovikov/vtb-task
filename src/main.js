@@ -6,7 +6,7 @@ import PopupSubject from './components/popups/PopupSubject.vue'
 // import testComponent from './components/testComponent.vue'
 import VTable from './components/table/VTable'
 import RadioButtonSearch from './components/control/RadioButtonSearch.vue'
-import SRRegistration from './components/registration/SRRegistration.vue'
+import SrRegistration from './components/registration/SrRegistration.vue'
 
 import './components/utils/filters'
 
@@ -19,7 +19,7 @@ Vue.component('view-tab-pane', ViewTabPane)
 Vue.component('popup-subject', PopupSubject)
 Vue.component('v-table', VTable)
 Vue.component('radio-button-search', RadioButtonSearch)
-Vue.component('sr-registration', SRRegistration)
+Vue.component('sr-registration', SrRegistration)
 // Vue.component('test-component', testComponent)
 // Vue.component('vertical-menu', require('./components/menu/VerticalMenu.vue').default)
 
