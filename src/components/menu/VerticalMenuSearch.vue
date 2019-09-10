@@ -75,7 +75,7 @@
 */
         valStr ='10#' + valArr[0].length + '#';
 
-        for (i=0; i<valArr.length-1; i++)
+        for (var i=0; i<valArr.length-1; i++)
         {
             valStr = valStr + (valArr[i]||'') + valArr[i+1].length +'#';
         }
@@ -86,7 +86,7 @@
         findBS = SiebelApp.S_App.GetService("VTB FM Find");
 
         findPS = CCFMiscUtil_CreatePropSet();
-        findPS.SetProperty("DestView", "All Contacts across Organizations");
+        findPS.SetProperty("DestView", "VTB FM Contact List View");
         //findPS.SetProperty("SearchCategory", searchCategoryMapping[selectCat].SearchCategory);
         findPS.SetProperty("SearchCategory", 'Contact');
         //findPS.SetProperty("FieldNameArray", searchCategoryMapping[selectCat].FieldNameArray);//пример "10#9#Last Name10#First Name11#Middle Name10#Birth Date15#VTB24 Card Find28#VTB24 Identity Document Name20#VTB24 Telebank Login17#VTB24 Card Number2#Id14#Opportunity Id"

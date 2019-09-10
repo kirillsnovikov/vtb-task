@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="btn-fill" @click="showPopup">{{'выбрать тематику' | toupper}}</div>
-     <popup-subject></popup-subject>
+     <popup-subject :popup-data="popupData"></popup-subject>
   </div>
 </template>
 
@@ -24,6 +24,9 @@
   }
   export default {
     name: 'sr-registration',
+    props: {
+      popupData: Object
+    },
     components: {
       // PopupSubject
     },

@@ -3,7 +3,7 @@
     <div class="table-body__row__item__value__icon" v-if="icon">
       <img :src="icon" alt="">
     </div>
-    <div class="table-body__row__item__value__text">{{data}}</div>
+    <!-- <div class="table-body__row__item__value__text">{{data}}</div> -->
   </div>
 </template>
 

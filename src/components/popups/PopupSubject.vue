@@ -38,18 +38,21 @@
 </template>
 
 <script>
-  import popupData from '@/components/popup_subject'
+  //import popupData from '@/components/popup_subject'
   import PopupSubjectItem from './PopupSubjectItem.vue'
 
   export default {
     name: 'popup-subjects',
+    props: {
+      popupData: Object
+    },
     data() {
       return {
         inputValue: '',
         searchResult: null,
         searchValues: [],
         isShow: false,
-        data: popupData
+        data: this.popupData
       }
     },
     components: {
