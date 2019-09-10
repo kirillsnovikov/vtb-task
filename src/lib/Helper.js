@@ -7,10 +7,11 @@ export const CommonConfig = {
 }
 
 export const TableConfig = {
-  GridPadding: "20",
-  ColPadding: "5",
+  GridPadding: 20,
+  ColPadding: 5,
   TableWidth: "auto",
-  ColWidth: "100",
+  ColWidth: 100,
+  Align: 'align-left',
   column:{
     //sortIndex:{"-1":"desc", "0":"none", "1":"asc"},
     sortName:{"desc":"dsc", "none":"none", "asc":"asc"},
@@ -34,7 +35,7 @@ export const ShowLog = function(prefix, msg, objectData){
     console.log(objectData);
 }
 
-export const ColumnData = function(Name, Display, Width, Sort, Index) {
+export const ColumnData = function(Name, Display, Width, Align, Sort, Index) {
   var errPrefix = "ColumnData";
   // console.log('aaa', this)
   // var that = this;
@@ -51,7 +52,8 @@ export const ColumnData = function(Name, Display, Width, Sort, Index) {
   this.Display = Display ? HtmlEncode(Display) : 'n/a';
   this.Index = Index ? Number(Index) : 0;
   this.Sort = Sort ? Sort : TableConfig.column.sortDefault;
-  this.Width = Width ? Width + 'px' : TableConfig.ColWidth + 'px';
+  this.Width = Width ? Width : TableConfig.ColWidth;
+  this.Align = Align ? Align : TableConfig.Align;
   //this.__defineGetter__('CompName', function(){debugger;})
   //this.__defineSetter__('CompName', function(v){debugger;})
 

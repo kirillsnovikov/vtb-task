@@ -1,27 +1,23 @@
 import {ColumnData} from '../lib/Helper';
 
-var Name, Display, Width;
 export const TableColumns = [
-(new ColumnData('status', 'статус')).SetCompName("v-icon-cell").SetIconMap([
-  {Value:true, Link:"@/assets/icons/active.svg"},
-  {Value:false, Link:"@/assets/icons/block.svg"}
+(new ColumnData('status', 'статус', 80)).SetCompName("v-icon-cell").SetIconMap([
+  {Value:true, Link:"https://simpleorderflow.s3-us-west-2.amazonaws.com/assets/images/sof-icon-tick.png"},
+  {Value:false, Link:"https://clever-e.com/img/home/krest.png"}
   ]),
-new ColumnData('cardNumber', '№ карты', 200),
-new ColumnData('type', 'тип'),
-new ColumnData('package', 'пакет'),
-new ColumnData('availableBalance', 'доступный остаток'),
-new ColumnData('currency', 'валюта'),
+new ColumnData('cardNumber', '№ карты', 100),
+new ColumnData('type', 'тип', 100),
+new ColumnData('package', 'пакет', 100),
+new ColumnData('availableBalance', 'доступный остаток', 100),
+new ColumnData('currency', 'валюта', 100),
 new ColumnData('creditLimit', 'кредитный лимит', 200),
-new ColumnData('expDate', 'окончание действия'),
+new ColumnData('expDate', 'окончание действия', 100),
 ];
 // console.log(TableColumns)
 
 export const TableData = [
 {
-  options: {
-    isActive: false,
-    textAlign: 'left'
-  },
+  isActive: false,
   data: {
     status: true,
     cardNumber: '409545432155',
@@ -34,10 +30,7 @@ export const TableData = [
   }
 },
 {
-  options: {
-    isActive: false,
-    textAlign: 'left'
-  },
+  isActive: false,
   data: {
     status: true,
     cardNumber: '409545432155',
@@ -50,12 +43,9 @@ export const TableData = [
   }
 },
 {
-  options: {
-    isActive: false,
-    textAlign: 'left'
-  },
+  isActive: false,
   data: {
-    status: true,
+    status: false,
     cardNumber: '409545432155',
     type: 'кредит',
     package: 'Visa VKL',

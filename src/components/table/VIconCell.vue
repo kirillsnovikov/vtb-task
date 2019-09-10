@@ -1,45 +1,29 @@
 <template>
-    <div class="vtable-icon-cell">
-        <span class><img :src="Link"  border="0" space="0" hspace="0"></span>
-        <span class="hide-value">{{ Text }}</span>
+  <div class="table-body__row__item__value">
+    <div class="table-body__row__item__value__icon" v-if="icon">
+      <img :src="icon" alt="">
     </div>
+    <div class="table-body__row__item__value__text">{{data}}</div>
+  </div>
 </template>
 
 <script>
-import {CompState} from '../../lib/CompState.js'
-    export default {
-        name: 'VIconCell',
-        props: ["Data","Text"],
-        data() {
-            return {
-                CompState: CompState
-            }
-        },
-        computed: {
-            Link() {
-                var val = this.Text;
-                if(!val)
-                    return "";
-
-                var link = this.Data.IconMap
-                    .filter((el, i) => el.Value == val)
-                    .map((el, i) => el.Link);
-                
-                if(link.length == 0)
-                    return "";
-
-                return link[0];
-            }
-        },
+  export default {
+    props: {
+      data: [Number, Boolean, String],
+      icons: Array
+    },
+    data() {
+      return {
+        icon: null
+      }
+    },
+    mounted() {
+      if (this.icons.length > 0) {
+        this.icon = this.icons.find(el => {
+          return el.Value === this.data
+        }).Link
+      }
     }
+  }
 </script>
-
-<style>
-.hide-value{
-    display: none;
-}
-.vtable-icon-cell img{
-  max-height: 100%;
-  max-width: 100%;
-}
-</style>
