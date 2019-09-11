@@ -2,29 +2,37 @@
   <div class="table" :class="{'scroll-x': isScroll}">
     <div class="table-header" :style="{width: tableWidth + 'px'}">
       <div class="table-header__item"
-        v-for="(column, i) in TableColumns"
-        :style="{flex: '0 0 ' + columnWidth[column.Name] + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-        <div class="table-header__item__value" :class="columnAlign[column.Name]">
-          {{column.Display | capitalize}}
-        </div>
-      </div>
-    </div>
-    <div class="table-body">
-      <div class="table-body__row" v-for="tableRow in tableData" :style="{width: tableWidth + 'px'}">
-        <div class="table-body__row__item"
-          v-for="(column, i) in TableColumns"
-          :style="{flex: '0 0 ' + columnWidth[column.Name] + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <component
-            :is="column.CompName"
-            :data="tableRow.data[column.Name]"
-            :icons="column.IconMap"
-            :class="columnAlign[column.Name]"
-            >
-          </component>
-        </div>
+      v-for="(column, i) in TableColumns"
+      :key="i"
+      :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+      <div class="table-header__item__value" :class="column.Align">
+        {{column.Display | capitalize}}
       </div>
     </div>
   </div>
+  <div class="table-body vtb-collapse">
+    <div class="table-body__row"
+    v-for="(tableRow, k) in tableData"
+    :key="k"
+    :style="{width: tableWidth + 'px'}"
+    :class="{ active: isActiveRow === k}">
+      <div class="table-body__row__item"
+      v-for="(column, i) in TableColumns"
+      @click="tableClick(k, column)"
+      :key="i"
+      :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+      <component
+      :is="column.CompName"
+      :data="tableRow[column.Name]"
+      :icons="column.IconMap"
+      :class="column.Align"
+      @click="tableClick(i, TableColumns)"
+      >
+    </component>
+  </div>
+</div>
+</div>
+</div>
 </template>
 
 <script>
@@ -40,57 +48,84 @@
     },
     props: {
       tableData: Array,
-      TableColumns: Array
+      TableColumns: {
+        required: true,
+        validator: function(value) {
+          var prefix = 'VTable props validation: columns';
+          if(!Array.isArray(value)){
+            ShowError(prefix, 'Not Array');
+            return false;
+          }
+          var res = true;
+          value.forEach((el, i) => {
+            res = res && el instanceof ColumnData;
+            if(!res)
+              ShowError(prefix, 'Not ColumnData. Index: ' + i);
+          });
+          return res;
+        }
+      }
     },
     data: function () {
       return {
-        tableWidth: null,
-        columnWidth: {},
-        columnAlign: {},
-        isScroll: false,
         config: TableConfig,
+        maxTableWidth: 0,
+        sumColumns: 0,
+        tableWidth: 0,
+        isScroll: false,
+        isActiveRow: null,
       }
     },
     mounted() {
-      this.getTableWidth()
-    },
-    computed: {
+      this.configurateTable();
     },
     methods: {
-      getTableWidth() {
-        let calculateWidth = this.calculateWidth()
-        if (this.$el.clientWidth > calculateWidth) {
-          this.tableWidth = this.$el.clientWidth
-          this.TableColumns.forEach(el => {
-            if (el.Width !== 100) {
-              this.columnWidth[el.Name] = el.Width
-            } else {
-              this.columnWidth[el.Name] = null
-            }
-          })
-          console.log(this.columnWidth)
-        } else {
-          this.tableWidth = calculateWidth
+      configurateTable() {
+        this.maxTableWidth = this.$el.parentNode.clientWidth
+        this.sumColumns = this.getSumColumnsWidth()
+
+        this.setTableWidth()
+        this.setColumnsWidth()
+      },
+      setTableWidth() {
+        if (this.sumColumns > this.maxTableWidth) {
+          this.tableWidth = this.sumColumns
           this.isScroll = true
-          this.TableColumns.forEach(el => {
-            this.columnWidth[el.Name] = el.Width
-          })
+        } else {
+          this.tableWidth = this.maxTableWidth
         }
       },
-      calculateWidth() {
-        let result = null
-        this.TableColumns.forEach(el => {
-          result += el.Width + this.config.GridPadding
-          this.columnAlign[el.Name] = this.alignClass(el.Align)
-        })
-        return result
+      setColumnsWidth() {
+        let lastColumn = this.TableColumns[this.TableColumns.length - 1]
+        if (this.sumColumns < this.maxTableWidth) {
+          lastColumn['Width'] = this.maxTableWidth - this.sumColumns + lastColumn.Width
+        }
       },
-      alignClass(name) {
+      getSumColumnsWidth() {
+        let result = 0;
+        this.TableColumns.forEach(el => {
+          result += parseInt(el.Width) + this.config.GridPadding
+        })
+        return result;
+      },
+      getAlignClass(name) {
         return {
           'align-left': name && name === 'align-left',
           'align-right': name && name === 'align-right',
           'align-center': name && name === 'align-center',
         }
+      },
+      tableClick(rowId, columnData) {
+        this.rowClick(rowId)
+        this.cellClick(columnData)
+        this.$emit('on-sort', columnData)
+        this.isActiveRow = rowId
+      },
+      rowClick(rowId) {
+        let prefix = 'CLick on Row'
+      },
+      cellClick(columnData) {
+        let prefix = 'CLick on Cell'
       }
     }
   }

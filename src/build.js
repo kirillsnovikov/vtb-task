@@ -5,7 +5,7 @@ import ViewTabPane from './components/tabs/ViewTabPane.vue'
 import PopupSubject from './components/popups/PopupSubject.vue'
 import VTable from './components/table/VTable.vue'
 import RadioButtonSearch from './components/control/RadioButtonSearch.vue'
-import SrRegistration from './components/registration/SrRegistration.vue'
+import SrRegistration from './components/registration/SRRegistration.vue'
 import './components/utils/filters'
 import './assets/scss/main.scss'
 

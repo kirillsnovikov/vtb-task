@@ -23,21 +23,16 @@ table, thead, tbody, tfoot, th, tr, td {
 }
 
 .align-left {
-  // text-align: left;
-  justify-content: flex-start;
+  text-align: left;
+  // justify-content: flex-start;
 }
 
 .align-center {
-  // text-align: center;
-  justify-content: center;
+  text-align: center;
+  // justify-content: center;
 }
 
 .align-right {
-  // text-align: right;
-  justify-content: flex-end;
-}
-
-.scroll-x {
-  width: 100%;
-  overflow-x: scroll;
+  text-align: right;
+  // justify-content: flex-end;
 }

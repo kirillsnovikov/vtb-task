@@ -62,23 +62,23 @@
       default: TableConfig.TableWidth
     },
     rowData: Array,
-    // columns: {
-    //   required: true,
-    //   validator:function(value){
-    //     var prefix = 'VTable props validation: columns';
-    //     if(!Array.isArray(value)){
-    //       ShowError(prefix, 'Not Array');
-    //       return false;
-    //     }
-    //     var res = true;
-    //     value.forEach((el, i) => {
-    //       res = res && el instanceof ColumnData;
-    //       if(!res)
-    //         ShowError(prefix, 'Not ColumnData. Index: ' + i);
-    //     });
-    //     return res;
-    //   }
-    // }
+    columns: {
+      required: true,
+      validator:function(value){
+        var prefix = 'VTable props validation: columns';
+        if(!Array.isArray(value)){
+          ShowError(prefix, 'Not Array');
+          return false;
+        }
+        var res = true;
+        value.forEach((el, i) => {
+          res = res && el instanceof ColumnData;
+          if(!res)
+            ShowError(prefix, 'Not ColumnData. Index: ' + i);
+        });
+        return res;
+      }
+    }
   },
   methods: {
     OnResize:function(){

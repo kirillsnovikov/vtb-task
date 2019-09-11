@@ -2,8 +2,8 @@
 //var format = require('string-template');
 
 export const CommonConfig = {
-  isShowError: "1", //1 - Включено отображение ошибок. 0 - Выключено
-  isShowLog: "1", //1 - Включено отображение ошибок. 0 - Выключено
+  isShowError: true, //true - Включено отображение ошибок. false - Выключено
+  isShowLog: true, //true - Включено отображение ошибок. false - Выключено
 }
 
 export const TableConfig = {
@@ -18,21 +18,23 @@ export const TableConfig = {
     get sortDefault(){return this.sortName.none}
   }
 }
-export const ShowError = function(prefix, msg, JSONdata){
-  if(CommonConfig.isShowError != "1")
-    return;
+export const ShowError = function(prefix, msg, JSONdata) {
+  if (!CommonConfig.isShowError) {
+    return
+  }
   var errorMsg = `[${prefix}]: ${msg}`;
-    errorMsg += " " + JSON.stringify(JSONdata);
+  errorMsg += " " + JSON.stringify(JSONdata);
   console.error(errorMsg);
 }
 
-export const ShowLog = function(prefix, msg, objectData){
-  if(CommonConfig.isShowLog != "1")
-    return;
-
-    console.log(`[${prefix}]: ${msg}`);
-  if(objectData)
+export const ShowLog = function(prefix, msg, objectData) {
+  if (!CommonConfig.isShowError) {
+    return
+  }
+  console.log(`[${prefix}]: ${msg}`);
+  if (objectData) {
     console.log(objectData);
+  }
 }
 
 export const ColumnData = function(Name, Display, Width, Align, Sort, Index) {
@@ -59,13 +61,13 @@ export const ColumnData = function(Name, Display, Width, Align, Sort, Index) {
 
   this.CompName = "v-def-cell";
   this.SetCompName = function(CompName){
-      this.CompName = CompName;
-      return this;
+    this.CompName = CompName;
+    return this;
   }
   this.SetIconMap = function(IconMap){ //Value:"", Link:""
-      this.IconMap = IconMap;
-      return this;
-  }
+  this.IconMap = IconMap;
+  return this;
+}
 }
 
 function HtmlEncode(orig)
@@ -74,9 +76,9 @@ function HtmlEncode(orig)
     return "";
 
   return orig.replace (/&/g, "&amp;").
-    replace (/'/g, "&#039;").
-    replace (/"/g, "&quot;").
-    replace (/>/g, "&gt;").
-    replace (/</g, "&lt;");
+  replace (/'/g, "&#039;").
+  replace (/"/g, "&quot;").
+  replace (/>/g, "&gt;").
+  replace (/</g, "&lt;");
 }
 

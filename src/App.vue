@@ -5,7 +5,9 @@
       <sr-registration></sr-registration>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
-      <v-table :tableData="tableData" :TableColumns="TableColumns"></v-table>
+      <div style="width: 1000px">
+        <v-table :tableData="tableData" :TableColumns="TableColumns"></v-table>
+      </div>
     </div>
     <!-- <test-component></test-component> -->
     <!-- <popup-subject></popup-subject> -->
@@ -50,3 +52,14 @@
     },
   }
 </script>
+
+<style lang="scss">
+#_swecontent {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 64px;
+  box-sizing: border-box;
+}
+</style>

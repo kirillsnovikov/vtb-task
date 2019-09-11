@@ -52,13 +52,17 @@
         searchResult: null,
         searchValues: [],
         isShow: false,
-        data: this.popupData
+        data: {}
       }
     },
     components: {
       PopupSubjectItem
     },
     mounted() {
+      if (!this.popupData) {
+        return
+      }
+      this.data = this.popupData
       this.data.subjects.forEach(element => {
         this.searchValues = this.searchValues.concat(element.subjectSubtitles)
       });
