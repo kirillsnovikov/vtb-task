@@ -22,7 +22,7 @@
       :key="i"
       :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
       <component
-      :is="column.CompName"
+      :is="column.Component"
       :data="tableRow[column.Name]"
       :icons="column.IconMap"
       :class="column.Align"
@@ -40,7 +40,14 @@
   // import {CompState, tblClass} from '../../lib/CompState.js'
   import VDefCell from './VDefCell.vue';
   import VIconCell from './VIconCell.vue';
+/*
+Public method:
+  configurateTable - Пересчет параметров таблицы
 
+Event:
+  table-row-select(rowId) - Изменение активной строки
+  table-cell-click(columnData) - Клик по ячейке
+*/
   export default {
     components: {
       VDefCell,
@@ -80,6 +87,7 @@
       this.configurateTable();
     },
     methods: {
+      //Use in Siebel
       configurateTable() {
         this.maxTableWidth = this.$el.parentNode.clientWidth
         this.sumColumns = this.getSumColumnsWidth()
@@ -117,15 +125,23 @@
       },
       tableClick(rowId, columnData) {
         this.rowClick(rowId)
-        this.cellClick(columnData)
-        this.$emit('on-sort', columnData)
+
         this.isActiveRow = rowId
+
+        this.cellClick(columnData)
       },
+      //Use in Siebel
       rowClick(rowId) {
         let prefix = 'CLick on Row'
+        if(this.isActiveRow == rowId)
+          return;
+
+        this.$emit('table-row-select', rowId)
       },
+      //Use in Siebel
       cellClick(columnData) {
         let prefix = 'CLick on Cell'
+        this.$emit('table-cell-click', columnData)
       }
     }
   }

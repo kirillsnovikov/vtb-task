@@ -6,7 +6,7 @@
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
-        <v-table :tableData="tableData" :TableColumns="TableColumns"></v-table>
+        <v-table :tableData="tableData" :TableColumns="TableColumns" v-on:table-row-select="OnRowChange" v-on:table-cell-click="OnCellClick"></v-table>
       </div>
     </div>
     <!-- <test-component></test-component> -->
@@ -23,6 +23,7 @@
   import {TableColumns, TableData} from './components/table_data'
   import {searchDataSet, defSearch} from './components/radio_button_search_data'
   import SvgFilter from './components/utils/SvgFilter'
+import { ShowLog } from './lib/Helper';
 
   export default {
     name: 'app',
@@ -46,8 +47,20 @@
       // console.log(document.getElementById('_swecontent').clientWidth)
     },
     methods: {
+      sleep(delay) {
+          var start = new Date().getTime();
+          while (new Date().getTime() < start + delay);
+      },
       ChangeSearch(key) {
         console.log(key)
+      },
+      OnRowChange(rowId){
+          ShowLog('App.vue', 'OnRowChange', rowId)
+          this.sleep(2000);
+      },
+      OnCellClick(columnData){
+          ShowLog('App.vue', 'OnCellClick', columnData)
+          this.sleep(2000);
       }
     },
   }
