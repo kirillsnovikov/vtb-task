@@ -3,23 +3,26 @@
 class Parameter {
   constructor(name, type, def, required, custom) {
     this.name = name
-    this.type = type
+    this.type = this.$setType(type)
     this.def = def
     this.required = required
     this.custom = custom
+    this.$errors = []
   }
 
   set value(newValue) {
-    this.validate(newValue)
-    this.$value = newValue
+    if (this.$validate(newValue)) {
+      this.$value = newValue
+    } else {
+      this.$value = null
+    }
   }
 
   get value() {
     if (this.$value) {
       return this.$value
-    } else {
-      this.defaultParameter()
     }
+    return this.defaultParameter
   }
 
   get defaultParameter() {
@@ -29,63 +32,61 @@ class Parameter {
     return this.def
   }
 
-  validate(value) {
-    let errors = []
-    console.log(this.getType(value))
-    // console.log(value instanceof Object)
-    // console.log(typeof value)
-    // console.log(typeof typeof value === this.type)
-    // console.log(value)
-    if (this.required && !value) {
-      errors.push(this.name + ' is required')
-    }
-    // if (this.type !== 'any' && (value instanceof this.type)) {
-    //   errors.push(this.name + ' must be type of "' + this.type + '", ' + value + ' given')
-    // }
-    // console.log(errors)
+  get errors() {
+    return this.$errors.join('; ')
   }
 
-  getType(value) {
+  $validate(value) {
+    if (this.required && !value) {
+      this.$errors.push(`${this.name} is required`)
+    }
+    if (this.type !== 'any' && this.$getType(value) !== this.type) {
+      this.$errors.push(`${this.name} must be type of '${this.type}', ${this.$getType(value)} given`)
+    }
+    if (this.custom && !this.custom[value]) {
+      this.$errors.push(`${this.name} must be only: ${Object.keys(this.custom).map(el => {return `'${el}'`}).join(' or ')}`)
+    }
+    if (this.$errors.length) {
+      return false
+    }
+    return true
+  }
+
+  $getType(value) {
     var regex = /^\[object (\S+?)\]$/;
     var matches = Object.prototype.toString.call(value).match(regex) || [];
     return (matches[1] || 'undefined').toLowerCase();
   }
 
-  // setType(type) {
-  //   if (typeof type === 'function') {
-  //     console.log(type)
-  //     console.log(new type instanceof type)
-  //     return type.name.toLowerCase()
-  //   }
-  //   return type
-  // }
+  $setType(type) {
+    if (typeof type === 'function') {
+      return type.name.toLowerCase()
+    }
+    return type.toLowerCase()
+  }
 }
 
 const parameters = [
-  new Parameter('Name', 'any', 'n/a', true),
-  new Parameter('Display', String, 'n/a', true),
-  new Parameter('Index', Number, 0, false),
-  new Parameter('Width', Object, 100, false),
-  new Parameter('IconMap', Array, [], false),
-  new Parameter('Sort', String, 'none', false, {
-    'desc': 'dsc',
-    'none': 'none',
-    'asc': 'asc',
-  }),
-  new Parameter('Align', String, 'left', false, {
-    'left': 'align-left',
-    'right': 'align-right',
-    'center': 'align-center',
-  }),
-  new Parameter('Component', String, 'default', false, {
-    'default': 'v-def-cell',
-    'icon': 'v-icon-cell',
-  }),
+new Parameter('Name', 'any', 'n/a', true),
+new Parameter('Display', String, 'n/a', true),
+new Parameter('Index', Number, 0, false),
+new Parameter('Width', Number, 100, false),
+new Parameter('IconMap', Array, [], false),
+new Parameter('Sort', String, 'none', false, {
+  'desc': 'dsc',
+  'none': 'none',
+  'asc': 'asc',
+}),
+new Parameter('Align', String, 'left', false, {
+  'left': 'align-left',
+  'right': 'align-right',
+  'center': 'align-center',
+}),
+new Parameter('Component', String, 'default', false, {
+  'default': 'v-def-cell',
+  'icon': 'v-icon-cell',
+}),
 ]
-parameters.forEach(el => {
-  el.value = ''
-  // console.log(el)
-})
 // console.log(par1)
 // console.log(par1.type.name)
 
@@ -144,52 +145,59 @@ export const ShowLog = function(prefix, msg, objectData) {
   }
 }
 
-export const ColumnData = function(params) {
+export const ColumnData = function(column) {
   var errPrefix = 'ColumnData'
-  const paramsKeys = ['Name', 'Display', 'Index', 'Sort', 'Width', 'Align', 'Component', 'IconMap']
-  // console.log(Object.keys(paramsKeys))
-  paramsKeys.forEach((key, index) => {
-    switch (key) {
-      case 'Name':
-        if (!params[key]) ShowError(errPrefix, key + ' empty.', params[key])
-        this[key] = params[key] ? params[key] : 'n/a';
-        break;
-      case 'Display':
-        if (!params[key]) ShowError(errPrefix, key + ' empty.', params[key])
-        this[key] = params[key] ? HtmlEncode(params[key]) : 'n/a';
-        break;
-      case 'Index':
-        if (params[key] && !Number.isInteger(params[key])) ShowError(errPrefix, key + ' is only Integer.', params[key])
-        this[key] = params[key] ? params[key] : 0;
-        break;
-      case 'Sort':
-        if (params[key] && !TableConfig.column.sort[params[key]]) {
-          ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.sort).join('; '), params[key])
-        }
-        this[key] = params[key] ? TableConfig.column.sort[params[key]] : TableConfig.column.sortDefault;
-        break;
-      case 'Width':
-        if (params[key] && !Number.isInteger(params[key])) ShowError(errPrefix, key + ' is only Integer.', params[key])
-        this[key] = params[key] ? params[key] : TableConfig.ColWidth;
-        break;
-      case 'Align':
-        if (params[key] && !TableConfig.column.align[params[key]]) {
-          ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.align).join('; '), params[key])
-        }
-        this[key] = params[key] ? TableConfig.column.align[params[key]] : TableConfig.column.alignDefault;
-        break;
-      case 'Component':
-        if (params[key] && !TableConfig.column.component[params[key]]) {
-          ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.component).join('; '), params[key])
-        }
-        this[key] = params[key] ? TableConfig.column.component[params[key]] : TableConfig.column.componentDefault;
-        break;
-      case 'IconMap':
-        if (params[key] && !Array.isArray(params[key])) ShowError(errPrefix, key + ' is only Array.', params[key])
-        this[key] = params[key] ? params[key] : []
-        break;
-    }
+  parameters.forEach(parameter => {
+    // this[parameter.name] = column[parameter.name]
+    // parameter[]
+    // parameter.value = params[]
+    console.log(parameter)
   })
+
+  // const paramsKeys = ['Name', 'Display', 'Index', 'Sort', 'Width', 'Align', 'Component', 'IconMap']
+  // console.log(Object.keys(paramsKeys))
+  // paramsKeys.forEach((key, index) => {
+  //   switch (key) {
+  //     case 'Name':
+  //     if (!params[key]) ShowError(errPrefix, key + ' empty.', params[key])
+  //       this[key] = params[key] ? params[key] : 'n/a';
+  //     break;
+  //     case 'Display':
+  //     if (!params[key]) ShowError(errPrefix, key + ' empty.', params[key])
+  //       this[key] = params[key] ? HtmlEncode(params[key]) : 'n/a';
+  //     break;
+  //     case 'Index':
+  //     if (params[key] && !Number.isInteger(params[key])) ShowError(errPrefix, key + ' is only Integer.', params[key])
+  //       this[key] = params[key] ? params[key] : 0;
+  //     break;
+  //     case 'Sort':
+  //     if (params[key] && !TableConfig.column.sort[params[key]]) {
+  //       ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.sort).join('; '), params[key])
+  //     }
+  //     this[key] = params[key] ? TableConfig.column.sort[params[key]] : TableConfig.column.sortDefault;
+  //     break;
+  //     case 'Width':
+  //     if (params[key] && !Number.isInteger(params[key])) ShowError(errPrefix, key + ' is only Integer.', params[key])
+  //       this[key] = params[key] ? params[key] : TableConfig.ColWidth;
+  //     break;
+  //     case 'Align':
+  //     if (params[key] && !TableConfig.column.align[params[key]]) {
+  //       ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.align).join('; '), params[key])
+  //     }
+  //     this[key] = params[key] ? TableConfig.column.align[params[key]] : TableConfig.column.alignDefault;
+  //     break;
+  //     case 'Component':
+  //     if (params[key] && !TableConfig.column.component[params[key]]) {
+  //       ShowError(errPrefix, key + ' only: ' + Object.keys(TableConfig.column.component).join('; '), params[key])
+  //     }
+  //     this[key] = params[key] ? TableConfig.column.component[params[key]] : TableConfig.column.componentDefault;
+  //     break;
+  //     case 'IconMap':
+  //     if (params[key] && !Array.isArray(params[key])) ShowError(errPrefix, key + ' is only Array.', params[key])
+  //       this[key] = params[key] ? params[key] : []
+  //     break;
+  //   }
+  // })
   // console.log(this)
   // let keys = Object.keys(params)
   // console.log(params.Name)
