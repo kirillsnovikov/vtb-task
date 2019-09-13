@@ -6,7 +6,7 @@
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
-        <v-table :tableData="tableData" :TableColumns="TableColumns" v-on:table-row-select="OnRowChange" v-on:table-cell-click="OnCellClick"></v-table>
+        <v-table :tableData="tableData" :TableColumns="TableColumns" @table-row-select="tableRowSelect" @table-cell-click="tableCellClick" ref="table"></v-table>
       </div>
     </div>
     <!-- <test-component></test-component> -->
@@ -15,57 +15,51 @@
     <SvgFilter />
   </div>
 </template>
-
 <script>
-  // import Popup from './components/popups/Popup.vue'
-  import dataSet from './components/menudata.json'
-  // import popupData from '@/components/popup_subject'
-  import {TableColumns, TableData} from './components/table_data'
-  import {searchDataSet, defSearch} from './components/radio_button_search_data'
-  import SvgFilter from './components/utils/SvgFilter'
+// import Popup from './components/popups/Popup.vue'
+import dataSet from './components/menudata.json'
+// import popupData from '@/components/popup_subject'
+import { TableColumns, TableData } from './components/table_data'
+import { searchDataSet, defSearch } from './components/radio_button_search_data'
+import SvgFilter from './components/utils/SvgFilter'
 import { ShowLog } from './lib/Helper';
 
-  export default {
-    name: 'app',
-    components: {
-      // Popup,
-      SvgFilter
+export default {
+  name: 'app',
+  components: {
+    // Popup,
+    SvgFilter
+  },
+  data() {
+    return {
+      ds: dataSet,
+      // popup: popupData,
+      tableData: TableData,
+      TableColumns: TableColumns,
+      searchValues: searchDataSet,
+      defSearch: defSearch,
+    }
+  },
+  methods: {
+    sleep(delay) {
+      var start = new Date().getTime();
+      while (new Date().getTime() < start + delay);
+      return true
     },
-    data() {
-      return {
-        ds: dataSet,
-        // popup: popupData,
-        tableData: TableData,
-        TableColumns: TableColumns,
-        searchValues: searchDataSet,
-        defSearch: defSearch
-      }
+    tableRowSelect(rowId) {
+      this.sleep(500);
+      this.$refs.table.isActiveRow = rowId
+      console.log(this.$refs.table.isActiveRow)
     },
-    mounted() {
-      // console.log(this.ds)
-      // document.getElementById('_swecontent').style.width = document.body.offsetWidth - 64 + 'px'
-      // console.log(document.getElementById('_swecontent').clientWidth)
+    tableCellClick(columnData) {
+      console.log('table-cell-click')
     },
-    methods: {
-      sleep(delay) {
-          var start = new Date().getTime();
-          while (new Date().getTime() < start + delay);
-      },
-      ChangeSearch(key) {
-        console.log(key)
-      },
-      OnRowChange(rowId){
-          ShowLog('App.vue', 'OnRowChange', rowId)
-          this.sleep(2000);
-      },
-      OnCellClick(columnData){
-          ShowLog('App.vue', 'OnCellClick', columnData)
-          this.sleep(2000);
-      }
+    ChangeSearch(key) {
+      console.log(key)
     },
-  }
+  },
+}
 </script>
-
 <style lang="scss">
 #_swecontent {
   width: 100%;
