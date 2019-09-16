@@ -22,7 +22,7 @@
             <div class="popup-card__body__text">Хотите выйти из аккаунта?</div>
           </div>
           <div class="popup-card__actions">
-            <div class="btn-empty">НЕТ, ОСТАНУСЬ</div>
+            <div class="btn-empty" @click="show">НЕТ, ОСТАНУСЬ</div>
             <div class="btn-fill" @click="logoff">ДА</div>
           </div>
           <div class="popup-card__footer"></div>
@@ -59,9 +59,9 @@
         this.isActive = !this.isActive
         console.log('show')
         if (this.isActive) {
-          document.getElementById('_swecontent').classList.add('blur-content')
+          document.getElementById('_swecontent').classList.add('blur')
         } else {
-          document.getElementById('_swecontent').classList.remove('blur-content')
+          document.getElementById('_swecontent').classList.remove('blur')
         console.log('show')
         }
       }

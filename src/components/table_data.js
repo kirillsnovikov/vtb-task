@@ -7,6 +7,7 @@ import { ColumnData } from '../lib/Helper';
 export const TableColumns = [
 
   new ColumnData({
+    control: "This is CONTROL!",
     Name: 'status',
     Display: 'статус',
     Width: 140,

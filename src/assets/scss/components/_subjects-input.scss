@@ -28,11 +28,21 @@
     }
     .btn {
       @extend %btn;
+      width: 67px !important;
     }
     .btn-fill {
       @extend %btn-fill;
       font-size: 20px;
-      width: 67px;
     }
+  }
+  // .btn {
+  //     width: 67px;
+  // }
+}
+
+.custom-input {
+  // @extend %flex;
+  .subjects-input__right {
+    // width: 67px;
   }
 }

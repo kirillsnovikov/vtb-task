@@ -15,7 +15,7 @@
       </select>
     </div>
     <div class="search-input-list">
-      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :key="i"/>
+      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="i" :key="i"/>
     </div>
     <div class="search-button">
       <div class="btn btn-fill" @click="search">
@@ -62,6 +62,7 @@
         console.log('ищем!');
         this.getValues();
         console.log(this.searchValues);
+        this.$emit('activeSearch')
 
         var valStr,
             valArr = this.searchValues,

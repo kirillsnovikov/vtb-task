@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vertical-menu :dataSetJson="ds"></vertical-menu>
+    <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
       <sr-registration></sr-registration>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
@@ -19,6 +19,7 @@
 // import Popup from './components/popups/Popup.vue'
 import dataSet from './components/menudata.json'
 // import popupData from '@/components/popup_subject'
+import { calendar } from './lib/Calendar'
 import { TableColumns, TableData } from './components/table_data'
 import { searchDataSet, defSearch } from './components/radio_button_search_data'
 import SvgFilter from './components/utils/SvgFilter'
@@ -40,6 +41,11 @@ export default {
       defSearch: defSearch,
     }
   },
+  mounted() {
+    console.log(calendar.monthDays)
+    calendar.year = 1000
+    // console.log(calendar.year)
+  },
   methods: {
     sleep(delay) {
       var start = new Date().getTime();
@@ -53,6 +59,7 @@ export default {
     },
     tableCellClick(columnData) {
       console.log('table-cell-click')
+      console.log(columnData.control)
     },
     ChangeSearch(key) {
       console.log(key)

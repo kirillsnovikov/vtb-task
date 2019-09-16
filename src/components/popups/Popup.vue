@@ -12,7 +12,7 @@
                 </div>
                 <div class="popup-card__actions" v-if="data.actions">
                     <div class="btn-empty btn">{{data.actions.apply.actionName | toupper}}</div>
-                    <div class="btn-fill btn">{{data.actions.reject.actionName | toupper}}</div>
+                    <div class="btn-fill btn" @click="show">{{data.actions.reject.actionName | toupper}}</div>
                 </div>
                 <div class="popup-card__footer"></div>
             </div>

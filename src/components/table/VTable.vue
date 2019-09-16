@@ -10,7 +10,7 @@
     <div class="table-body vtb-collapse">
       <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="{ active: isActiveRow === k}">
         <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.Align" @click="tableClick(i, TableColumns)">
+          <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.Align">
           </component>
         </div>
       </div>
@@ -71,6 +71,7 @@ export default {
   methods: {
     //Use in Siebel
     configurateTable() {
+      this.isActiveRow = this.tableData.length > 0 ? 0 : null;
       this.maxTableWidth = this.$el.parentNode.clientWidth
       this.sumColumns = this.getSumColumnsWidth()
 
@@ -106,12 +107,18 @@ export default {
       }
     },
     tableClick(rowId, columnData) {
-      this.rowClick(rowId)
+      if(this.isActiveRow != rowId){
+        this.rowClick(rowId)
+      }
+
+      this.isActiveRow = rowId;
+      this.cellClick(columnData)
     },
     //Use in Siebel
     rowClick(rowId) {
       // console.log('row')
       this.$emit('table-row-select', rowId)
+
       // this.$emit('table-row-select', rowId)
     },
     //Use in Siebel

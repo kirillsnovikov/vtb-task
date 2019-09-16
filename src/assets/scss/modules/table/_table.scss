@@ -60,7 +60,8 @@
       }
     }
     .active {
-      animation: shake 1s ease-in-out;
+      background: rgba($active-row-color, .2);
+      // animation: shake 1s ease-in-out;
     }
   }
 }

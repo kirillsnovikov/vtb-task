@@ -43,13 +43,13 @@
           },
           {
             "label": "siebel id",
-            "type": "text",
+            "type": "id",
             "format": null,
             "length": 10
           },
           {
             "label": "id заявки",
-            "type": "text",
+            "type": "id",
             "format": null,
             "length": 10
           },

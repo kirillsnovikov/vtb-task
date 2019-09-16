@@ -19,10 +19,13 @@
       }
     },
     mounted() {
-      if (this.icons.length > 0) {
-        this.icon = this.icons.find(el => {
-          return el.Value === this.data
-        }).Link
+      var iconArr = this.icons;
+      if (iconArr.length > 0) {
+        iconArr = this.icons.find(el => el.Value === this.data);
+      }
+
+      if(iconArr){
+        this.icon = iconArr.Link;
       }
     }
   }

@@ -20,13 +20,13 @@
               <div v-if="inputValue.length === 1" class="tag-danger">Введите хотя бы два символа</div>
               <div v-if="filteredList && filteredList.length === 0" class="tag-danger">По вашему запросу ничего не неайдено</div>
               <div v-for="i in filteredList" class="search-result__item tag">
-                {{i.name}}
+                <div v-if="i.name">{{i.name}}</div>
               </div>
             </div>
           </div>
           <div class="popup-card__subjects-body__items">
             <div class="items-scroll">
-              <PopupSubjectItem v-for="(item, i) in data.subjects" :key="i" :subject="item"/>
+              <PopupSubjectItem v-for="(item, i) in data.subjects" :key="i" :subject="item" />
             </div>
           </div>
         </div>
@@ -36,59 +36,66 @@
     </div>
   </div>
 </template>
-
 <script>
-  //import popupData from '@/components/popup_subject'
-  import PopupSubjectItem from './PopupSubjectItem.vue'
+//import popupData from '@/components/popup_subject'
+import PopupSubjectItem from './PopupSubjectItem.vue'
 
-  export default {
-    name: 'popup-subjects',
-    props: {
-      popupData: Object
-    },
-    data() {
-      return {
-        inputValue: '',
-        searchResult: null,
-        searchValues: [],
-        isShow: false,
-        data: {}
-      }
-    },
-    components: {
-      PopupSubjectItem
-    },
-    mounted() {
-      if (!this.popupData) {
-        return
-      }
-      this.data = this.popupData
-      this.data.subjects.forEach(element => {
+export default {
+  name: 'popup-subjects',
+  props: {
+    popupData: Object
+  },
+  data() {
+    return {
+      inputValue: '',
+      searchResult: null,
+      searchValues: [],
+      isShow: false,
+      data: {}
+    }
+  },
+  components: {
+    PopupSubjectItem
+  },
+  watch: {
+    inputValue(newVal) {
+      console.log(this.filteredList)
+    }
+  },
+  mounted() {
+    if (!this.popupData) {
+      return
+    }
+    this.data = this.popupData
+    this.data.subjects.forEach(element => {
+      if (element.subjectSubtitles) {
         this.searchValues = this.searchValues.concat(element.subjectSubtitles)
-      });
-      this.blurContent()
-    },
-    computed: {
-      filteredList() {
-        if (this.inputValue.length >= 2) {
-          return this.searchValues.filter(subTitles => {
-            return subTitles.name.toLowerCase().includes(this.inputValue.toLowerCase())
-          }).slice(0, 5)
-        }
       }
-    },
-    methods: {
-      show() {
-        this.isShow = !this.isShow
-        this.blurContent()
-      },
-      blurContent() {
-        if (this.isShow) {
-          document.getElementById('_swecontent').classList.add('blur-content')
-        } else {
-          document.getElementById('_swecontent').classList.remove('blur-content')
-        }
+    });
+    console.log('searchValues', this.searchValues)
+    // this.blurContent()
+  },
+  computed: {
+    filteredList() {
+      if (this.inputValue.length >= 2) {
+        return this.searchValues.filter(subTitles => {
+          return subTitles.name.toLowerCase().includes(this.inputValue.toLowerCase())
+        }).slice(0, 5)
       }
+    }
+  },
+  methods: {
+    show() {
+      this.isShow = !this.isShow
+      // this.blurContent()
     },
-  }
+    blurContent() {
+      if (this.isShow) {
+        document.getElementById('_swecontent').classList.add('blur')
+      } else {
+        document.getElementById('_swecontent').classList.remove('blur')
+      }
+    }
+  },
+}
 </script>

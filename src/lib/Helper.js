@@ -60,6 +60,7 @@ class ColumnParameter {
   }
 
   $validate(value) {
+    this.$errors = [];
     if (this.required && !value) {
       this.$errors.push(`'${this.name}' is required`)
     }
@@ -126,6 +127,14 @@ const columnParameters = [
 
 export const ColumnData = function(column) {
   var errPrefix = 'ColumnData'
+  //Custom parameter
+  var columnParamNames = columnParameters.map(col => col.name);
+  Object.keys(column).forEach(key =>{
+    if(column.hasOwnProperty(key) && columnParamNames.indexOf(key) == -1){
+      this[key] = column[key]
+    }
+  })
+
   columnParameters.forEach(parameter => {
     parameter.value = column[parameter.name]
     this[parameter.name] = parameter.value

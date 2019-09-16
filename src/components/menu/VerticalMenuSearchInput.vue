@@ -8,42 +8,51 @@
 
 <script>
   const regExps = {
-    text: new RegExp('\[\\d\]', 'gi'),
-    number: new RegExp('\[\^\\d\]', 'gi')
+    text: new RegExp(/[^\d]/, 'gi'),
+    number: new RegExp(/[\d]/, 'gi'),
+    id: new RegExp(/[\d\w-]/, 'gi')
   }
   export default {
     name: 'search-input',
     props: {
       inputData: Object,
+      inputId: Number
     },
     data() {
       return {
         inputValue: '',
+        oldValue: '',
         inputEl: null,
         // maskInput: '0000 0000 0000 0000',
         regular: null,
       }
     },
     mounted() {
-      // console.log(this.inputKey)
+      console.log(this.inputId)
       this.inputEl = this.$el.firstChild
       this.regular = new RegExp(regExps[this.inputData.type])
+      if (localStorage['inputValue' + this.inputId]) {
+        this.inputValue = localStorage['inputValue' + this.inputId]
+      }
     },
     watch: {
       inputValue: function(newVal) {
         this.inputValue = this.validate(newVal)
+        this.oldValue = this.inputValue;
+        localStorage['inputValue' + this.inputId] = this.inputValue
       }
     },
     methods: {
       validate(newVal) {
-        if (newVal.search(this.regular) >= 0) {
+        if (newVal.replace(this.regular, '') != '') {
           this.inputEl.classList.add('error')
           setTimeout(() => {
             this.inputEl.classList.remove('error')
           }, 300)
+          return this.oldValue;
         }
-        let resultString = newVal.replace(this.regular, '').substring(0,this.inputData.length)
-        return resultString
+
+        return newVal.substring(0,this.inputData.length)
       },
       // cardFormat(newVal) {
       //   if (newVal.search( /[^\d|\s]/gi ) >= 0) {
