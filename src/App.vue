@@ -42,9 +42,18 @@ export default {
     }
   },
   mounted() {
-    console.log(calendar.monthDays)
-    calendar.year = 1000
-    // console.log(calendar.year)
+    // // calendar.currentDate = '1999-11-20T00:00:00.000Z'
+    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
+    // console.log(calendar.currentMonthDays)
+    // calendar.increaseMonth()
+    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
+    // console.log(calendar.currentMonthDays)
+    // calendar.increaseMonth()
+    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
+    // console.log(calendar.currentMonthDays)
+    // calendar.increaseMonth()
+    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
+    // console.log(calendar.currentMonthDays)
   },
   methods: {
     sleep(delay) {

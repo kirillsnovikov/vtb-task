@@ -17,6 +17,7 @@
               </transition>
             </div>
           </div>
+          <Tooltip position="right" display="onload" :data="startTooltip"/>
         </div>
         <div class="vm-body">
           <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden" v-on:activeRightMenu="activeRightMenu" :isActiveRight="isActiveRight" />
@@ -48,6 +49,8 @@ import VerticalMenuList from './VerticalMenuList.vue'
 import VerticalMenuPerson from './VerticalMenuPerson.vue'
 import VerticalMenuRight from './VerticalMenuRight.vue'
 import VerticalMenuSearch from './VerticalMenuSearch.vue'
+import Tooltip from '@/components/tooltip/Tooltip.vue'
+import dataTooltip from '@/components/tooltip/dataTooltip'
 
 export default {
   name: 'vertical-menu',
@@ -59,6 +62,7 @@ export default {
     VerticalMenuPerson,
     VerticalMenuRight,
     VerticalMenuSearch,
+    Tooltip,
   },
   data() {
     return {
@@ -69,7 +73,9 @@ export default {
       isWiden: false,
       mainContent: null,
       clickListen: null,
-      employee: this.dataSetJson.employee
+      employee: this.dataSetJson.employee,
+      startTooltip: dataTooltip.startTooltip,
+      searchTooltip: dataTooltip.searchTooltip,
     }
   },
   mounted() {

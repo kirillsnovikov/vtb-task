@@ -8,12 +8,17 @@
   &__label {
     height: $vm-input-height;
     line-height: $vm-input-height;
-    padding-left: $vm-input-padding-left;
+    padding-left: $vm-input-padding-left + 1px;
   }
   &__clear {
-    padding-right: $vm-input-padding-left;
+    @extend %flex-center;
+    padding-right: $vm-input-padding-right;
     height: $vm-input-height;
-    line-height: $vm-input-height;
+    // line-height: $vm-input-height;
+    img {
+      width: 18px;
+      // opacity: 0.4;
+    }
   }
   &:last-child {
     margin-bottom: 45px;

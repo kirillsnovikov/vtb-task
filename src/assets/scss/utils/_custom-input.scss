@@ -4,8 +4,9 @@
     box-sizing: border-box;
   }
   input {
+    padding-top: 8px;
     background: transparent;
-    border: 1px solid $black;
+    border: 1px solid $search-input-border-color;
     font-size: 15px;
     width: 100%;
     font-weight: normal;
@@ -17,12 +18,13 @@
       outline: none;
     }
     &:focus ~ label {
-      top: -14px;
+      top: -8px;
       font-size: 7px;
       transition: 0.3s;
     }
   }
   label {
+    color: $search-label-color;
     position: absolute;
     left: 0;
     top: 0;
@@ -30,23 +32,23 @@
     z-index: -1;
     transition: 0.3s;
     font-size: 10px;
-    opacity: 0.4;
+    // opacity: 0.4;
     letter-spacing: 0.7px;
   }
   span {
+    color: $search-label-color;
     position: absolute;
     text-align: right;
     right: 0;
     top: 0;
     cursor: pointer;
     transition: 0.4s;
-    opacity: 0.4;
     &:hover {
       opacity: 1;
     }
   }
   .focus {
-    top: -14px;
+    top: -8px;
     font-size: 7px;
     transition: 0.3s;
   }

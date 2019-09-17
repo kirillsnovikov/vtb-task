@@ -1,20 +1,21 @@
 .vm-search-form {
   white-space: nowrap;
-  // height: 100%;
   flex: 0;
   width: 383px;
   overflow: hidden;
   padding: 25px 0;
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
+
   .search-layout {
     .search-header {
       @extend %flex-center;
       padding: 0 25px 0 10px;
+
       &__back-button {
-        font-size: 20px;
-        cursor: pointer;
-        flex: 0;
+        @extend %flex-center;
+        width: 9px;
       }
+
       &__title {
         flex: 1;
         font-size: 22px;
@@ -25,35 +26,57 @@
         letter-spacing: -0.39px;
         padding-left: 13px;
       }
+
+      &__clear-button {
+        width: 28px;
+      }
     }
+
     .search-select {
-      margin: 25px auto;
-      padding: 0 25px;
+      margin: 25px;
+      // padding: 0 25px;
+      position: relative;
+
+      &__arrow {
+        @extend %flex-center;
+        height: 100%;
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        right: 13px;
+      }
+
       select {
         width: 100%;
         outline: none;
         border: none;
         background: transparent;
-        // appearance: none;
-        border: 1px solid $black;
+        appearance: none;
+        border: 1px solid $search-input-border-color;
         border-radius: 4px;
         padding-left: $vm-input-padding-left;
+        // padding-right: $vm-input-padding-right;
         font-size: 16px;
         letter-spacing: 1px;
         transition: 0.3s;
         height: $vm-input-height;
+
       }
     }
+
     .search-input-list {
       padding: 0 25px;
     }
+
     .search-button {
       @extend %flex-center;
       width: 100%;
+
       .btn {
         flex: 1;
         margin: 0 85px;
       }
+
       .btn-fill {
         @include btn-fill($btn-blue-color, $btn-height);
       }

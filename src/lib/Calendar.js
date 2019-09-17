@@ -1,7 +1,9 @@
 class CalendarVTB {
-  constructor(date) {
-    this.currentDate = this.$getCurrentDate(date)
-    this.monthDays = this.$getMonthDays(this.$currentYear)
+  constructor() {
+    this.currentDate = new Date()
+    // this.date = this.$getCurrentDate(date)
+    // this.monthDays = this.$getMonthDays(this.$currentYear)
+    // this.currentMonthDays = this.monthDays[this.$currentMonth]
   }
 
   opts = {
@@ -12,26 +14,57 @@ class CalendarVTB {
     monthDays: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   }
 
-  set year(year) {
-    this.$year = new Date(year, 0, 1, 0, 0, 0, 0)
-  }
-
-  get year() {
-    return this.$year
-  }
-
-  $getCurrentDate(date) {
+  set currentDate(date) {
     let currentDate = new Date(date)
     if (!date || (currentDate.toString().toLowerCase() === 'invalid date')) {
       currentDate = new Date()
+      console.error('Invalid date')
     }
+
+    this.$currentDate = currentDate
 
     this.$currentDay = currentDate.getDate()
     this.$currentMonth = currentDate.getMonth()
     this.$currentYear = currentDate.getFullYear()
-    // console.log(this.$currentDay,this.$currentMonth,this.$currentYear)
-    return currentDate
   }
+
+  get currentDate() {
+    if (this.$currentDate) {
+      return this.$currentDate
+    }
+    return new Date()
+  }
+
+  get monthDays() {
+    return this.$getMonthDays(this.$currentYear)
+  }
+
+  get currentMonthDays() {
+    return this.monthDays[this.$currentMonth]
+  }
+
+  increaseMonth() {
+    if (this.$currentMonth++ >= 11) {
+      this.$currentMonth = 0
+      this.increaseYear()
+    }
+  }
+
+  decreaseMonth() {
+    if (this.$currentMonth-- < 0) {
+      this.$currentMonth = 11
+      this.decreaseYear()
+    }
+  }
+
+  increaseYear() {
+    this.$currentYear++
+  }
+
+  decreaseYear() {
+    this.$currentYear--
+  }
+
 
   $getMonthDays(currentYear) {
     if (currentYear % 4 === 0) {
@@ -42,4 +75,4 @@ class CalendarVTB {
   }
 }
 
-export const calendar = new CalendarVTB('2020-02-10T11:15:46.455Z')
+export const calendar = new CalendarVTB()
