@@ -6,7 +6,7 @@
           <div class="person-icon"></div>
         </div>
         <transition name="widen-item">
-          <span v-if="widenItem" class="menu-item__name">{{person.displayname}}</span>
+          <span v-if="widenItem && person" class="menu-item__name">{{person.displayname}}</span>
         </transition>
       </div>
     </div>

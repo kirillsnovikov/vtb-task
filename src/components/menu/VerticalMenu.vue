@@ -8,8 +8,8 @@
             <div class="logo-big" v-else key="big"></div>
           </transition>
         </div>
-        <div class="vm-search" @click="activeSearch">
-          <div class="menu-item-wrap">
+        <div class="vm-search">
+          <div class="menu-item-wrap" @click="activeSearch">
             <div class="menu-item">
               <div class="menu-item__icon"><i class="icon-search"></i></div>
               <transition name="widen-item">
@@ -17,7 +17,7 @@
               </transition>
             </div>
           </div>
-          <Tooltip position="right" display="onload" :data="startTooltip"/>
+          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="false" />
         </div>
         <div class="vm-body">
           <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden" v-on:activeRightMenu="activeRightMenu" :isActiveRight="isActiveRight" />
@@ -38,6 +38,7 @@
         <transition name="search-menu">
           <div class="vm-search-form" v-if="isActiveSearch">
             <VerticalMenuSearch v-on:activeSearch="activeSearch" />
+            <Tooltip position="right-top" :data="searchTooltip" :isShow="isActiveSearch"/>
           </div>
         </transition>
       </div>
@@ -80,10 +81,11 @@ export default {
   },
   mounted() {
     this.mainContent = document.getElementById('_swecontent')
+    console.log(document.querySelector('.vm-search').offsetWidth)
   },
   updated() {
     this.blurContent
-    console.log('updated')
+    this.$refs.tooltip.configurateTip()
   },
   computed: {
     blurContent() {

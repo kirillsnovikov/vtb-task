@@ -3,8 +3,7 @@
     <input v-model="inputValue" class="search-input__input" type="text">
     <label class="search-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
     <span class="search-input__clear" @click="inputValue = ''">
-      <img src="@/assets/icons/close-icon.svg" alt="">
-      <!-- <i class="icon-cross"></i> -->
+      <div class="search-input__clear__icon"></div>
     </span>
   </div>
 </template>
@@ -30,7 +29,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.inputId)
+    // console.log(this.inputId)
     this.inputEl = this.$el.firstChild
     this.regular = new RegExp(regExps[this.inputData.type])
     if (localStorage['inputValue' + this.inputId]) {

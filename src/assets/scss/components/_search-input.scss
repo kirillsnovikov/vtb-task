@@ -1,28 +1,35 @@
 .search-input {
   margin-bottom: 4px;
+
   &__input {
     border-radius: 4px;
     padding-left: $vm-input-padding-left;
     height: $vm-input-height;
   }
+
   &__label {
     height: $vm-input-height;
     line-height: $vm-input-height;
     padding-left: $vm-input-padding-left + 1px;
   }
+
   &__clear {
     @extend %flex-center;
     padding-right: $vm-input-padding-right;
     height: $vm-input-height;
-    // line-height: $vm-input-height;
-    img {
+
+    &__icon {
+      background: url('/path/vtb-logo-3.svg') no-repeat center;
       width: 18px;
+      height: 100%;
       // opacity: 0.4;
     }
   }
+
   &:last-child {
     margin-bottom: 45px;
   }
+
   .error {
     transition: 0.3s;
     border: 1px solid rgba($error-color, .7);

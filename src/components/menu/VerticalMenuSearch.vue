@@ -2,18 +2,16 @@
   <div class="search-layout">
     <div class="search-header">
       <div class="search-header__back-button" @click="$emit('activeSearch')">
-        <img src="@/assets/icons/1.svg" alt="">
-        <!-- <i class="icon-arrow-back"></i> -->
+        <div class="search-header__back-button__icon"></div>
       </div>
       <div class="search-header__title">{{'поиск клиента' | capitalize}}</div>
       <div class="search-header__clear-button circle-btn" @click="resetForm">
-        <img src="@/assets/icons/delete-all-icon.svg" alt="">
-        <!-- <i class="icon-delete"></i> -->
+        <div class="search-header__clear-button__icon"></div>
       </div>
     </div>
     <div class="search-select">
       <div class="search-select__arrow">
-        <img src="@/assets/icons/1.svg" alt="">
+        <div class="search-select__arrow__icon"></div>
       </div>
       <select v-model="selectedTypeNum">
         <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | capitalize}}</option>
@@ -32,17 +30,21 @@
 <script>
 import searchJson from '@/components/search'
 import SearchInput from '@/components/menu/VerticalMenuSearchInput.vue'
+// import Tooltip from '@/components/tooltip/Tooltip.vue'
+// import dataTooltip from '@/components/tooltip/dataTooltip'
 
 export default {
   name: 'menu-search',
   components: {
-    SearchInput
+    SearchInput,
+    // Tooltip
   },
   data() {
     return {
       selectedTypeNum: 0,
       searchTypes: searchJson.searchList.types,
       searchValues: [],
+      // searchTooltip: dataTooltip.searchTooltip,
     }
   },
   computed: {

@@ -1,3 +1,7 @@
+.vm-search {
+  position: relative;
+}
+
 .vm-search-form {
   white-space: nowrap;
   flex: 0;
@@ -9,11 +13,16 @@
   .search-layout {
     .search-header {
       @extend %flex-center;
-      padding: 0 25px 0 10px;
+      padding: 0 25px 0 15px;
 
       &__back-button {
         @extend %flex-center;
-        width: 9px;
+
+        &__icon {
+          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          width: 9px;
+          height: 20px;
+        }
       }
 
       &__title {
@@ -24,11 +33,15 @@
         font-stretch: normal;
         line-height: 1.18;
         letter-spacing: -0.39px;
-        padding-left: 13px;
+        padding-left: 18px;
       }
 
       &__clear-button {
-        width: 28px;
+        &__icon {
+          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          width: 28px;
+          height: 28px;
+        }
       }
     }
 
@@ -44,6 +57,12 @@
         pointer-events: none;
         top: 0;
         right: 13px;
+
+        &__icon {
+          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          width: 20px;
+          height: 100%;
+        }
       }
 
       select {
@@ -55,7 +74,6 @@
         border: 1px solid $search-input-border-color;
         border-radius: 4px;
         padding-left: $vm-input-padding-left;
-        // padding-right: $vm-input-padding-right;
         font-size: 16px;
         letter-spacing: 1px;
         transition: 0.3s;
