@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="9px" viewBox="0 0 15 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Group 330</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M7.7533,8.2925 C7.48085,8.5685 7.0407,8.5685 6.76755,8.2925 L0.2956,1.744 C-0.09855,1.346 -0.09855,0.698 0.2956,0.2985 C0.68975,-0.0995 1.32945,-0.0995 1.7236,0.2985 L7.26075,5.9005 L12.79655,0.2985 C13.1914,-0.0995 13.8311,-0.0995 14.2252,0.2985 C14.61935,0.698 14.61935,1.346 14.2252,1.744 L7.7533,8.2925 Z" id="path-1"></path>
+    </defs>
+    <g id="ОСНОВНЫЕ" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="поиск-клиента-copy" transform="translate(-389.000000, -103.000000)">
+            <g id="Group-330" transform="translate(389.000000, 103.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-329"></g>
+                <polygon id="Fill-328" fill="#000000" mask="url(#mask-2)" points="-5 13.4995 -5 -5 19.52085 -5 19.52085 13.4995"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

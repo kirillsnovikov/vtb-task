@@ -1,7 +1,7 @@
 <template>
   <div class="sr-registration">
     <div class="tabs-registration">
-      <div class="tabs-registration__item" v-for="tab in tabs">
+      <div class="tabs-registration__item" v-for="(tab, i) in tabs" :key="i">
         <div class="tabs-registration__item__value">
           {{tab.name | capitalize}}
         </div>
@@ -16,7 +16,7 @@
 
 const dataRegistration = {
   tabs: [
-    { name: 'Печать справок' },
+    { name: 'Заказ справок' },
     { name: 'Печать графика платежей' },
     { name: 'Печать выписки' },
   ]
@@ -34,6 +34,9 @@ export default {
       tabs: dataRegistration.tabs,
       // isActive: false
     }
+  },
+  mounted() {
+    // console.log(this.popupData)
   },
   methods: {
     showPopup() {

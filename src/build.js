@@ -24,5 +24,7 @@ Object.keys(Components).forEach(name => {
   Vue.component(name, Components[name]);
 })
 
+Vue.prototype.$eventHub = new Vue();
+
 export default Components;
 export * from  './lib/Helper.js'

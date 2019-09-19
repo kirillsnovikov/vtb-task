@@ -15,7 +15,7 @@
       <div class="popup-main">
         <div class="popup-card">
           <div class="popup-card__close" @click="show"><i class="icon-cross"></i></div>
-          <div class="popup-card__header">
+          <div class="popup-card__header close-popup-header">
             <div class="popup-card__header__title">Выход из системы</div>
           </div>
           <div class="popup-card__body">

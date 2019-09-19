@@ -5,6 +5,7 @@
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
+
   .table-header {
     @extend %flex;
     height: 33px;
@@ -12,23 +13,30 @@
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1.92;
+    // line-height: 1.92;
     letter-spacing: normal;
     box-shadow: 0px 5px 7px 0px rgba($black, 0.4);
     border-radius: 0 0 6px 6px;
+
     &__item {
       overflow: hidden;
       box-sizing: border-box;
+      max-height: 100%;
       @extend %flex-center;
+
       &__value {
-        @extend %ellipsis;
+        // @extend %ellipsis;
+        max-height: 23px;
+        overflow: hidden;
       }
     }
   }
+
   .table-body {
     @extend %flex-col;
+
     &__row {
-      @extend %flex;
+      @extend %flex-center;
       height: 56px;
       font-size: 12px;
       font-weight: normal;
@@ -39,26 +47,31 @@
       border-bottom: 1px solid #ccc;
       border-radius: 0 0 6px 6px;
       transition: background 1s;
+
       &__item {
         overflow: hidden;
         box-sizing: border-box;
-        @extend %flex-center;
+        max-height: 100%;
         cursor: pointer;
+
         &__value {
-          @extend %ellipsis;
-          &__icon {
-            @extend %flex-center;
-            margin-right: 5px;
-            width: 15px;
-            img {
-              width: 100%;
-            }
-          }
-          &__text {
+          max-height: 46px;
+          overflow: hidden;
+        }
+
+        .table-icon {
+          @extend %flex-center;
+          width: 28px !important;
+
+          img {
+            // margin: 0 auto;
+            // display: block;
+            // width: 100%;
           }
         }
       }
     }
+
     .active {
       background: rgba($active-row-color, .2);
       // animation: shake 1s ease-in-out;
@@ -67,18 +80,36 @@
 }
 
 @keyframes shake {
+
   from,
   to {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 
-  5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+  5%,
+  15%,
+  25%,
+  35%,
+  45%,
+  55%,
+  65%,
+  75%,
+  85%,
+  95% {
     -webkit-transform: translate3d(-15px, 0, 0);
     transform: translate3d(-15px, 0, 0);
   }
 
-  10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
+  10%,
+  20%,
+  30%,
+  40%,
+  50%,
+  60%,
+  70%,
+  80%,
+  90% {
     -webkit-transform: translate3d(15px, 0, 0);
     transform: translate3d(15px, 0, 0);
   }

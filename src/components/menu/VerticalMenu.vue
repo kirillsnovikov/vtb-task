@@ -17,7 +17,7 @@
               </transition>
             </div>
           </div>
-          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="false" />
+          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="true" />
         </div>
         <div class="vm-body">
           <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden" v-on:activeRightMenu="activeRightMenu" :isActiveRight="isActiveRight" />
@@ -81,7 +81,6 @@ export default {
   },
   mounted() {
     this.mainContent = document.getElementById('_swecontent')
-    console.log(document.querySelector('.vm-search').offsetWidth)
   },
   updated() {
     this.blurContent

@@ -1,14 +1,17 @@
 {
   "startTooltip":
   {
+    "name": "startTooltip",
     "isActive": true,
     "title": "НАЧАЛО РАБОТЫ",
     "text": "Поиск клиента осуществляется тут"
   },
   "searchTooltip":
   {
+    "name": "searchTooltip",
     "isActive": true,
     "title": "СОЧЕТАНИЯ ДЛЯ ПОИСКА",
+    "titleWidth": "120px",
     "text": "",
     "list": [
       "ДУЛ (серия+номер)",

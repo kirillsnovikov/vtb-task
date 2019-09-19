@@ -23,7 +23,8 @@ Vue.component('sr-registration', SRRegistration)
 // Vue.component('test-component', testComponent)
 // Vue.component('vertical-menu', require('./components/menu/VerticalMenu.vue').default)
 
-export const eventBus = new Vue()
+// export const eventBus = new Vue()
+Vue.prototype.$eventHub = new Vue()
 
 new Vue({
   render: h => h(App),

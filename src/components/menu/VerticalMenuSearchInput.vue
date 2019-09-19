@@ -2,7 +2,7 @@
   <div class="custom-input search-input">
     <input v-model="inputValue" class="search-input__input" type="text">
     <label class="search-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
-    <span class="search-input__clear" @click="inputValue = ''">
+    <span class="search-input__clear" v-if="inputValue" @click="inputValue = ''">
       <div class="search-input__clear__icon"></div>
     </span>
   </div>

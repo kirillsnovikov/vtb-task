@@ -2,7 +2,7 @@
   <div id="app">
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
-      <sr-registration></sr-registration>
+      <sr-registration :popupData="popupData" ></sr-registration>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
@@ -22,6 +22,7 @@ import dataSet from './components/menudata.json'
 import { calendar } from './lib/Calendar'
 import { TableColumns, TableData } from './components/table_data'
 import { searchDataSet, defSearch } from './components/radio_button_search_data'
+import { ThematicJSON } from './components/sr_registration_data.js'
 import SvgFilter from './components/utils/SvgFilter'
 import { ShowLog } from './lib/Helper';
 
@@ -39,21 +40,18 @@ export default {
       TableColumns: TableColumns,
       searchValues: searchDataSet,
       defSearch: defSearch,
+      popupData: ThematicJSON,
     }
   },
+  created() {
+    this.$eventHub.$on('on-start-thamtic', (parent, child) => {
+      console.log('parent', parent, 'child', child)
+    })
+  },
+  beforeDestroy() {
+    this.$eventHub.$off('on-start-thamtic')
+  },
   mounted() {
-    // // calendar.currentDate = '1999-11-20T00:00:00.000Z'
-    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
-    // console.log(calendar.currentMonthDays)
-    // calendar.increaseMonth()
-    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
-    // console.log(calendar.currentMonthDays)
-    // calendar.increaseMonth()
-    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
-    // console.log(calendar.currentMonthDays)
-    // calendar.increaseMonth()
-    // console.log(calendar.$currentDay, calendar.$currentMonth, calendar.$currentYear)
-    // console.log(calendar.currentMonthDays)
   },
   methods: {
     sleep(delay) {

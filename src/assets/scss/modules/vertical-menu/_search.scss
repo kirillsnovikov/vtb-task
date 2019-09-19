@@ -19,7 +19,7 @@
         @extend %flex-center;
 
         &__icon {
-          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          background: url('/path/arrow-left.svg') no-repeat center;
           width: 9px;
           height: 20px;
         }
@@ -38,7 +38,7 @@
 
       &__clear-button {
         &__icon {
-          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          background: url('/path/delete-all-icon.svg') no-repeat center;
           width: 28px;
           height: 28px;
         }
@@ -59,7 +59,8 @@
         right: 13px;
 
         &__icon {
-          background: url('/path/vtb-logo-3.svg') no-repeat center;
+          background: url('/path/arrow-down.svg') no-repeat center;
+          transform: rotate(-90deg);
           width: 20px;
           height: 100%;
         }

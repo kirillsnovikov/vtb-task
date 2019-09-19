@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import { eventBus } from '@/main'
+    // import { eventBus } from '@/main'
     export default {
         name: 'popup',
         data() {
@@ -31,13 +31,13 @@
                 isShow: false,
             }
         },
-        created() {
-            eventBus.$on('showPopup', popupData => {
-                // console.log(this)
-                this.data = popupData,
-                this.show()
-            })
-        },
+        // created() {
+        //     this.$eventHub.$on('showPopup', popupData => {
+        //         // console.log(this)
+        //         this.data = popupData,
+        //         this.show()
+        //     })
+        // },
         methods: {
             show() {
                 this.isShow = !this.isShow
@@ -48,12 +48,5 @@
                 }
             }
         },
-        // filters: {
-        //     toupper(str) {
-        //         if (!str) return ''
-        //             str = str.toString()
-        //         return str.toUpperCase()
-        //     }
-        // }
     }
 </script>

@@ -7,13 +7,16 @@
   width: 100%;
   height: 100vh;
   z-index: 3;
+
   & * {
     box-sizing: border-box;
   }
+
   .popup-main {
     @extend %flex-center-center;
     // @extend %flex;
     height: 100%;
+
     .popup-layout {
       position: fixed;
       width: 100%;
@@ -21,6 +24,7 @@
       top: 0;
       left: 0;
     }
+
     .popup-card {
       z-index: 1;
       box-sizing: border-box;
@@ -30,6 +34,7 @@
       box-shadow: 0 60px 120px 0 rgba(0, 0, 0, 0.3);
       background-color: $white;
       position: relative;
+
       &__close {
         position: absolute;
         top: 15px;
@@ -38,37 +43,56 @@
         text-align: right;
         cursor: pointer;
       }
+
       &__header {
-        height: 63px;
-        line-height: 60px;
+        @extend %flex-center-center;
+        padding-top: (60 - $popup-title-font-size)/2;
+        // height: 63px;
+        // line-height: 63px;
+
         &__title {
-          font-size: 27px;
+          font-size: $popup-title-font-size;
           letter-spacing: 0.34px;
         }
       }
+
       &__body {
-        height: 43px;
+        // height: 43px;
+        margin-top: (60 - $popup-title-font-size)/2;
         font-size: 14px;
         font-weight: normal;
       }
+
       &__actions {
         display: flex;
         justify-content: center;
-        padding: 0 10px 20px 10px;
+        padding: 45px 25px;
+
         [class*="btn-"] {
           width: 165px;
           font-size: $btn-font-size;
-          margin-right: 10px;
+          margin-right: 6px;
+
           &:last-child {
             margin-right: 0;
           }
         }
+
         .btn-fill {
           @include btn-fill($btn-blue-color, $btn-height);
         }
+
         .btn-empty {
           @include btn-empty($btn-blue-color, $btn-height);
         }
+      }
+
+      .close-popup-header {
+        margin-top: 26px;
+      }
+
+      .subject-popup-header {
+        padding-bottom: (60 - $popup-title-font-size)/2;
       }
     }
   }

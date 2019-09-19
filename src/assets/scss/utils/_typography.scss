@@ -24,15 +24,18 @@ table, thead, tbody, tfoot, th, tr, td {
 
 .align-left {
   text-align: left;
+  margin-right: auto;
   // justify-content: flex-start;
 }
 
 .align-center {
   text-align: center;
+  margin: 0 auto;
   // justify-content: center;
 }
 
 .align-right {
   text-align: right;
+  margin-left: auto;
   // justify-content: flex-end;
 }

@@ -3,7 +3,7 @@
     <div class="popup-main">
       <div class="popup-card">
         <div class="popup-card__close" @click="show"><i class="icon-cross"></i></div>
-        <div class="popup-card__header">
+        <div class="popup-card__header subject-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
         </div>
         <div class="popup-card__subjects-body">
@@ -18,7 +18,7 @@
             </div>
             <div class="search-result">
               <div v-if="inputValue.length === 1" class="tag-danger">Введите хотя бы два символа</div>
-              <div v-if="filteredList && filteredList.length === 0" class="tag-danger">По вашему запросу ничего не неайдено</div>
+              <div v-if="filteredList && filteredList.length === 0" class="tag-danger">По вашему запросу ничего не найдено</div>
               <div v-for="i in filteredList" class="search-result__item tag">
                 <div v-if="i.name">{{i.name}}</div>
               </div>
@@ -57,11 +57,6 @@ export default {
   components: {
     PopupSubjectItem
   },
-  watch: {
-    inputValue(newVal) {
-      console.log(this.filteredList)
-    }
-  },
   mounted() {
     if (!this.popupData) {
       return
@@ -72,8 +67,6 @@ export default {
         this.searchValues = this.searchValues.concat(element.subjectSubtitles)
       }
     });
-    console.log('searchValues', this.searchValues)
-    // this.blurContent()
   },
   computed: {
     filteredList() {

@@ -1,8 +1,8 @@
 <template>
-  <div class="table-body__row__item__value">
-    <div class="table-body__row__item__value__icon" v-if="icon">
+  <div class="table-body__row__item__value table-icon">
+    <!-- <div class="table-body__row__item__value__icon" v-if="icon"> -->
       <img :src="icon" alt="">
-    </div>
+    <!-- </div> -->
     <!-- <div class="table-body__row__item__value__text">{{data}}</div> -->
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
   export default {
     props: {
-      data: [Number, Boolean, String],
+      data: [Number, String, Boolean],
       icons: Array
     },
     data() {
@@ -22,6 +22,10 @@
       var iconArr = this.icons;
       if (iconArr.length > 0) {
         iconArr = this.icons.find(el => el.Value === this.data);
+      }
+
+      if(!iconArr){
+        iconArr = this.icons.find(el => el.Value == "default");
       }
 
       if(iconArr){

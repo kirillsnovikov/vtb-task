@@ -2,7 +2,7 @@
   <div class="table" :class="{'scroll-x': isScroll}">
     <div class="table-header" :style="{width: tableWidth + 'px'}">
       <div class="table-header__item" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-        <div class="table-header__item__value" :class="column.Align">
+        <div class="table-header__item__value" :class="column.ColAlign">
           {{column.Display | capitalize}}
         </div>
       </div>
@@ -10,7 +10,7 @@
     <div class="table-body vtb-collapse">
       <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="{ active: isActiveRow === k}">
         <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.Align">
+          <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
           </component>
         </div>
       </div>
@@ -99,12 +99,13 @@ export default {
       })
       return result;
     },
-    getAlignClass(name) {
-      return {
-        'align-left': name && name === 'align-left',
-        'align-right': name && name === 'align-right',
-        'align-center': name && name === 'align-center',
-      }
+    getAlignClass(column) {
+      console.log(column)
+      // return {
+      //   'align-left': name && name === 'align-left',
+      //   'align-right': name && name === 'align-right',
+      //   'align-center': name && name === 'align-center',
+      // }
     },
     tableClick(rowId, columnData) {
       if(this.isActiveRow != rowId){

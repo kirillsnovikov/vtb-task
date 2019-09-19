@@ -8,8 +8,8 @@
     </div>
     <transition name="subject-item">
       <div class="subject-item__subtitles" v-if="isActive" :key="subject.subjectTitle">
-        <div class="subject-item__subtitles__item tag" v-for="(item, i) in subject.subjectSubtitles">
-          <div v-if="item.name">{{item.name | truncate(50)}}</div>
+        <div class="subject-item__subtitles__item tag" v-for="(item, i) in getSubjectSubtitles" :key="i" @click="OnStartThematic(subject.subjectTitle, item.name)">
+          <div>{{item.name | truncate(50)}}</div>
         </div>
       </div>
     </transition>
@@ -29,13 +29,16 @@ export default {
   },
   mounted() {
     this.subtitlesHeight = this.$el.offsetHeight
-    let subtitlesCount = (this.subject.subjectSubtitles) ? this.subject.subjectSubtitles.length : 0
+    let subtitlesCount = (this.subject.subjectSubtitles) ? this.getSubjectSubtitles.length : 0
     let rowsCount = Math.ceil(subtitlesCount / 2)
     if (rowsCount > 0) {
       this.subtitlesHeight = this.$el.offsetHeight + (rowsCount * 57) + 3 + 13 + 'px'
     }
   },
   computed: {
+    getSubjectSubtitles() {
+      return this.subject.subjectSubtitles.filter(el => !!el.name && el.name != "");
+    },
     getClass() {
       if (this.isActive) {
         return 'icon-minus'
@@ -51,7 +54,11 @@ export default {
       } else {
         this.$el.style.height = ''
       }
-      // console.log(this)
+    },
+    OnStartThematic(parent, child) {
+      this.$eventHub.$emit('on-start-thamtic', parent, child)
+
+      // console.log(parent, child);
     }
   }
 }
