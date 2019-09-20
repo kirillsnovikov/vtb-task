@@ -1,3 +1,10 @@
 body {
-  background-image: linear-gradient(90deg,$vtb-main-color,$blue-blue-two 97%,$blue-blue);
+  background-image: linear-gradient(90deg, $vtb-main-color, $blue-blue-two 97%, $blue-blue);
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  // -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+  // outline: none !important;
 }

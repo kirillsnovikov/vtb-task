@@ -19,8 +19,8 @@
             <div class="search-result">
               <div v-if="inputValue.length === 1" class="tag-danger">Введите хотя бы два символа</div>
               <div v-if="filteredList && filteredList.length === 0" class="tag-danger">По вашему запросу ничего не найдено</div>
-              <div v-for="i in filteredList" class="search-result__item tag">
-                <div v-if="i.name">{{i.name}}</div>
+              <div v-for="(parent, child) in filteredList" class="search-result__item tag" :key="parent+child" @click="clickBySearchValue(parent, child)">
+                <div v-if="child">{{child}}</div>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@ export default {
     return {
       inputValue: '',
       searchResult: null,
-      searchValues: [],
+      searchValues: {},
       isShow: false,
       data: {}
     }
@@ -64,16 +64,29 @@ export default {
     this.data = this.popupData
     this.data.subjects.forEach(element => {
       if (element.subjectSubtitles) {
-        this.searchValues = this.searchValues.concat(element.subjectSubtitles)
+        element.subjectSubtitles.forEach(subtitle => {
+          if (subtitle.name != '') {
+            this.searchValues[subtitle.name] = element.subjectTitle
+          }
+        })
       }
     });
   },
   computed: {
     filteredList() {
       if (this.inputValue.length >= 2) {
-        return this.searchValues.filter(subTitles => {
-          return subTitles.name.toLowerCase().includes(this.inputValue.toLowerCase())
+        let childs = []
+        let res = {}
+        childs = Object.keys(this.searchValues).filter(subTitles => {
+          return subTitles.toLowerCase().includes(this.inputValue.toLowerCase())
         }).slice(0, 5)
+        childs.forEach(child => {
+          res[child] = this.searchValues[child]
+        })
+        return res
+        // return this.searchValues.filter(subTitles => {
+        //   return subTitles.name.toLowerCase().includes(this.inputValue.toLowerCase())
+        // }).slice(0, 5)
       }
     }
   },
@@ -88,6 +101,9 @@ export default {
       } else {
         document.getElementById('_swecontent').classList.remove('blur')
       }
+    },
+    clickBySearchValue(parent, child) {
+      console.log('parent', parent, 'child', child)
     }
   },
 }

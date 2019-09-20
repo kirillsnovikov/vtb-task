@@ -11,14 +11,23 @@
     </div>
     <div class="search-select">
       <div class="search-select__arrow">
-        <div class="search-select__arrow__icon"></div>
+        <div class="search-select__arrow__icon" :class="{active: isActiveOptions}"></div>
       </div>
-      <select v-model="selectedTypeNum">
+      <div class="search-select__active-option" @click="activeOptions">
+        {{searchTypes[selectedTypeNum].name}}
+      </div>
+      <div class="search-select__options" :style="optionsStyle">
+        <div class="search-select__options__option" v-for="(type, i) in searchTypes">
+          <input type="radio" :id="`sso_${i}`" :value="i" v-model="selectedTypeNum">
+          <label :for="`sso_${i}`" :class="{active: selectedTypeNum === i}" :key="`sso_${i}`" @click="activeOptions">{{type.name}}</label>
+        </div>
+      </div>
+      <!-- <select v-model="selectedTypeNum">
         <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | capitalize}}</option>
-      </select>
+      </select> -->
     </div>
     <div class="search-input-list">
-      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="i" :key="i" />
+      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="i" :key="i+input.label" />
     </div>
     <div class="search-button">
       <div class="btn btn-fill" @click="search">
@@ -44,13 +53,21 @@ export default {
       selectedTypeNum: 0,
       searchTypes: searchJson.searchList.types,
       searchValues: [],
+      isActiveOptions: false,
+      optionsStyle: {
+        height: 0
+      }
       // searchTooltip: dataTooltip.searchTooltip,
     }
+  },
+  mounted() {
+    // console.log(this.searchTypes)
   },
   computed: {
     getSearchInputs() {
       // console.log(this.selectedTypeNum)
       let inputs = this.searchTypes[this.selectedTypeNum].inputList
+      // console.log(inputs)
       return inputs
     },
   },
@@ -67,7 +84,7 @@ export default {
     search() {
       console.log('ищем!');
       this.getValues();
-      console.log(this.searchValues);
+      // console.log(this.searchValues);
       this.$emit('activeSearch')
 
       var valStr,
@@ -109,6 +126,14 @@ export default {
       // console.log(input)
       // this.searchValues[Object.keys(data)[0]] = data[Object.keys(data)[0]]
       // console.log(this.searchValues)
+    },
+    activeOptions() {
+      this.isActiveOptions = !this.isActiveOptions
+      if (this.isActiveOptions) {
+        this.optionsStyle.height = this.searchTypes.length * 44 + 'px'
+      } else {
+        this.optionsStyle.height = 0
+      }
     }
   }
 }

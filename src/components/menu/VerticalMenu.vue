@@ -17,7 +17,7 @@
               </transition>
             </div>
           </div>
-          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="true" />
+          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="false" />
         </div>
         <div class="vm-body">
           <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden" v-on:activeRightMenu="activeRightMenu" :isActiveRight="isActiveRight" />

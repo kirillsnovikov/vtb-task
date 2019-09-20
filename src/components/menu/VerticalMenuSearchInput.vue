@@ -32,6 +32,7 @@ export default {
     // console.log(this.inputId)
     this.inputEl = this.$el.firstChild
     this.regular = new RegExp(regExps[this.inputData.type])
+    // console.log(this.regular)
     if (localStorage['inputValue' + this.inputId]) {
       this.inputValue = localStorage['inputValue' + this.inputId]
     }

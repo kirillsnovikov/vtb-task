@@ -55,13 +55,13 @@ export default {
     } else if (this.data.name === 'searchTooltip') {
       this.tooltipStyle.padding = '20px 10px'
     }
-    console.log(this.data)
+    // console.log(this.data)
     this.configurateTip()
   },
   methods: {
     configurateTip() {
       setTimeout(() => {
-        if (this.isShow) {
+        if (this.isShow && this.data.isActive) {
           this.elCoordinates = this.$el.getBoundingClientRect()
           this.parentCoordinates = this.$el.parentNode.getBoundingClientRect()
           if (this.parentCoordinates && this.$el.attributes.position.value === 'right') {

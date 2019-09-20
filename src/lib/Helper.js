@@ -120,9 +120,9 @@ const columnParameters = [
     'Center': 'align-center',
   }),
   new ColumnParameter('DataAlign', String, false, false, {
-    'Left': 'align-left',
-    'Right': 'align-right',
-    'Center': 'align-center',
+    'left': 'align-left',
+    'right': 'align-right',
+    'center': 'align-center',
   }),
   new ColumnParameter('Component', String, 'default', false, {
     'default': 'v-def-cell',
