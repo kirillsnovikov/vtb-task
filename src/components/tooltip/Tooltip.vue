@@ -12,8 +12,11 @@
       </div>
       <div class="tooltip__body__list" v-if="data.list">
         <ul class="tooltip-list">
-          <li class="tooltip-list__item" v-for="(item, i) in data.list">
-            <div class="tooltip-list__item__value">{{item}}</div>
+          <li class="tooltip-list__items" v-for="(tooltips, i) in data.list">
+            <div class="tooltip-list__items__item" v-for="(tooltip, i) in tooltips">
+              <div class="tooltip-list__items__item__value">{{tooltip}}</div>
+              <span v-if="(tooltips.length - 1) > i">+</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -45,7 +48,6 @@ export default {
       headerStyle: {
         'align-items': 'flex-start'
       }
-      // tooltipArrowStyle: {}
     }
   },
   mounted() {
@@ -55,7 +57,6 @@ export default {
     } else if (this.data.name === 'searchTooltip') {
       this.tooltipStyle.padding = '20px 10px'
     }
-    // console.log(this.data)
     this.configurateTip()
   },
   methods: {
@@ -77,10 +78,7 @@ export default {
           }
         }
       }, 300)
-    },
-    hideTip(e) {
-      console.log(e)
-    },
+    }
   }
 }
 </script>

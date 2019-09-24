@@ -56,9 +56,7 @@ export default {
       }
     },
     OnStartThematic(parent, child) {
-      this.$eventHub.$emit('on-start-thamtic', parent, child)
-
-      // console.log(parent, child);
+      this.$eventHub.$emit('on-start-thematic', parent, child)
     }
   }
 }

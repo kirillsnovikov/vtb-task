@@ -8,7 +8,7 @@ import { ColumnData } from '../lib/Helper';
 export const TableColumns = [
 
   new ColumnData({
-    DataAlign: 'Center',
+    DataAlign: 'center',
     control: "This is CONTROL!",
     Name: 'status',
     Display: 'статус',
@@ -27,16 +27,17 @@ export const TableColumns = [
   }),
   new ColumnData({
     ColAlign: 'Right',
-    DataAlign: 'Center',
+    DataAlign: 'center',
     Name: 'type',
     Display: 'тип',
+    Component: 'URL',
     Width: 140,
   }),
   new ColumnData({
     Name: 'package',
     Display: 'пакет',
     Width: 140,
-    DataAlign: 'Right'
+    DataAlign: 'right'
   }),
   new ColumnData({
     Name: 'availableBalance',

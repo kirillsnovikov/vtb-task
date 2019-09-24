@@ -18,7 +18,7 @@
             </div>
             <div class="search-result">
               <div v-if="inputValue.length === 1" class="tag-danger">Введите хотя бы два символа</div>
-              <div v-if="filteredList && filteredList.length === 0" class="tag-danger">По вашему запросу ничего не найдено</div>
+              <div v-if="filteredList && Object.keys(filteredList).length == 0" class="tag-danger">По вашему запросу ничего не найдено</div>
               <div v-for="(parent, child) in filteredList" class="search-result__item tag" :key="parent+child" @click="clickBySearchValue(parent, child)">
                 <div v-if="child">{{child}}</div>
               </div>
@@ -37,7 +37,6 @@
   </div>
 </template>
 <script>
-//import popupData from '@/components/popup_subject'
 import PopupSubjectItem from './PopupSubjectItem.vue'
 
 export default {
@@ -84,9 +83,6 @@ export default {
           res[child] = this.searchValues[child]
         })
         return res
-        // return this.searchValues.filter(subTitles => {
-        //   return subTitles.name.toLowerCase().includes(this.inputValue.toLowerCase())
-        // }).slice(0, 5)
       }
     }
   },
@@ -103,7 +99,7 @@ export default {
       }
     },
     clickBySearchValue(parent, child) {
-      console.log('parent', parent, 'child', child)
+      this.$eventHub.$emit('on-start-thematic', parent, child)
     }
   },
 }

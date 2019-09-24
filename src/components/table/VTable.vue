@@ -22,6 +22,7 @@ import { TableConfig, ColumnData, ShowError, ShowLog } from '../../lib/Helper.js
 // import {CompState, tblClass} from '../../lib/CompState.js'
 import VDefCell from './VDefCell.vue';
 import VIconCell from './VIconCell.vue';
+import VUrlCell from './VUrlCell.vue';
 /*
 Public method:
   configurateTable - Пересчет параметров таблицы
@@ -33,7 +34,8 @@ Event:
 export default {
   components: {
     VDefCell,
-    VIconCell
+    VIconCell,
+    VUrlCell
   },
   props: {
     tableData: Array,
@@ -99,14 +101,6 @@ export default {
       })
       return result;
     },
-    getAlignClass(column) {
-      console.log(column)
-      // return {
-      //   'align-left': name && name === 'align-left',
-      //   'align-right': name && name === 'align-right',
-      //   'align-center': name && name === 'align-center',
-      // }
-    },
     tableClick(rowId, columnData) {
       if(this.isActiveRow != rowId){
         this.rowClick(rowId)
@@ -117,14 +111,10 @@ export default {
     },
     //Use in Siebel
     rowClick(rowId) {
-      // console.log('row')
       this.$emit('table-row-select', rowId)
-
-      // this.$emit('table-row-select', rowId)
     },
     //Use in Siebel
     cellClick(columnData) {
-      // console.log('cell')
       this.$emit('table-cell-click', columnData)
     }
   }

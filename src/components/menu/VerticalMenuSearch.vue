@@ -22,9 +22,6 @@
           <label :for="`sso_${i}`" :class="{active: selectedTypeNum === i}" :key="`sso_${i}`" @click="activeOptions">{{type.name}}</label>
         </div>
       </div>
-      <!-- <select v-model="selectedTypeNum">
-        <option v-for="(type, i) in searchTypes" :value="i" :key="i">{{type.name | capitalize}}</option>
-      </select> -->
     </div>
     <div class="search-input-list">
       <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="i" :key="i+input.label" />
@@ -39,14 +36,11 @@
 <script>
 import searchJson from '@/components/search'
 import SearchInput from '@/components/menu/VerticalMenuSearchInput.vue'
-// import Tooltip from '@/components/tooltip/Tooltip.vue'
-// import dataTooltip from '@/components/tooltip/dataTooltip'
 
 export default {
   name: 'menu-search',
   components: {
     SearchInput,
-    // Tooltip
   },
   data() {
     return {
@@ -57,17 +51,11 @@ export default {
       optionsStyle: {
         height: 0
       }
-      // searchTooltip: dataTooltip.searchTooltip,
     }
-  },
-  mounted() {
-    // console.log(this.searchTypes)
   },
   computed: {
     getSearchInputs() {
-      // console.log(this.selectedTypeNum)
       let inputs = this.searchTypes[this.selectedTypeNum].inputList
-      // console.log(inputs)
       return inputs
     },
   },
@@ -75,28 +63,33 @@ export default {
     resetForm() {
       this.$children.forEach(function(input) {
         input.inputValue = ''
-        //   console.log(input.inputValue)
-        // if (input.inputValue) {
-        // }
       })
-      // console.log(this.$children)
     },
     search() {
       console.log('ищем!');
+      console.log(this.selectedTypeNum);
       this.getValues();
-      // console.log(this.searchValues);
       this.$emit('activeSearch')
 
       var valStr,
         valArr = this.searchValues,
         findPS,
-        findBS;
+        findBS,
+        searchCategoryMapping;
 
-      /*  if (!valArr || valArr.length < 1) {
-          console.log('Заполните поля для поиска');
-          return;
-        }
-*/
+      searchCategoryMapping = {
+         "0": {
+         "SearchCategory": "Contact",
+         //"FieldNameArray": "10#9#Last Name10#First Name11#Middle Name17#VTB24 Card Number28#VTB24 Identity Document Name20#VTB24 Telebank Login2#Id14#Opportunity Id15#VTB24 Card Find"
+         "FieldNameArray": "10#28#VTB24 Identity Document Name17#VTB24 Card Number9#Last Name10#First Name11#Middle Name10#Birth Date15#VTB24 Card Find"
+         },
+         "1": {
+         "SearchCategory": "VTB24 Contact Additional",
+         //"FieldNameArray": "5#18#VTB24 Account Find20#VTB24 Agreement Find22#VTB24 Application Find26#VTB24 Alternate Phone Find9#VTB24 INN"
+         "FieldNameArray": "9#18#VTB24 Account Find20#VTB24 Agreement Find22#VTB24 Application Find26#VTB24 Alternate Phone Find9#VTB24 INN2#Id20#VTB24 Telebank Login14#Opportunity Id14#Jira SR Number"
+         }
+      };
+
       valStr = '10#' + valArr[0].length + '#';
 
       for (var i = 0; i < valArr.length - 1; i++) {
@@ -105,16 +98,17 @@ export default {
       valStr = valStr + valArr[valArr.length - 1];
 
       console.log(valStr);
+      console.log(searchCategoryMapping[this.selectedTypeNum].SearchCategory);
+      console.log(searchCategoryMapping[this.selectedTypeNum].FieldNameArray);
 
       findBS = SiebelApp.S_App.GetService("VTB FM Find");
 
       findPS = CCFMiscUtil_CreatePropSet();
       findPS.SetProperty("DestView", "VTB FM Contact List View");
-      //findPS.SetProperty("SearchCategory", searchCategoryMapping[selectCat].SearchCategory);
-      findPS.SetProperty("SearchCategory", 'Contact');
-      //findPS.SetProperty("FieldNameArray", searchCategoryMapping[selectCat].FieldNameArray);//пример "10#9#Last Name10#First Name11#Middle Name10#Birth Date15#VTB24 Card Find28#VTB24 Identity Document Name20#VTB24 Telebank Login17#VTB24 Card Number2#Id14#Opportunity Id"
-      findPS.SetProperty("FieldNameArray", "10#9#Last Name10#First Name11#Middle Name17#VTB24 Card Number28#VTB24 Identity Document Name20#VTB24 Telebank Login2#Id14#Opportunity Id15#VTB24 Card Find");
-      findPS.SetProperty("FieldValArray", valStr); //пример "10#3#втб8#двадцать6#четыре0#0#0#0#0#0#0#"
+
+      findPS.SetProperty("SearchCategory", searchCategoryMapping[this.selectedTypeNum].SearchCategory);
+      findPS.SetProperty("FieldNameArray", searchCategoryMapping[this.selectedTypeNum].FieldNameArray);
+      findPS.SetProperty("FieldValArray", valStr);
 
       findBS.InvokeMethod("Find", findPS);
 

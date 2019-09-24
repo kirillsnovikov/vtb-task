@@ -1,6 +1,9 @@
 $white: #ffffff;
 $royal: #0a2896;
 $azure: #00a0df;
+$azure-two: #00a0df;
+$light-blue: #c5eaf8;
+$seafoam-blue: #76b8d1;
 $black: #000000;
 $black-two: #1a1a1a;
 $blue-blue: #1851c7;
@@ -12,6 +15,7 @@ $light-peach: #fed6bb;
 $bright-orange: #fa6400;
 $tomato: #e02020;
 $pale-grey: #e8ecf3;
+$pale-grey-two: #dce0e8;
 $white-two: #d8d8d8;
 $cloudy-blue: #c0c5d2;
 
@@ -34,6 +38,7 @@ $bg-subject-subtitles: #d8dbeb;
 
 // menu
 $vm-background-right: $vtb-main-color;
+$vm-active-item: $pale-grey-two;
 
 // search-input
 $error-color: $tomato;
@@ -48,6 +53,11 @@ $tab-color: #2d4ec4;
 $tab-font-color: #7c97f9;
 
 // table
-$active-row-color: $azure
+$active-row-color: $azure;
+
+// currencies select
+$cy-select-bg-color: $light-blue;
+$cy-active-font-color: $azure;
+$cy-font-color: $seafoam-blue;
 
 

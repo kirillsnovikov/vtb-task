@@ -1,7 +1,7 @@
 <template>
   <div class="sr-registration">
     <div class="tabs-registration">
-      <div class="tabs-registration__item" v-for="(tab, i) in tabs" :key="i">
+      <div class="tabs-registration__item" v-for="(tab, i) in tabs" :key="i" @click="OnStartThematic(tab.parent, tab.name)">
         <div class="tabs-registration__item__value">
           {{tab.name | capitalize}}
         </div>
@@ -12,13 +12,11 @@
   </div>
 </template>
 <script>
-// import PopupSubject from '@/components/popups/PopupSubject.vue'
-
 const dataRegistration = {
   tabs: [
-    { name: 'Заказ справок' },
-    { name: 'Печать графика платежей' },
-    { name: 'Печать выписки' },
+    { parent: "Быстрое обслуживание", name: 'Заказ справок' },
+    { parent: "Быстрое обслуживание", name: 'Печать графика платежей' },
+    { parent: "Быстрое обслуживание", name: 'Печать выписок' },
   ]
 }
 export default {
@@ -26,33 +24,18 @@ export default {
   props: {
     popupData: Object
   },
-  components: {
-    // PopupSubject
-  },
   data() {
     return {
       tabs: dataRegistration.tabs,
-      // isActive: false
     }
-  },
-  mounted() {
-    // console.log(this.popupData)
   },
   methods: {
     showPopup() {
-      //this.$root.$children[0].$children[5].show()
       this.$children[0].show();
     },
-    // show() {
-    //   let body = document.getElementById('_swecontent')
-    //   console.log(body)
-    //     body.classList.add('blur-content')
-    //     body.classList.add('sss')
-    //     body.classList.add('blur-content2')
-    //     body.classList.add('blur-content3')
-    //     body.classList.add('blur-content4')
-    //     body.classList.add('blur-content5')
-    // }
+    OnStartThematic(parent, child) {
+      this.$eventHub.$emit('on-start-thematic', parent, child)
+    },
   }
 }
 </script>

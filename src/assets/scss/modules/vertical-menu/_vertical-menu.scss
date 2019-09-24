@@ -66,7 +66,7 @@
 
 .menu-item-wrap {
   height: $vm-item-height;
-  padding: 11px 0;
+  // padding: 11px 0;
   overflow: hidden;
   cursor: pointer;
 
@@ -74,6 +74,7 @@
     height: $vm-item-height;
     display: flex;
     align-items: center;
+    z-index: 10;
 
     &__icon {
       @extend %flex-center-center;
@@ -86,21 +87,22 @@
       @extend %ellipsis;
       flex: 1;
       margin-right: 5px;
+      z-index: 0;
     }
   }
 
   &:hover {
     .menu-item {
-      color: $vtb-main-color;
-      box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
-      background: rgba($vtb-main-color, .1);
+      // color: $vtb-main-color;
+      // box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
+      background: $vm-active-item;
     }
   }
 
   .active {
-    color: $vtb-main-color;
-    box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
-    background: rgba($vtb-main-color, .1);
+    // color: $vtb-main-color;
+    // box-shadow: inset 3px 0px 0px 0px $vtb-main-color;
+    background: $vm-active-item;
   }
 }
 

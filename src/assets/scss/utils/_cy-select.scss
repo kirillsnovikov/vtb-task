@@ -1,0 +1,57 @@
+.cy-select {
+  @extend %flex-col;
+  position: absolute;
+  width: 57px;
+  background: $cy-select-bg-color;
+  color: $cy-font-color;
+  border-radius: 14px;
+  overflow: hidden;
+
+  &__item {
+
+    // @extend %flex;
+    input {
+      display: none;
+    }
+
+    label {
+      @extend %flex-center;
+      justify-content: space-around;
+      padding: 0 5px;
+      cursor: pointer;
+      // justify-content: space-between;
+      // justify-content: flex-end;
+      // width: 100%;
+      flex: 1;
+      height: 28px;
+      font-size: 9px;
+      font-weight: bold;
+      // line-height: 2.13;
+
+      .item__icon-down {
+        font-size: 15px;
+        @extend %flex-center;
+        // background: url('./../icons/close_icon_2.svg') no-repeat center;
+        flex: 0 0 13px;
+        height: 100%;
+      }
+
+      .item__icon-cur {
+        font-size: 15px;
+        @extend %flex-center;
+        // background: url('./../icons/close_icon_2.svg') no-repeat center;
+        flex: 0 0 13px;
+        height: 100%;
+      }
+
+      .item__code {
+        @extend %flex-center;
+      }
+    }
+  }
+
+  .active {
+    order: -1;
+    color: $cy-active-font-color;
+  }
+}

@@ -2,12 +2,13 @@
   <div id="app">
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
-      <sr-registration :popupData="popupData" ></sr-registration>
+      <sr-registration :popupData="popupData"></sr-registration>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
         <v-table :tableData="tableData" :TableColumns="TableColumns" @table-row-select="tableRowSelect" @table-cell-click="tableCellClick" ref="table"></v-table>
       </div>
+      <CySelect />
     </div>
     <!-- <test-component></test-component> -->
     <!-- <popup-subject></popup-subject> -->
@@ -24,18 +25,19 @@ import { TableColumns, TableData } from './components/table_data'
 import { searchDataSet, defSearch } from './components/radio_button_search_data'
 import { ThematicJSON } from './components/sr_registration_data.js'
 import SvgFilter from './components/utils/SvgFilter'
+import CySelect from './components/utils/CySelect'
 import { ShowLog } from './lib/Helper';
 
 export default {
   name: 'app',
   components: {
     // Popup,
-    SvgFilter
+    SvgFilter,
+    CySelect
   },
   data() {
     return {
       ds: dataSet,
-      // popup: popupData,
       tableData: TableData,
       TableColumns: TableColumns,
       searchValues: searchDataSet,
@@ -44,15 +46,13 @@ export default {
     }
   },
   created() {
-    this.$eventHub.$on('on-start-thamtic', (parent, child) => {
-      console.log('parent', parent, 'child', child)
+    this.$eventHub.$on('on-start-thematic', (parent, child) => {
     })
   },
   beforeDestroy() {
-    this.$eventHub.$off('on-start-thamtic')
+    this.$eventHub.$off('on-start-thematic')
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     sleep(delay) {
       var start = new Date().getTime();
@@ -62,14 +62,10 @@ export default {
     tableRowSelect(rowId) {
       this.sleep(500);
       this.$refs.table.isActiveRow = rowId
-      console.log(this.$refs.table.isActiveRow)
     },
     tableCellClick(columnData) {
-      console.log('table-cell-click')
-      console.log(columnData.control)
     },
     ChangeSearch(key) {
-      console.log(key)
     },
   },
 }

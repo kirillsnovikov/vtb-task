@@ -126,7 +126,9 @@ const columnParameters = [
   }),
   new ColumnParameter('Component', String, 'default', false, {
     'default': 'v-def-cell',
+    'JText': 'v-def-cell',
     'icon': 'v-icon-cell',
+    'URL': 'v-url-cell'
   }),
 ]
 

@@ -14,7 +14,7 @@
       },
       {
         "label": "полный номер карты",
-        "type": "text",
+        "type": "number",
         "format": null,
         "length": 16
       },
@@ -38,9 +38,9 @@
       },
       {
         "label": "дата рождения",
-        "type": "text",
+        "type": "date",
         "format": null,
-        "length": 10
+        "length": 15
       },
       {
         "label": "последние 4 цифры карты",

@@ -11,7 +11,8 @@
 const regExps = {
   text: new RegExp(/[^\d]/, 'gi'),
   number: new RegExp(/[\d]/, 'gi'),
-  id: new RegExp(/[\d\w-]/, 'gi')
+  id: new RegExp(/[\d\w-]/, 'gi'),
+  date: new RegExp(/[\d\.]/, 'gi'),
 }
 export default {
   name: 'search-input',
@@ -29,10 +30,8 @@ export default {
     }
   },
   mounted() {
-    // console.log(this.inputId)
     this.inputEl = this.$el.firstChild
     this.regular = new RegExp(regExps[this.inputData.type])
-    // console.log(this.regular)
     if (localStorage['inputValue' + this.inputId]) {
       this.inputValue = localStorage['inputValue' + this.inputId]
     }

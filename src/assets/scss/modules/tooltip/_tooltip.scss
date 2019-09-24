@@ -62,17 +62,25 @@
       .tooltip-list {
         margin-top: 18px;
 
-        &__item {
+        &__items {
           height: 18px;
           line-height: 18px;
           margin-bottom: 5px;
 
-          &__value {
+          &__item {
             display: inline-block;
             box-sizing: border-box;
-            padding: 0 7px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 9px;
+
+            &__value {
+              padding: 0 7px;
+              display: inline-block;
+              background: rgba(255, 255, 255, 0.5);
+              border-radius: 9px;
+            }
+
+            span {
+              padding: 0 3px;
+            }
           }
         }
       }

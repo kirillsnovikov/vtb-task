@@ -14,14 +14,5 @@
     props: {
       tabs: Array
     },
-    data() {
-      return {
-        // tabes: ''
-        // tabs: this.dataSetJson.mainMenu.tasks.links
-      }
-    },
-    mounted() {
-      // console.log('sdff', this.$el.clientWidth)
-    }
   }
 </script>
