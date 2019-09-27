@@ -6,7 +6,6 @@ import { ColumnData } from '../lib/Helper';
 // Component: {default, icon} типы используемых комронентов
 // Sort: {desc, none, asc} параметры сортировки
 export const TableColumns = [
-
   new ColumnData({
     DataAlign: 'center',
     control: "This is CONTROL!",
@@ -15,8 +14,8 @@ export const TableColumns = [
     Width: 140,
     Component: 'icon',
     IconMap: [
-      { Value: true, Link: "http://www.cyclisthotel.com/images/check.png" },
-      { Value: false, Link: "https://clever-e.com/img/home/krest.png" },
+      { Value: 'true', Link: "http://www.cyclisthotel.com/images/check.png" },
+      { Value: 'false', Link: "https://clever-e.com/img/home/krest.png" },
       { Value: "default", Link: "http://www.defaulticon.com/images/icons32x32/hammer.png?itok=GwaBj_x2" }
     ],
   }),
@@ -62,7 +61,7 @@ export const TableColumns = [
 ];
 
 export const TableData = [{
-    status: "",
+    status: 'выавы',
     cardNumber: '409545432155dss ssssssssss sssssssssss sss sssss sssss sssssssssss sss sssss ssssssssssssssss sss sssss sssss',
     type: 'дебет дебет дебет дебет дебет',
     package: 'Visa VKL',
@@ -72,7 +71,7 @@ export const TableData = [{
     expDate: '12.12.22',
   },
   {
-    status: "",
+    status: 'false',
     cardNumber: '409545432155',
     type: 'кредит',
     package: 'Visa VKL',
@@ -82,7 +81,7 @@ export const TableData = [{
     expDate: '12.12.22',
   },
   {
-    status: false,
+    status: 'true',
     cardNumber: '409545432155',
     type: 'кредит',
     package: 'Visa VKL',

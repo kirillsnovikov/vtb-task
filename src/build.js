@@ -6,6 +6,8 @@ import PopupSubject from './components/popups/PopupSubject.vue'
 import VTable from './components/table/VTable.vue'
 import RadioButtonSearch from './components/control/RadioButtonSearch.vue'
 import SrRegistration from './components/registration/SRRegistration.vue'
+import CySelect from './components/utils/CySelect.vue'
+import Popup from './components/popups/Popup.vue'
 import './components/utils/filters'
 import './assets/scss/main.scss'
 
@@ -17,7 +19,9 @@ const Components = {
   PopupSubject,
   VTable,
   RadioButtonSearch,
-  SrRegistration
+  SrRegistration,
+  CySelect,
+  Popup
 }
 
 Object.keys(Components).forEach(name => {

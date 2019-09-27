@@ -68,8 +68,8 @@ class ColumnParameter {
       if (this.type !== 'any' && this.$getType(value) !== this.type) {
         this.$errors.push(`'${this.name}' must be type of '${this.type}', '${this.$getType(value)}' given`)
       }
-      if (this.custom && !this.custom[value]) {
-        this.$errors.push(`'${this.name}' must be only: ${Object.keys(this.custom).map(el => {return `'${el}'`}).join(' or ')}`)
+      if (this.custom && (!this.custom[value] && Object.values(this.custom).indexOf(value) == -1)) {
+        this.$errors.push(`'${this.name}' must be only: ${Object.keys(this.custom).map(el => {return `'${el}'`}).join(' or ')}! Given: ${value}.`)
       }
     }
     if (this.$errors.length || !value) {
@@ -136,11 +136,23 @@ export const ColumnData = function(column) {
   var errPrefix = 'ColumnData'
   //Custom parameter
   var columnParamNames = columnParameters.map(col => col.name);
-  Object.keys(column).forEach(key =>{
-    if(column.hasOwnProperty(key) && columnParamNames.indexOf(key) == -1){
+
+  Object.keys(column).forEach(key => {
+    if (column.hasOwnProperty(key) && columnParamNames.indexOf(key) == -1) {
       this[key] = column[key]
     }
   })
+
+  this.__proto__.changeColumnParameter = function(colParName, colValue) {
+    let parameter = columnParameters.find(parameter => {
+      return parameter.name.toLowerCase() === colParName.toLowerCase()
+    })
+    if (parameter && parameter instanceof ColumnParameter) {
+      parameter.value = colValue
+      this[parameter.name] = parameter.value
+      if (parameter.errors) { ShowError(errPrefix, parameter.errors, column[parameter.name]) }
+    }
+  }
 
   columnParameters.forEach(parameter => {
     parameter.value = column[parameter.name]

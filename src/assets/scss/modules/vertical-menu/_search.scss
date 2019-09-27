@@ -1,5 +1,11 @@
 .vm-search {
   position: relative;
+
+  .search-icon {
+    background: url('/path/search-icon.svg') no-repeat center;
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .vm-search-form {

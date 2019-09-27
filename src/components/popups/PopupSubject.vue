@@ -2,7 +2,9 @@
   <div v-if="isShow" class="popup-wrap">
     <div class="popup-main">
       <div class="popup-card">
-        <div class="popup-card__close" @click="show"><i class="icon-cross"></i></div>
+        <div class="popup-card__close" @click="show">
+          <div class="popup-card__close__icon"></div>
+        </div>
         <div class="popup-card__header subject-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
         </div>
@@ -55,6 +57,11 @@ export default {
   },
   components: {
     PopupSubjectItem
+  },
+  created() {
+    this.$eventHub.$on('popup-subject', () => {
+      this.show()
+    })
   },
   mounted() {
     if (!this.popupData) {

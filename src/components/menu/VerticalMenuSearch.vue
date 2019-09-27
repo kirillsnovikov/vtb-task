@@ -75,7 +75,8 @@ export default {
         valArr = this.searchValues,
         findPS,
         findBS,
-        searchCategoryMapping;
+        searchCategoryMapping,
+        searchCat;
 
       searchCategoryMapping = {
          "0": {
@@ -97,6 +98,12 @@ export default {
       }
       valStr = valStr + valArr[valArr.length - 1];
 
+      searchCat = searchCategoryMapping[this.selectedTypeNum].SearchCategory;
+      if(this.selectedTypeNum == '1' && (valArr[5] || valArr[6] || valArr[7])) 
+        searchCat = 'Contact';
+      if(this.selectedTypeNum == '1' && valArr[8]) 
+        searchCat = 'VTB24 Claim Service Request';
+
       console.log(valStr);
       console.log(searchCategoryMapping[this.selectedTypeNum].SearchCategory);
       console.log(searchCategoryMapping[this.selectedTypeNum].FieldNameArray);
@@ -106,7 +113,7 @@ export default {
       findPS = CCFMiscUtil_CreatePropSet();
       findPS.SetProperty("DestView", "VTB FM Contact List View");
 
-      findPS.SetProperty("SearchCategory", searchCategoryMapping[this.selectedTypeNum].SearchCategory);
+      findPS.SetProperty("SearchCategory", searchCat);
       findPS.SetProperty("FieldNameArray", searchCategoryMapping[this.selectedTypeNum].FieldNameArray);
       findPS.SetProperty("FieldValArray", valStr);
 

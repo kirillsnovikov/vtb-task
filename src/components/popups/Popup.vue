@@ -2,16 +2,18 @@
   <div v-if="isShow" class="popup-wrap">
     <div class="popup-main">
       <div class="popup-card">
-        <div class="popup-card__close" @click="show"><i class="icon-cross"></i></div>
-        <div class="popup-card__header">
+        <div class="popup-card__close" @click="show">
+          <div class="popup-card__close__icon"></div>
+        </div>
+        <div class="popup-card__header close-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
         </div>
         <div class="popup-card__body" v-if="data.main">
           <div class="popup-card__body__text">{{data.main}}</div>
         </div>
         <div class="popup-card__actions" v-if="data.actions">
-          <div class="btn-empty btn" @click="logoff">{{data.actions.apply.actionName | toupper}}</div>
-          <div class="btn-fill btn" @click="show">{{data.actions.reject.actionName | toupper}}</div>
+          <div class="btn-empty btn" @click="show">{{data.actions.apply.actionName | toupper}}</div>
+          <div class="btn-fill btn" @click="logoff">{{data.actions.reject.actionName | toupper}}</div>
         </div>
         <div class="popup-card__footer"></div>
       </div>

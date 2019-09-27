@@ -11,13 +11,15 @@
         <div class="vm-search">
           <div class="menu-item-wrap" @click="activeSearch">
             <div class="menu-item" :class="{ active: isActiveSearch}">
-              <div class="menu-item__icon"><i class="icon-search"></i></div>
+              <div class="menu-item__icon">
+                <div class="search-icon"></div>
+              </div>
               <transition name="widen-item">
                 <span v-if="isWiden" class="menu-item__name">Поиск</span>
               </transition>
             </div>
           </div>
-          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="true" />
+          <Tooltip ref="tooltip" position="right" :data="startTooltip" :isShow="false" />
         </div>
         <div class="vm-body">
           <VerticalMenuList :items="dataSetJson.mainMenu" :widenItem="isWiden" v-on:activeRightMenu="activeRightMenu" :isActiveRight="isActiveRight" />

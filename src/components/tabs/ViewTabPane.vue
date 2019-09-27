@@ -12,7 +12,7 @@
   export default {
     name: 'view-tab-pane',
     props: {
-      tabs: Array
+      tabs: [Array, Object]
     },
   }
 </script>

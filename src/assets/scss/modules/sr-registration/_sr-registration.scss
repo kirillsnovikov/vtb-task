@@ -3,9 +3,10 @@
 .sr-registration {
   @extend %flex;
   justify-content: flex-end;
-  .btn-fill {
+  .btn-sr {
     @include btn-fill($btn-blue-color, $registration-btn-height);
-    width: $registration-btn-width;
+    // width: $registration-btn-width;
+    padding: 0 45px;
     font-size: 11.2px;
     font-weight: normal;
     font-style: normal;

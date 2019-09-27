@@ -1,0 +1,20 @@
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.spinner-vtb {
+  @extend %flex-center-center;
+  // background: transparent;
+  width: 200px;
+  height: 200px;
+}
+
+svg#spinner-vtb {
+  // animation: spin .8s linear 0s infinite;
+}

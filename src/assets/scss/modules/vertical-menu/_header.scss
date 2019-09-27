@@ -9,8 +9,10 @@
     height: $vm-item-wrap-height;
   }
   .logo-big {
-    background: url('/path/vtb-logo-3.svg') no-repeat center;
-    width: 100%;
+    background: url('/path/vtb-logo-33x.png') no-repeat center;
+    background-size: contain;
+    margin: 0 auto;
+    width: 60%;
     height: $vm-item-wrap-height;
   }
   &:hover {

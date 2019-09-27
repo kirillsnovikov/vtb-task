@@ -1,36 +1,28 @@
 <template>
   <div class="table-body__row__item__value table-icon">
     <!-- <div class="table-body__row__item__value__icon" v-if="icon"> -->
-      <img :src="icon" alt="">
+    <img :src="getIcon" alt="" v-if="getIcon">
     <!-- </div> -->
     <!-- <div class="table-body__row__item__value__text">{{data}}</div> -->
   </div>
 </template>
-
 <script>
-  export default {
-    props: {
-      data: [Number, String, Boolean],
-      icons: Array
-    },
-    data() {
-      return {
-        icon: null
+export default {
+  props: {
+    data: [String],
+    icons: Array
+  },
+  computed: {
+    getIcon() {
+      let res = null
+      if (this.icons.length > 0) {
+        res = (res = this.icons.find(el => el.Value === this.data)) ? res.Link : null
+        if (!res) {
+          res = (res = this.icons.find(el => el.Value === 'default')) ? res.Link : null
+        }
       }
-    },
-    mounted() {
-      var iconArr = this.icons;
-      if (iconArr.length > 0) {
-        iconArr = this.icons.find(el => el.Value === this.data);
-      }
-
-      if(!iconArr){
-        iconArr = this.icons.find(el => el.Value == "default");
-      }
-
-      if(iconArr){
-        this.icon = iconArr.Link;
-      }
+      return res
     }
   }
+}
 </script>

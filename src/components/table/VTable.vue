@@ -7,7 +7,14 @@
         </div>
       </div>
     </div>
-    <div class="table-body vtb-collapse">
+    <div class="table-body vtb-collapse" v-if="isLoadedData">
+      <div class="table-body__row">
+        <div class="table-body__row__item" v-for="(column, i) in TableColumns" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+          <component :is="'v-def-cell'"></component>
+        </div>
+      </div>
+    </div>
+    <div class="table-body vtb-collapse" v-else>
       <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="{ active: isActiveRow === k}">
         <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
           <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
@@ -64,7 +71,8 @@ export default {
       sumColumns: 0,
       tableWidth: 0,
       isScroll: false,
-      isActiveRow: null
+      isActiveRow: null,
+      isLoadedData: false
     }
   },
   mounted() {
@@ -79,6 +87,14 @@ export default {
 
       this.setTableWidth()
       this.setColumnsWidth()
+    },
+    setLoadStatus(isLoad) {
+      this.isLoadedData = isLoad
+    },
+    setActiveRow(index) {
+      if (typeof index === 'number') {
+        this.isActiveRow = index
+      }
     },
     setTableWidth() {
       if (this.sumColumns > this.maxTableWidth) {
@@ -102,7 +118,7 @@ export default {
       return result;
     },
     tableClick(rowId, columnData) {
-      if(this.isActiveRow != rowId){
+      if (this.isActiveRow != rowId) {
         this.rowClick(rowId)
       }
 

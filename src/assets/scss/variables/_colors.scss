@@ -1,4 +1,6 @@
 $white: #ffffff;
+$white-two: #d8d8d8;
+
 $royal: #0a2896;
 $azure: #00a0df;
 $azure-two: #00a0df;
@@ -14,10 +16,14 @@ $yellow-orange: #f7b500;
 $light-peach: #fed6bb;
 $bright-orange: #fa6400;
 $tomato: #e02020;
-$pale-grey: #e8ecf3;
+
+$pale-grey: #f7f8fd;
 $pale-grey-two: #dce0e8;
-$white-two: #d8d8d8;
+$pale-grey-four: #e8ecf3;
+
 $cloudy-blue: #c0c5d2;
+
+/////////////////////////////////
 
 // main-colors
 $vtb-main-color: $royal;
@@ -25,9 +31,9 @@ $vtb-main-color: $royal;
 // components
 
 // VM (vertical-menu)
-$vm-background-color: $pale-grey;
+$vm-background-color: $pale-grey-four;
 $vm-text-color: $cloudy-blue;
-$vm-border-color: #dce0e8;
+$vm-border-color: $pale-grey-two;
 
 // popup
 $btn-blue-color: $azure;
@@ -53,7 +59,9 @@ $tab-color: #2d4ec4;
 $tab-font-color: #7c97f9;
 
 // table
-$active-row-color: $azure;
+$table-row-color: $pale-grey;
+$table-active-row-color: $azure;
+$table-border-color: $cloudy-blue;
 
 // currencies select
 $cy-select-bg-color: $light-blue;
