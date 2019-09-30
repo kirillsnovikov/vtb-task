@@ -3,7 +3,8 @@
     <div class="popup-main">
       <div class="popup-card">
         <div class="popup-card__close" @click="show">
-          <div class="popup-card__close__icon"></div>
+          <!-- <div class="popup-card__close__icon"></div> -->
+          <icon-base :strokeColor="'currentColor'"><icon-close></icon-close></icon-base>
         </div>
         <div class="popup-card__header close-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
@@ -22,8 +23,14 @@
   </div>
 </template>
 <script>
+import IconBase from '@/components/utils/IconBase.vue'
+import IconClose from '@/components/utils/icons/IconClose.vue'
 export default {
   name: 'popup',
+  components: {
+    IconBase,
+    IconClose
+  },
   data() {
     return {
       data: Object,

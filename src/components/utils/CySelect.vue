@@ -4,14 +4,17 @@
       <input type="radio" :value="cy.code" v-model="picked" :id="`${cy.name}_${i}`">
       <label @click="isActive = !isActive" :for="`${cy.name}_${i}`">
         <div class="item__icon-down" v-if="cy.code === picked">
-          <i class="icon-arrow-down"></i>
+          <!-- <i class="icon-arrow-down"></i> -->
+          <icon-base :strokeColor="'currentColor'" :iconName="'icon-down'" :width="13">
+            <component :is="'icon-down'"></component>
+          </icon-base>
         </div>
         <div class="item__code" v-else>{{cy.code}}</div>
         <div class="item__icon-cur">
-          <i :class="cy.icon"></i>
-          <!-- <icon-base :iconName="cy.icon"> -->
-            <!-- <component :is="cy.icon"></component> -->
-          <!-- </icon-base> -->
+          <!-- <i :class="cy.icon"></i> -->
+          <icon-base :iconName="cy.icon" :width="13" :height="18">
+            <component :is="cy.icon"></component>
+          </icon-base>
         </div>
       </label>
     </div>
@@ -24,6 +27,7 @@ import IconEur from '@/components/utils/icons/currencies/IconEur.vue'
 import IconGbr from '@/components/utils/icons/currencies/IconGbr.vue'
 import IconUsd from '@/components/utils/icons/currencies/IconUsd.vue'
 import IconChf from '@/components/utils/icons/currencies/IconChf.vue'
+import IconDown from '@/components/utils/icons/arrows/IconDown.vue'
 const currencies = [{
     name: 'Rouble',
     code: 'RUR',
@@ -59,6 +63,7 @@ export default {
     IconGbr,
     IconUsd,
     IconChf,
+    IconDown,
   },
   data() {
     return {
@@ -78,7 +83,7 @@ export default {
       if (this.isActive) {
         return {
           height: 28 * this.cyData.length + 'px',
-          'box-shadow': '0 6px 38px 0 rgba($black, 0.36)',
+          'box-shadow': '0 6px 38px 0 rgba(0, 0, 0, 0.36)',
           background: '#a2d9ee'
         }
       } else {

@@ -3,9 +3,9 @@
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
-      <div class="spinner-vtb">
-        <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 200 200"/>
-        <!-- <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <!-- <div class="spinner-vtb"> -->
+      <!-- <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 200 200"/> -->
+      <!-- <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#1851c7" />
@@ -14,7 +14,8 @@
           </defs>
           <circle cx="50" cy="50" r="42" stroke="url(#gradient)" stroke-width="16" fill="none" transform='rotate(90 50 50)' />
         </svg> -->
-      </div>
+      <!-- </div> -->
+      <icon-base></icon-base>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
@@ -29,6 +30,7 @@
   </div>
 </template>
 <script>
+import IconBase from '@/components/utils/IconBase.vue'
 // import Popup from './components/popups/Popup.vue'
 import dataSet from './components/menudata.json'
 // import popupData from '@/components/popup_subject'
@@ -47,6 +49,7 @@ export default {
     // Popup,
     SvgFilter,
     CySelect,
+    IconBase
   },
   data() {
     return {

@@ -39,15 +39,13 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        font-size: 12px;
-        text-align: right;
         cursor: pointer;
 
-        &__icon {
-          background: url('/path/close-icon.svg') no-repeat center;
-          width: 18px;
-          height: 18px;
-        }
+        // &__icon {
+        //   background: url('/path/close-icon.svg') no-repeat center;
+        //   width: 18px;
+        //   height: 18px;
+        // }
       }
 
       &__header {

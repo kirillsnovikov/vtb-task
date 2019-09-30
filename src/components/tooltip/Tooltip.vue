@@ -2,7 +2,11 @@
   <div class="tooltip" v-if="data && isShow && data.isActive" :style="tooltipStyle">
     <div class="tooltip__header" v-if="data.title">
       <div class="tooltip__header__left" :style="headerStyle">
-        <div class="tooltip__header__left__icon"></div>
+        <div class="tooltip__header__left__icon">
+          <icon-base :strokeColor="'currentColor'" :width="16" :height="24">
+            <icon-idea></icon-idea>
+          </icon-base>
+        </div>
         <div class="tooltip__header__left__title" :style="{width: data.titleWidth}">{{data.title}}</div>
       </div>
     </div>
@@ -22,12 +26,24 @@
       </div>
     </div>
     <div class="tooltip-arrow" :style="tooltipArrowStyle"></div>
-    <div class="tooltip-close-btn" @click="data.isActive = false"></div>
+    <div class="tooltip-close-btn" @click="data.isActive = false">
+      <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
+        <icon-close></icon-close>
+      </icon-base>
+    </div>
   </div>
 </template>
 <script>
+import IconBase from '@/components/utils/IconBase.vue'
+import IconClose from '@/components/utils/icons/IconClose.vue'
+import IconIdea from '@/components/utils/icons/IconIdea.vue'
 export default {
   name: 'tooltip',
+  components: {
+    IconBase,
+    IconClose,
+    IconIdea,
+  },
   props: {
     data: Object,
     isShow: Boolean
@@ -55,7 +71,7 @@ export default {
       this.tooltipStyle.padding = '10px 20px'
       this.headerStyle['align-items'] = 'center'
     } else if (this.data.name === 'searchTooltip') {
-      this.tooltipStyle.padding = '20px 10px'
+      this.tooltipStyle.padding = '16px 16px'
     }
     this.configurateTip()
   },

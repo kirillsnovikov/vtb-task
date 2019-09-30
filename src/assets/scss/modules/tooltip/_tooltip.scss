@@ -23,11 +23,10 @@
       @extend %flex;
 
       &__icon {
-        background: url('/path/idea-icon.svg') no-repeat center;
-        background-size: cover;
+        @extend %flex-center;
+        // background: url('/path/idea-icon.svg') no-repeat center;
+        // background-size: cover;
         margin-right: 16px;
-        width: 16px;
-        height: 23px;
       }
 
       &__title {
@@ -100,12 +99,12 @@
 
   .tooltip-close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: url('/path/close_icon.svg') no-repeat center;
-    background-size: cover;
-    width: 12px;
-    height: 12px;
+    top: 16px;
+    right: 16px;
+    // background: url('/path/close_icon.svg') no-repeat center;
+    // background-size: cover;
+    // width: 12px;
+    // height: 12px;
     cursor: pointer;
   }
 }

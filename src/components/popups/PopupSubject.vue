@@ -3,7 +3,9 @@
     <div class="popup-main">
       <div class="popup-card">
         <div class="popup-card__close" @click="show">
-          <div class="popup-card__close__icon"></div>
+          <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
+            <icon-close></icon-close>
+          </icon-base>
         </div>
         <div class="popup-card__header subject-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
@@ -14,8 +16,16 @@
               <input v-model="inputValue" type="text" class="subjects-input__input">
               <label class="subjects-input__label" :class="{focus: inputValue}">{{'Впишите первые буквы тематики' | toupper}}</label>
               <div class="subjects-input__right">
-                <div class="subjects-input__right__clear" @click="inputValue = ''"><i class="icon-cross"></i></div>
-                <div class="btn btn-fill"><i class="icon-search"></i></div>
+                <div class="subjects-input__right__clear" v-if="inputValue" @click="inputValue = ''">
+                  <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
+                    <icon-close></icon-close>
+                  </icon-base>
+                </div>
+                <div class="btn btn-fill">
+                  <icon-base :width="20" :height="20">
+                    <icon-search></icon-search>
+                  </icon-base>
+                </div>
               </div>
             </div>
             <div class="search-result">
@@ -40,23 +50,28 @@
 </template>
 <script>
 import PopupSubjectItem from './PopupSubjectItem.vue'
+import IconBase from '@/components/utils/IconBase.vue'
+import IconClose from '@/components/utils/icons/IconClose.vue'
+import IconSearch from '@/components/utils/icons/IconSearch.vue'
 
 export default {
   name: 'popup-subjects',
+  components: {
+    PopupSubjectItem,
+    IconBase,
+    IconClose,
+    IconSearch
+  },
   props: {
     popupData: Object
   },
   data() {
     return {
       inputValue: '',
-      searchResult: null,
       searchValues: {},
       isShow: false,
       data: {}
     }
-  },
-  components: {
-    PopupSubjectItem
   },
   created() {
     this.$eventHub.$on('popup-subject', () => {

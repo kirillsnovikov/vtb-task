@@ -37,11 +37,14 @@
       }
 
       .item__icon-cur {
-        font-size: 15px;
-        @extend %flex-center;
+        // font-size: 15px;
+        @extend %flex-center-center;
         // background: url('./../icons/close_icon_2.svg') no-repeat center;
         flex: 0 0 13px;
         height: 100%;
+        svg {
+          @extend %flex-center-center;
+        }
       }
 
       .item__code {

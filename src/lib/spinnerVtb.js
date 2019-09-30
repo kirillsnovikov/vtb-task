@@ -23,7 +23,8 @@ class Spinner {
       myrect.setAttribute('height', this.props.height)
       myrect.setAttribute('transform', `rotate(${i * (360 / this.props.countParticles)}, ${this.r}, ${this.r})`)
       myrect.setAttribute('fill', this.getColor(i));
-      document.querySelector('#spinner-vtb').appendChild(myrect);
+      let spinner
+      (spinner = document.querySelector('#spinner-vtb')) ? spinner.appendChild(myrect) : null;
     }
   }
 

@@ -3,11 +3,17 @@
     <input v-model="inputValue" class="search-input__input" type="text">
     <label class="search-input__label" :class="{ focus: inputValue }">{{ inputData.label | toupper }}</label>
     <span class="search-input__clear" v-if="inputValue" @click="inputValue = ''">
-      <div class="search-input__clear__icon"></div>
+      <div class="search-input__clear__icon">
+        <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
+          <icon-close></icon-close>
+        </icon-base>
+      </div>
     </span>
   </div>
 </template>
 <script>
+import IconBase from '@/components/utils/IconBase.vue'
+import IconClose from '@/components/utils/icons/IconClose.vue'
 const regExps = {
   text: new RegExp(/[^\d]/, 'gi'),
   number: new RegExp(/[\d]/, 'gi'),
@@ -16,6 +22,10 @@ const regExps = {
 }
 export default {
   name: 'search-input',
+  components: {
+    IconBase,
+    IconClose,
+  },
   props: {
     inputData: Object,
     inputId: Number
