@@ -1,17 +1,17 @@
-@mixin btn-fill($color, $height) {
+@mixin btn-fill($color, $height, $font-color: $white) {
   @extend %flex-center-center;
   box-sizing: border-box;
   border: solid 1px $color;
   cursor: pointer;
   background: $color;
-  color: $white;
+  color: $font-color;
   height: $height;
   border-radius: $height / 2;
   padding: 0 $height / 2;
   font-weight: inherit;
   &:hover {
     color: $color;
-    background: $white;
+    background: $font-color;
   }
   &:active {
     background: rgba($color, .3);

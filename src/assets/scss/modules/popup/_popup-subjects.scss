@@ -7,14 +7,18 @@
       width: $subject-search-width;
       @extend %flex;
       flex-wrap: wrap;
+      &__empty {
+        @extend %flex-center-center;
+        width: 100%;
+        .tag-danger {
+          @include btn-fill($light-pink, $search-tag-height, $error-color);
+          margin-bottom: 10px;
+        }
+      }
       .tag{
         @include btn-fill($btn-blue-color, $search-tag-height);
         margin-bottom: 10px;
         margin-right: 10px;
-      }
-      .tag-danger {
-        @include btn-fill($error-color, $search-tag-height);
-        margin-bottom: 10px;
       }
     }
   }

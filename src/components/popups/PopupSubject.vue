@@ -13,7 +13,7 @@
         <div class="popup-card__subjects-body">
           <div class="popup-card__subjects-body__search">
             <div class="custom-input subjects-input">
-              <input v-model="inputValue" type="text" class="subjects-input__input">
+              <input v-model="inputValue" type="text" class="subjects-input__input" :class="errorClass">
               <label class="subjects-input__label" :class="{focus: inputValue}">{{'Впишите первые буквы тематики' | toupper}}</label>
               <div class="subjects-input__right">
                 <div class="subjects-input__right__clear" v-if="inputValue" @click="inputValue = ''">
@@ -29,8 +29,12 @@
               </div>
             </div>
             <div class="search-result">
-              <div v-if="inputValue.length === 1" class="tag-danger">Введите хотя бы два символа</div>
-              <div v-if="filteredList && Object.keys(filteredList).length == 0" class="tag-danger">По вашему запросу ничего не найдено</div>
+              <div class="search-result__empty" v-if="inputValue.length === 1">
+                <div class="tag-danger">Введите хотя бы два символа</div>
+              </div>
+              <div class="search-result__empty" v-if="filteredList && Object.keys(filteredList).length == 0">
+                <div class="tag-danger">По вашему запросу ничего не найдено</div>
+              </div>
               <div v-for="(parent, child) in filteredList" class="search-result__item tag" :key="parent+child" @click="clickBySearchValue(parent, child)">
                 <div v-if="child">{{child}}</div>
               </div>
@@ -105,6 +109,11 @@ export default {
           res[child] = this.searchValues[child]
         })
         return res
+      }
+    },
+    errorClass() {
+      return {
+        error: this.inputValue.length === 1 || (this.filteredList && Object.keys(this.filteredList).length == 0)
       }
     }
   },
