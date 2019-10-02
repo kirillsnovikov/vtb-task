@@ -6,6 +6,9 @@ $azure: #00a0df;
 $azure-two: #00a0df;
 $light-blue: #c5eaf8;
 $seafoam-blue: #76b8d1;
+$cerulean: #0089be;
+$light-cyan: #caf0ff;
+$light-cyan-two: #a5d7ea;
 $black: #000000;
 $black-two: #1a1a1a;
 $blue-blue: #1851c7;
@@ -21,6 +24,7 @@ $light-pink: #fbe0e0;
 $pale-grey: #f7f8fd;
 $pale-grey-two: #dce0e8;
 $pale-grey-four: #e8ecf3;
+$pale-grey-five: #f8fafd;
 
 $cloudy-blue: #c0c5d2;
 
@@ -58,6 +62,18 @@ $select-active-color: $azure;
 // tabs
 $tab-color: #2d4ec4;
 $tab-font-color: #7c97f9;
+
+// tabs-registration
+$tabs-registration-active-color: $pale-grey-five;
+
+// buttons
+$btn-color: $azure;
+$btn-active-color: $cerulean;
+$btn-font-color: $white;
+
+// circle-btn
+$circle-btn-color: $light-cyan;
+$circle-btn-active-color: $light-cyan-two;
 
 // table
 $table-row-color: $pale-grey;

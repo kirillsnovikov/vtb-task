@@ -75,9 +75,6 @@ export default {
       isLoadedData: false
     }
   },
-  mounted() {
-    this.configurateTable();
-  },
   methods: {
     //Use in Siebel
     configurateTable() {

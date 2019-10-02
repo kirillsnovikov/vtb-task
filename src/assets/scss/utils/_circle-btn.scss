@@ -6,5 +6,8 @@
   cursor: pointer;
   height: $circle-btn;
   border-radius: 14px;
-  background: rgba($btn-blue-color, .3);
+  background: $circle-btn-color;
+  &:hover, &:active {
+    background: $circle-btn-active-color;
+  }
 }

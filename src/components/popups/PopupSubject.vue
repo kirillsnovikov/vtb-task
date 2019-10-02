@@ -2,13 +2,13 @@
   <div v-if="isShow" class="popup-wrap">
     <div class="popup-main">
       <div class="popup-card">
-        <div class="popup-card__close" @click="show">
+        <div class="popup-card__close" @click="hide">
           <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
             <icon-close></icon-close>
           </icon-base>
         </div>
         <div class="popup-card__header subject-popup-header">
-          <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
+          <div v-if="popupData.actionTitle" class="popup-card__header__title">{{popupData.actionTitle}}</div>
         </div>
         <div class="popup-card__subjects-body">
           <div class="popup-card__subjects-body__search">
@@ -21,7 +21,7 @@
                     <icon-close></icon-close>
                   </icon-base>
                 </div>
-                <div class="btn btn-fill">
+                <div class="search-btn">
                   <icon-base :width="20" :height="20">
                     <icon-search></icon-search>
                   </icon-base>
@@ -30,7 +30,7 @@
             </div>
             <div class="search-result">
               <div class="search-result__empty" v-if="inputValue.length === 1">
-                <div class="tag-danger">Введите хотя бы два символа</div>
+                <div class="tag-danger">Недостаточное количество букв. Введите хотя бы две буквы</div>
               </div>
               <div class="search-result__empty" v-if="filteredList && Object.keys(filteredList).length == 0">
                 <div class="tag-danger">По вашему запросу ничего не найдено</div>
@@ -42,7 +42,7 @@
           </div>
           <div class="popup-card__subjects-body__items">
             <div class="items-scroll">
-              <PopupSubjectItem v-for="(item, i) in data.subjects" :key="i" :subject="item" />
+              <PopupSubjectItem v-for="(item, i) in popupSubjects" :key="i" :subject="item" />
             </div>
           </div>
         </div>
@@ -72,9 +72,7 @@ export default {
   data() {
     return {
       inputValue: '',
-      searchValues: {},
       isShow: false,
-      data: {}
     }
   },
   created() {
@@ -82,20 +80,8 @@ export default {
       this.show()
     })
   },
-  mounted() {
-    if (!this.popupData) {
-      return
-    }
-    this.data = this.popupData
-    this.data.subjects.forEach(element => {
-      if (element.subjectSubtitles) {
-        element.subjectSubtitles.forEach(subtitle => {
-          if (subtitle.name != '') {
-            this.searchValues[subtitle.name] = element.subjectTitle
-          }
-        })
-      }
-    });
+  beforeDestroy() {
+    this.$eventHub.$off('popup-subject')
   },
   computed: {
     filteredList() {
@@ -111,6 +97,22 @@ export default {
         return res
       }
     },
+    popupSubjects() {
+      return (this.popupData.subjects) ? this.popupData.subjects : new Array()
+    },
+    searchValues() {
+      let searchValues = new Object()
+      this.popupSubjects.forEach(element => {
+        if (element.subjectSubtitles) {
+          element.subjectSubtitles.forEach(subtitle => {
+            if (subtitle.name != '') {
+              searchValues[subtitle.name] = element.subjectTitle
+            }
+          })
+        }
+      })
+      return searchValues
+    },
     errorClass() {
       return {
         error: this.inputValue.length === 1 || (this.filteredList && Object.keys(this.filteredList).length == 0)
@@ -119,7 +121,11 @@ export default {
   },
   methods: {
     show() {
-      this.isShow = !this.isShow
+      this.isShow = true
+      // this.blurContent()
+    },
+    hide() {
+      this.isShow = false
       // this.blurContent()
     },
     blurContent() {

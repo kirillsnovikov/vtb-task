@@ -2,9 +2,10 @@
   <div v-if="isShow" class="popup-wrap">
     <div class="popup-main">
       <div class="popup-card">
-        <div class="popup-card__close" @click="show">
-          <!-- <div class="popup-card__close__icon"></div> -->
-          <icon-base :strokeColor="'currentColor'"><icon-close></icon-close></icon-base>
+        <div class="popup-card__close" @click="hide">
+          <icon-base :strokeColor="'currentColor'">
+            <icon-close></icon-close>
+          </icon-base>
         </div>
         <div class="popup-card__header close-popup-header">
           <div v-if="data.actionTitle" class="popup-card__header__title">{{data.actionTitle}}</div>
@@ -12,9 +13,9 @@
         <div class="popup-card__body" v-if="data.main">
           <div class="popup-card__body__text">{{data.main}}</div>
         </div>
-        <div class="popup-card__actions" v-if="data.actions">
-          <div class="btn-empty btn" @click="show">{{data.actions.apply.actionName | toupper}}</div>
-          <div class="btn-fill btn" @click="logoff">{{data.actions.reject.actionName | toupper}}</div>
+        <div class="popup-card__actions">
+          <div class="btn-fill btn" @click="onClientCard">{{'К карточке клиента' | toupper}}</div>
+          <div class="btn-fill btn" @click="popupSubject">{{'Новая тематика' | toupper}}</div>
         </div>
         <div class="popup-card__footer"></div>
       </div>
@@ -26,7 +27,7 @@
 import IconBase from '@/components/utils/IconBase.vue'
 import IconClose from '@/components/utils/icons/IconClose.vue'
 export default {
-  name: 'popup',
+  name: 'popup-subject-finish',
   components: {
     IconBase,
     IconClose
@@ -38,27 +39,39 @@ export default {
     }
   },
   created() {
-    this.$eventHub.$on('person-popup', data => {
+    this.$eventHub.$on('popup-finish-thematic', data => {
       this.data = data
       this.show()
     })
   },
   beforeDestroy() {
-    this.$eventHub.$off('person-popup')
+    this.$eventHub.$off('popup-finish-thematic')
   },
   methods: {
-    logoff() {
-      SiebelApp.S_App.LogOff();
-    },
     show() {
-      this.isShow = !this.isShow
-      this.$eventHub.$emit('active-person', this.isShow)
+      this.isShow = true
+      // this.blurContent()
+    },
+    hide() {
+      this.isShow = false
+      // this.blurContent()
+    },
+    blurContent() {
       if (this.isShow) {
         document.getElementById('_swecontent').classList.add('blur')
       } else {
         document.getElementById('_swecontent').classList.remove('blur')
       }
+    },
+    popupSubject() {
+      this.hide()
+      console.log('$emit(\'popup-subject\')')
+      this.$eventHub.$emit('popup-subject')
+    },
+    onClientCard() {
+      console.log('$emit(\'on-client-card\')')
+      this.$eventHub.$emit('on-client-card')
     }
-  },
+  }
 }
 </script>

@@ -18,6 +18,7 @@
       <span class="text" v-else>{{'новая тематика' | toupper}}</span>
     </div>
     <popup-subject :popup-data="popupData"></popup-subject>
+    <popup-subject-finish></popup-subject-finish>
   </div>
 </template>
 <script>
@@ -28,6 +29,10 @@ const dataRegistration = {
     { parent: "Быстрое обслуживание", name: 'Печать выписок' },
   ]
 }
+const popup = {
+  actionTitle: 'Тематика завершена',
+  main: 'Выберите новую тематику, другой раздел или завершите работу с клиентом',
+}
 export default {
   name: 'sr-registration',
   props: {
@@ -36,6 +41,7 @@ export default {
   data() {
     return {
       tabs: dataRegistration.tabs,
+      dataPopupFinish: popup,
       isStartThematic: false
     }
   },
@@ -44,18 +50,21 @@ export default {
       this.$eventHub.$emit('popup-subject')
     },
     setCurrentThematic(parent, child) {
-      if (parent, child) {
+      if (parent && child) {
         this.isStartThematic = true
+      } else {
+        this.isStartThematic = false
       }
     },
-    setFinishThematic() {
-      this.isStartThematic = false
+    setFinishThematicComplete() {
+      this.$eventHub.$emit('popup-finish-thematic', this.dataPopupFinish)
     },
     OnStartThematic(parent, child) {
       this.$eventHub.$emit('on-start-thematic', parent, child)
     },
     OnFinishThematic(parent, child) {
       this.$eventHub.$emit('on-finish-thematic', parent, child)
+      // this.setFinishThematicComplete()
     },
   }
 }

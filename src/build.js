@@ -3,6 +3,7 @@ import VerticalMenu from './components/menu/VerticalMenu.vue'
 import General from './components/test/general.vue'
 import ViewTabPane from './components/tabs/ViewTabPane.vue'
 import PopupSubject from './components/popups/PopupSubject.vue'
+import PopupSubjectFinish from './components/popups/PopupSubjectFinish.vue'
 import VTable from './components/table/VTable.vue'
 import RadioButtonSearch from './components/control/RadioButtonSearch.vue'
 import SrRegistration from './components/registration/SRRegistration.vue'
@@ -17,6 +18,7 @@ const Components = {
   General,
   ViewTabPane,
   PopupSubject,
+  PopupSubjectFinish,
   VTable,
   RadioButtonSearch,
   SrRegistration,

@@ -1,39 +1,33 @@
-@mixin btn-fill($color, $height, $font-color: $white) {
+@mixin btn-fill($height: $btn-height, $main-color: $btn-color, $active-color: $btn-active-color, $font-color: $btn-font-color, $font-active-color: $btn-font-color) {
   @extend %flex-center-center;
   box-sizing: border-box;
-  border: solid 1px $color;
+  // border: solid 1px $main-color;
   cursor: pointer;
-  background: $color;
+  background: $main-color;
   color: $font-color;
   height: $height;
   border-radius: $height / 2;
   padding: 0 $height / 2;
   font-weight: inherit;
-  &:hover {
-    color: $color;
-    background: $font-color;
-  }
-  &:active {
-    background: rgba($color, .3);
+  &:hover, &:active {
+    color: $font-active-color;
+    background: $active-color;
   }
 }
 
-@mixin btn-empty($color, $height) {
+@mixin btn-empty($height: $btn-height, $main-color: $btn-color, $active-color: $btn-active-color, $font-color: $btn-font-color) {
   @extend %flex-center-center;
   box-sizing: border-box;
-  border: solid 1px $color;
+  border: solid 1px $main-color;
   cursor: pointer;
-  background: $white;
-  color: $color;
+  background: transparent;
+  color: $main-color;
   height: $height;
   border-radius: $height / 2;
   padding: 0 $height / 2;
   font-weight: inherit;
-  &:hover {
-    color: $white;
-    background: $color;
-  }
-  &:active {
-    background: rgba($color, .3);
+  &:hover, &:active {
+    color: $font-color;
+    background: $active-color;
   }
 }

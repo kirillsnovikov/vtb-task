@@ -1,45 +1,45 @@
-%tag {
-  @extend %flex-center-center;
-  box-sizing: border-box;
-  border: solid 1px $btn-blue-color;
-  cursor: pointer;
-}
+// %tag {
+//   @extend %flex-center-center;
+//   box-sizing: border-box;
+//   border: solid 1px $btn-blue-color;
+//   cursor: pointer;
+// }
 
-%tag-fill {
-  @extend %tag;
-  background: $btn-blue-color;
-  color: $white;
-  &:hover {
-    color: $btn-blue-color;
-    background: $white;
-  }
-  &:active {
-    background: rgba($btn-blue-color, .3);
-  }
-}
+// %tag-fill {
+//   @extend %tag;
+//   background: $btn-blue-color;
+//   color: $white;
+//   &:hover {
+//     color: $btn-blue-color;
+//     background: $white;
+//   }
+//   &:active {
+//     background: rgba($btn-blue-color, .3);
+//   }
+// }
 
-%btn {
-  @extend %tag;
-  height: $btn-height;
-  border-radius: $btn-height / 2;
-  font-weight: normal;
-}
+// %btn {
+//   @extend %tag;
+//   height: $btn-height;
+//   border-radius: $btn-height / 2;
+//   font-weight: normal;
+// }
 
-%btn-fill {
-  @extend %tag-fill;
-}
+// %btn-fill {
+//   @extend %tag-fill;
+// }
 
-%btn-empty {
-  color: $btn-blue-color;
-  &:hover {
-    color: $white;
-    background: $btn-blue-color;
-  }
-  &:active {
-    background: rgba($btn-blue-color, .7);
-  }
-}
+// %btn-empty {
+//   color: $btn-blue-color;
+//   &:hover {
+//     color: $white;
+//     background: $btn-blue-color;
+//   }
+//   &:active {
+//     background: rgba($btn-blue-color, .7);
+//   }
+// }
 
-.btn-danger {
+// .btn-danger {
 
-}
+// }

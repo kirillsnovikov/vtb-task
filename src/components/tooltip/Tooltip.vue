@@ -1,13 +1,13 @@
 <template>
   <div class="tooltip" v-if="data && isShow && data.isActive" :style="tooltipStyle">
     <div class="tooltip__header" v-if="data.title">
-      <div class="tooltip__header__left" :style="headerStyle">
+      <div class="tooltip__header__left">
         <div class="tooltip__header__left__icon">
-          <icon-base :strokeColor="'currentColor'" :width="16" :height="24">
+          <!-- <icon-base :strokeColor="'currentColor'" :width="16" :height="24">
             <icon-idea></icon-idea>
-          </icon-base>
+          </icon-base> -->
         </div>
-        <div class="tooltip__header__left__title" :style="{width: data.titleWidth}">{{data.title}}</div>
+        <div class="tooltip__header__left__title" :style="titleStyle">{{data.title}}</div>
       </div>
     </div>
     <div class="tooltip__body">
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="tooltip-arrow" :style="tooltipArrowStyle"></div>
-    <div class="tooltip-close-btn" @click="data.isActive = false">
+    <div class="tooltip-close-btn" @click="data.isActive = false" :style="closeStyle">
       <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
         <icon-close></icon-close>
       </icon-base>
@@ -61,17 +61,24 @@ export default {
         top: '-1000px',
         left: '-1000px'
       },
-      headerStyle: {
-        'align-items': 'flex-start'
+      titleStyle: {
+        'width': this.data.titleWidth,
+        'margin-top': null
+      },
+      closeStyle: {
+        top: '16px',
+        right: '16px'
       }
     }
   },
   mounted() {
     if (this.data.name === 'startTooltip') {
-      this.tooltipStyle.padding = '10px 20px'
-      this.headerStyle['align-items'] = 'center'
+      this.tooltipStyle.padding = '12px 25px 12px 20px'
+      this.titleStyle['margin-top'] = '5px'
+      this.closeStyle.top = '10px'
+      this.closeStyle.right = '12px'
     } else if (this.data.name === 'searchTooltip') {
-      this.tooltipStyle.padding = '16px 16px'
+      this.tooltipStyle.padding = '20px 14px'
     }
     this.configurateTip()
   },
@@ -93,7 +100,7 @@ export default {
             this.tooltipArrowStyle.left = -20 + 'px'
           }
         }
-      }, 300)
+      }, 350)
     }
   }
 }

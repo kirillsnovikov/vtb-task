@@ -3,18 +3,12 @@
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
-      <!-- <div class="spinner-vtb"> -->
-      <!-- <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 200 200"/> -->
-      <!-- <svg id="spinner-vtb" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#1851c7" />
-              <stop offset="100%" stop-color="#00f0ff" />
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="42" stroke="url(#gradient)" stroke-width="16" fill="none" transform='rotate(90 50 50)' />
-        </svg> -->
-      <!-- </div> -->
+      <div class="spinners">
+        <!-- <div class="spinner-vtb"></div>
+        <div class="spinner-vtb"></div>
+        <div class="spinner-vtb"></div>
+        <div class="spinner-vtb"></div> -->
+      </div>
       <icon-base></icon-base>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
@@ -26,7 +20,7 @@
     <!-- <test-component></test-component> -->
     <!-- <popup-subject></popup-subject> -->
     <!-- <Popup /> -->
-    <SvgFilter />
+    <!-- <SvgFilter /> -->
   </div>
 </template>
 <script>
@@ -68,7 +62,8 @@ export default {
     this.$eventHub.$off('on-start-thematic')
   },
   mounted() {
-    spinner.getParticles()
+    spinner.create()
+    // spinner.getParticles()
   },
   methods: {
     sleep(delay) {
@@ -86,6 +81,11 @@ export default {
 }
 </script>
 <style lang="scss">
+#app {
+  height: 100vh;
+  background-image: linear-gradient(90deg, #0a2896, #1750c6 97%, #1851c7);
+}
+
 #_swecontent {
   width: 100%;
   position: absolute;

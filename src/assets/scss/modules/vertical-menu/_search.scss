@@ -179,7 +179,7 @@
       }
 
       .btn-fill {
-        @include btn-fill($btn-blue-color, $btn-height);
+        @include btn-fill();
       }
     }
   }

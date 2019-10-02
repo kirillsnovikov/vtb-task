@@ -138,7 +138,7 @@ a.vtb-collapse-applet:active {
   --pale-grey: #f7f8fd;
 }
 body {
-   background-image: linear-gradient(to right, var(--royal), var(--blue-blue) 97%, var(--blue-blue-two));
+   /*background-image: linear-gradient(to right, var(--royal), var(--blue-blue) 97%, var(--blue-blue-two));*/
 }
 
 /*--------------------------------------------------------------------------------
