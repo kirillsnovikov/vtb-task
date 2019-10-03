@@ -3,12 +3,12 @@
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
-      <div class="spinners">
-        <!-- <div class="spinner-vtb"></div>
+      <!-- <div class="spinners"> -->
         <div class="spinner-vtb"></div>
-        <div class="spinner-vtb"></div>
-        <div class="spinner-vtb"></div> -->
-      </div>
+        <!-- <div class="spinner-vtb"></div> -->
+        <!-- <div class="spinner-vtb"></div> -->
+        <!-- <div class="spinner-vtb"></div> -->
+      <!-- </div> -->
       <icon-base></icon-base>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->

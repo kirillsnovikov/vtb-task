@@ -100,7 +100,7 @@ export default {
             this.tooltipArrowStyle.left = -20 + 'px'
           }
         }
-      }, 350)
+      }, 1000)
     }
   }
 }

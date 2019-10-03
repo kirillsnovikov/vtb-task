@@ -22,12 +22,13 @@ export const TableColumns = [
   new ColumnData({
     Name: 'cardNumber',
     Display: '№ карты № карты № карты № карты № карты № карты',
-    Width: 140
+    Width: 140,
   }),
   new ColumnData({
     ColAlign: 'Right',
     DataAlign: 'center',
     Name: 'type',
+    HtmlClass: 'rotate',
     Display: 'тип',
     Component: 'URL',
     Width: 140,
@@ -59,6 +60,8 @@ export const TableColumns = [
     Width: 140,
   }),
 ];
+
+console.log(TableColumns)
 
 export const TableData = [{
     status: 'выавы',

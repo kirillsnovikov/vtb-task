@@ -87,6 +87,10 @@
   }
 }
 
+.rotate {
+  transform: rotate(-90deg);
+}
+
 @keyframes shake {
 
   from,

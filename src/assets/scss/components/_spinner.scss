@@ -8,21 +8,14 @@
   }
 }
 
-.spinners {
-  position: relative;
-  @extend %flex;
-  height: 50px;
 
-  div.spinner-vtb {
-    @extend %flex-center-center;
-    position: absolute;
-    // background: transparent;
-    width: 50px;
-    svg.spinner-vtb {
-      width: 50px;
-      height: 50px;
-      animation: spin .8s cubic-bezier(.66, .20, .19, .63) 0s infinite;
-    }
+
+div.spinner-vtb {
+  @extend %flex-center-center;
+  width: 150px;
+
+  svg.spinner-vtb {
+    width: 100%;
+    animation: spin .8s cubic-bezier(.66, .20, .19, .63) 0s infinite;
   }
-
 }

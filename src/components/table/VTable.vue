@@ -10,13 +10,15 @@
     <div class="table-body vtb-collapse" v-if="isLoadedData">
       <div class="table-body__row">
         <div class="table-body__row__item" v-for="(column, i) in TableColumns" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <component :is="'v-def-cell'"></component>
+          <div class="vtb-dot-loader">
+            <div class="vtb-dot" v-for="i in 3"></div>
+          </div>
         </div>
       </div>
     </div>
     <div class="table-body vtb-collapse" v-else>
       <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="{ active: isActiveRow === k}">
-        <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+        <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :class="column.HtmlClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
           <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
           </component>
         </div>
