@@ -105,7 +105,7 @@
 .radio-button-search:first-child .radio-button-search__inner {
     border-left: 1px solid #dcdfe6;
     border-radius: 4px 0 0 4px;
-    box-shadow: none!important
+    box-shadow: none!important;
 }
 
 .radio-button-search:last-child .radio-button-search__inner {

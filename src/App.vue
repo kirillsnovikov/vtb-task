@@ -4,12 +4,17 @@
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
       <!-- <div class="spinners"> -->
-        <div class="spinner-vtb"></div>
-        <!-- <div class="spinner-vtb"></div> -->
-        <!-- <div class="spinner-vtb"></div> -->
-        <!-- <div class="spinner-vtb"></div> -->
+      <div class="spinner-vtb"></div>
+      <!-- <div class="spinner-vtb"></div> -->
+      <!-- <div class="spinner-vtb"></div> -->
+      <!-- <div class="spinner-vtb"></div> -->
       <!-- </div> -->
-      <icon-base></icon-base>
+      <!-- <icon-base></icon-base> -->
+      <div>
+        <svg class="icon" viewBox="0 0 20 20" v-for="icon in icons">
+          <use :xlink:href="`#${icon}`"></use>
+        </svg>
+      </div>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
@@ -17,6 +22,7 @@
       </div>
       <CySelect />
     </div>
+    <SvgIcons />
     <!-- <test-component></test-component> -->
     <!-- <popup-subject></popup-subject> -->
     <!-- <Popup /> -->
@@ -24,7 +30,7 @@
   </div>
 </template>
 <script>
-import IconBase from '@/components/utils/IconBase.vue'
+import SvgIcons from '@/components/utils/SvgIcons.vue'
 // import Popup from './components/popups/Popup.vue'
 import dataSet from './components/menudata.json'
 // import popupData from '@/components/popup_subject'
@@ -33,17 +39,19 @@ import { spinner } from './lib/spinnerVtb'
 import { TableColumns, TableData } from './components/table_data'
 import { searchDataSet, defSearch } from './components/radio_button_search_data'
 import { ThematicJSON } from './components/sr_registration_data.js'
-import SvgFilter from './components/utils/SvgFilter'
+// import SvgFilter from './components/utils/SvgFilter'
 import CySelect from './components/utils/CySelect'
 import { ShowLog } from './lib/Helper';
+
+const icons = ["1", "active", "arroa-up", "arrow-down", "arrow-left", "avatar-1", "block", "chf", "close_icon", "close_icon_2", "close-icon", "delete-all-icon", "eur", "gbr", "hamburger-butt", "idea-icon", "rub", "search-icon", "usd", "VTB_Logo_2018", "vtb-logo-3"]
 
 export default {
   name: 'app',
   components: {
     // Popup,
-    SvgFilter,
+    // SvgFilter,
     CySelect,
-    IconBase
+    SvgIcons
   },
   data() {
     return {
@@ -53,6 +61,7 @@ export default {
       searchValues: searchDataSet,
       defSearch: defSearch,
       popupData: ThematicJSON,
+      icons: icons,
     }
   },
   created() {
@@ -93,5 +102,10 @@ export default {
   left: 0;
   padding-left: 64px;
   box-sizing: border-box;
+}
+
+.icon {
+  // height: 0;
+  width: 20px;
 }
 </style>

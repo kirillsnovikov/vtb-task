@@ -65,7 +65,7 @@
 
         .table-icon {
           @extend %flex-center;
-          width: 28px !important;
+          width: 28px;
 
           img {
             // margin: 0 auto;
@@ -74,7 +74,7 @@
           }
         }
         .drilldown {
-          color: $azure-two !important;
+          color: $azure-two;
           font-weight: bold;
         }
       }
@@ -90,6 +90,17 @@
 .rotate {
   transform: rotate(-90deg);
 }
+
+.unverified {
+  background: #fff;
+  color: #4ea;
+  transform: rotate(-90deg);
+}
+div.another_class {
+  background: #f2e;
+  color: #e04;
+}
+
 
 @keyframes shake {
 

@@ -5,7 +5,20 @@ import { ColumnData } from '../lib/Helper';
 // ColAlign: {Center, Left, Right} выравнивание текста в шапке ''
 // Component: {default, icon} типы используемых комронентов
 // Sort: {desc, none, asc} параметры сортировки
+// HtmlCellClass: присваивание класса для ячейки
+// Sort: {desc, none, asc} параметры сортировки
 export const TableColumns = [
+  new ColumnData({
+    Name: 'confirm',
+    Display: ' ',
+    Width: 50,
+    // HtmlCellClass: 'super-class'
+    HtmlCellClass: {
+      "клиент": "client",
+      "не подтв": "unverified",
+      "default": "ttttt"
+    }
+  }),
   new ColumnData({
     DataAlign: 'center',
     control: "This is CONTROL!",
@@ -23,12 +36,12 @@ export const TableColumns = [
     Name: 'cardNumber',
     Display: '№ карты № карты № карты № карты № карты № карты',
     Width: 140,
+    // HtmlCellClass: 'unverified'
   }),
   new ColumnData({
     ColAlign: 'Right',
     DataAlign: 'center',
     Name: 'type',
-    HtmlClass: 'rotate',
     Display: 'тип',
     Component: 'URL',
     Width: 140,
@@ -61,9 +74,10 @@ export const TableColumns = [
   }),
 ];
 
-console.log(TableColumns)
+// console.log(TableColumns)
 
 export const TableData = [{
+    confirm: 'клиент',
     status: 'выавы',
     cardNumber: '409545432155dss ssssssssss sssssssssss sss sssss sssss sssssssssss sss sssss ssssssssssssssss sss sssss sssss',
     type: 'дебет дебет дебет дебет дебет',
@@ -72,8 +86,10 @@ export const TableData = [{
     currency: 'РУБ',
     creditLimit: '3000000',
     expDate: '12.12.22',
+    HtmlRowClass: 'another_class',
   },
   {
+    confirm: 'не подтв',
     status: 'false',
     cardNumber: '409545432155',
     type: 'кредит',
@@ -82,8 +98,10 @@ export const TableData = [{
     currency: 'РУБ',
     creditLimit: null,
     expDate: '12.12.22',
+    HtmlRowClass: 'another_class',
   },
   {
+    confirm: 'клиент',
     status: 'true',
     cardNumber: '409545432155',
     type: 'кредит',
@@ -94,5 +112,6 @@ export const TableData = [{
     fffff: '3000000',
     dssddd: '3000000',
     expDate: '12.12.22',
+    HtmlRowClass: '',
   }
 ];

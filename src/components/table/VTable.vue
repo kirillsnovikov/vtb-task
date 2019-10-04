@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="table-body vtb-collapse" v-else>
-      <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="{ active: isActiveRow === k}">
-        <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :class="column.HtmlClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+      <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="getRowClass(tableRow, k)">
+        <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :class="getCellClass(column.HtmlCellClass, tableRow[column.Name])" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
           <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
           </component>
         </div>
@@ -77,6 +77,9 @@ export default {
       isLoadedData: false
     }
   },
+  // mounted() {
+  //   this.configurateTable()
+  // },
   methods: {
     //Use in Siebel
     configurateTable() {
@@ -131,6 +134,24 @@ export default {
     //Use in Siebel
     cellClick(columnData) {
       this.$emit('table-cell-click', columnData)
+    },
+    getCellClass(values, key) {
+      if (!values) {
+        return
+      }
+      if (typeof values === 'string') {
+        return values
+      } else {
+        let res
+        return (res = values[key]) ? res : ((res = values['default']) ? res : null)
+      }
+    },
+    getRowClass(tableRow, k) {
+      let res = {
+        'active': this.isActiveRow === k
+      }
+      res[(tableRow.HtmlRowClass) ? tableRow.HtmlRowClass : ''] = true
+      return res
     }
   }
 }

@@ -82,7 +82,7 @@ export default {
          "0": {
          "SearchCategory": "Contact",
          //"FieldNameArray": "10#9#Last Name10#First Name11#Middle Name17#VTB24 Card Number28#VTB24 Identity Document Name20#VTB24 Telebank Login2#Id14#Opportunity Id15#VTB24 Card Find"
-         "FieldNameArray": "10#28#VTB24 Identity Document Name17#VTB24 Card Number9#Last Name10#First Name11#Middle Name10#Birth Date15#VTB24 Card Find"
+         "FieldNameArray": "10#28#VTB24 Identity Document Name15#VTB24 Card Find9#Last Name10#First Name11#Middle Name10#Birth Date17#VTB24 Card Number"
          },
          "1": {
          "SearchCategory": "VTB24 Contact Additional",
@@ -99,9 +99,9 @@ export default {
       valStr = valStr + valArr[valArr.length - 1];
 
       searchCat = searchCategoryMapping[this.selectedTypeNum].SearchCategory;
-      if(this.selectedTypeNum == '1' && (valArr[5] || valArr[6] || valArr[7])) 
+      if(this.selectedTypeNum == '1' && (valArr[5] || valArr[6] || valArr[7]))
         searchCat = 'Contact';
-      if(this.selectedTypeNum == '1' && valArr[8]) 
+      if(this.selectedTypeNum == '1' && valArr[8])
         searchCat = 'VTB24 Claim Service Request';
 
       console.log(valStr);
