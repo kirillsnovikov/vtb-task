@@ -1,7 +1,7 @@
 <template>
   <div class="table" :class="{'scroll-x': isScroll}">
     <div class="table-header" :style="{width: tableWidth + 'px'}">
-      <div class="table-header__item" v-for="(column, i) in TableColumns" :key="i" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+      <div class="table-header__item" v-for="(column, i) in TableColumns" :key="i" :class="column.HtmlHeaderClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
         <div class="table-header__item__value" :class="column.ColAlign">
           {{column.Display | capitalize}}
         </div>
@@ -13,6 +13,16 @@
           <div class="vtb-dot-loader">
             <div class="vtb-dot" v-for="i in 3"></div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-body vtb-collapse" v-else-if="error">
+      <div class="table-body__row">
+        <div class="table-body__row__error">
+          <icon-base :width="19" :height="21">
+            <icon-error></icon-error>
+          </icon-base>
+          <div class="table-body__row__error__text">{{error}}</div>
         </div>
       </div>
     </div>
@@ -32,6 +42,8 @@ import { TableConfig, ColumnData, ShowError, ShowLog } from '../../lib/Helper.js
 import VDefCell from './VDefCell.vue';
 import VIconCell from './VIconCell.vue';
 import VUrlCell from './VUrlCell.vue';
+import IconBase from '@/components/utils/IconBase.vue'
+import IconError from '@/components/utils/icons/IconError.vue'
 /*
 Public method:
   configurateTable - Пересчет параметров таблицы
@@ -44,7 +56,9 @@ export default {
   components: {
     VDefCell,
     VIconCell,
-    VUrlCell
+    VUrlCell,
+    IconBase,
+    IconError,
   },
   props: {
     tableData: Array,
@@ -74,12 +88,10 @@ export default {
       tableWidth: 0,
       isScroll: false,
       isActiveRow: null,
-      isLoadedData: false
+      isLoadedData: false,
+      error: null
     }
   },
-  // mounted() {
-  //   this.configurateTable()
-  // },
   methods: {
     //Use in Siebel
     configurateTable() {
@@ -92,6 +104,9 @@ export default {
     },
     setLoadStatus(isLoad) {
       this.isLoadedData = isLoad
+    },
+    setLoadErrorText(text) {
+      this.error = text
     },
     setActiveRow(index) {
       if (typeof index === 'number') {
@@ -136,15 +151,16 @@ export default {
       this.$emit('table-cell-click', columnData)
     },
     getCellClass(values, key) {
-      if (!values) {
+      let res;
+      if (!values)
         return
-      }
-      if (typeof values === 'string') {
+      if (res = values[key])
+        return res;
+      if (res = values['default'])
+        return res;
+      if (typeof values === 'string')
         return values
-      } else {
-        let res
-        return (res = values[key]) ? res : ((res = values['default']) ? res : null)
-      }
+      return "";
     },
     getRowClass(tableRow, k) {
       let res = {

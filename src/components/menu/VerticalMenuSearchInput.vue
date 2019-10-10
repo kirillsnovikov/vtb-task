@@ -28,7 +28,7 @@ export default {
   },
   props: {
     inputData: Object,
-    inputId: Number
+    inputId: String
   },
   data() {
     return {
@@ -42,15 +42,15 @@ export default {
   mounted() {
     this.inputEl = this.$el.firstChild
     this.regular = new RegExp(regExps[this.inputData.type])
-    if (localStorage['inputValue' + this.inputId]) {
-      this.inputValue = localStorage['inputValue' + this.inputId]
+    if (localStorage[this.inputId]) {
+      this.inputValue = localStorage[this.inputId]
     }
   },
   watch: {
     inputValue: function(newVal) {
       this.inputValue = this.validate(newVal)
       this.oldValue = this.inputValue;
-      localStorage['inputValue' + this.inputId] = this.inputValue
+      localStorage[this.inputId] = this.inputValue
     }
   },
   methods: {

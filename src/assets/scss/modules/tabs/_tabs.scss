@@ -18,6 +18,7 @@
     height: $tab-item-height;
     width: $tab-item-width;
     margin-right: 7px;
+    cursor: pointer;
     &__value {
       overflow: hidden;
     }

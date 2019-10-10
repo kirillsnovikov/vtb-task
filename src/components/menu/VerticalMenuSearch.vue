@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="search-input-list">
-      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="i" :key="i+input.label" />
+      <SearchInput v-for="(input, i) in getSearchInputs" :inputData="input" :inputId="`${i}_${input.label}`" :key="`${i}_${input.label}`" />
     </div>
     <div class="search-button">
       <div class="btn btn-fill" @click="search">

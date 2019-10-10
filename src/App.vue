@@ -3,15 +3,10 @@
     <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
-      <!-- <div class="spinners"> -->
       <div class="spinner-vtb"></div>
-      <!-- <div class="spinner-vtb"></div> -->
-      <!-- <div class="spinner-vtb"></div> -->
-      <!-- <div class="spinner-vtb"></div> -->
-      <!-- </div> -->
       <!-- <icon-base></icon-base> -->
       <div>
-        <svg class="icon" viewBox="0 0 20 20" v-for="icon in icons">
+        <svg class="icon" width="20" height="20" v-for="icon in icons">
           <use :xlink:href="`#${icon}`"></use>
         </svg>
       </div>
@@ -22,7 +17,6 @@
       </div>
       <CySelect />
     </div>
-    <SvgIcons />
     <!-- <test-component></test-component> -->
     <!-- <popup-subject></popup-subject> -->
     <!-- <Popup /> -->
@@ -72,6 +66,7 @@ export default {
   },
   mounted() {
     spinner.create()
+    this.$refs.table.configurateTable()
     // spinner.getParticles()
   },
   methods: {
@@ -106,6 +101,6 @@ export default {
 
 .icon {
   // height: 0;
-  width: 20px;
+  // width: 20px;
 }
 </style>

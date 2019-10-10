@@ -22,19 +22,18 @@
         "label": "фамилия",
         "type": "text",
         "format": null,
-        "length": 10
+        "length": 150
       },
       {
         "label": "имя",
         "type": "text",
         "format": null,
-        "length": 128
-      },
+        "length": 150},
       {
         "label": "отчество",
         "type": "text",
         "format": null,
-        "length": 128
+        "length": 150
       },
       {
         "label": "дата рождения",
@@ -87,7 +86,7 @@
         "label": "siebel id",
         "type": "id",
         "format": null,
-        "length": 10
+        "length": 15
       },
       {
         "label": "логин телебанка",

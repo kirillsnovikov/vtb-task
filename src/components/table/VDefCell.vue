@@ -1,5 +1,5 @@
 <template>
-  <div class="table-body__row__item__value" v-if="data" :class="cellClass">
+  <div class="table-body__row__item__value" v-if="data">
     {{data}}
   </div>
 </template>
@@ -8,14 +8,6 @@
   export default {
     props: {
       data: [String]
-    },
-    computed: {
-      cellClass() {
-        // console.log(this.data)
-        return {
-
-        }
-      }
     }
   }
 </script>

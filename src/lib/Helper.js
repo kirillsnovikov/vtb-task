@@ -107,6 +107,7 @@ const columnParameters = [
   new ColumnParameter('Name', 'any', 'n/a', true),
   new ColumnParameter('Display', String, 'n/a', true),
   new ColumnParameter('HtmlCellClass', 'any', '', false),
+  new ColumnParameter('HtmlHeaderClass', String, '', false),
   new ColumnParameter('Index', Number, 0, false),
   new ColumnParameter('Width', Number, 100, false),
   new ColumnParameter('IconMap', Array, [], false),

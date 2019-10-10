@@ -11,11 +11,11 @@ export const TableColumns = [
   new ColumnData({
     Name: 'confirm',
     Display: ' ',
-    Width: 50,
+    Width: 20,
     // HtmlCellClass: 'super-class'
     HtmlCellClass: {
       "клиент": "client",
-      "не подтв": "unverified",
+      "не подтв": "cell_vertical",
       "default": "ttttt"
     }
   }),
@@ -36,7 +36,7 @@ export const TableColumns = [
     Name: 'cardNumber',
     Display: '№ карты № карты № карты № карты № карты № карты',
     Width: 140,
-    // HtmlCellClass: 'unverified'
+    HtmlHeaderClass: 'HtmlHeaderClass'
   }),
   new ColumnData({
     ColAlign: 'Right',
@@ -77,7 +77,7 @@ export const TableColumns = [
 // console.log(TableColumns)
 
 export const TableData = [{
-    confirm: 'клиент',
+    confirm: 'не подтв',
     status: 'выавы',
     cardNumber: '409545432155dss ssssssssss sssssssssss sss sssss sssss sssssssssss sss sssss ssssssssssssssss sss sssss sssss',
     type: 'дебет дебет дебет дебет дебет',
@@ -101,7 +101,7 @@ export const TableData = [{
     HtmlRowClass: 'another_class',
   },
   {
-    confirm: 'клиент',
+    confirm: 'не подтв',
     status: 'true',
     cardNumber: '409545432155',
     type: 'кредит',

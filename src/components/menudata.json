@@ -36,15 +36,18 @@
       "links": [
         {
           "captionName": "мои задачи",
-          "icon": ""
+          "icon": "",
+          "active": true
         },
         {
           "captionName": "список задач",
-          "icon": ""
+          "icon": "",
+          "active": true
         },
         {
           "captionName": "задачи на обработку",
-          "icon": ""
+          "icon": "",
+          "active": false
         }
       ]
     },
