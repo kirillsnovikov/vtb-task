@@ -1,6 +1,7 @@
 .scroll-x {
   width: 100%;
   overflow-x: scroll;
+  overflow-y: visible;
 }
 
 .scroll-x::-webkit-scrollbar{

@@ -34,7 +34,7 @@ export const TableColumns = [
   }),
   new ColumnData({
     Name: 'cardNumber',
-    Display: '№ карты № карты № карты № карты № карты № карты',
+    Display: '№ карты № карты № карты № карты № карты № карты № карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты',
     Width: 140,
     HtmlHeaderClass: 'HtmlHeaderClass'
   }),

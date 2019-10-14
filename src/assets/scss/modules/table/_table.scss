@@ -26,9 +26,24 @@
       @extend %flex-center;
 
       &__value {
+      position: relative;
         // @extend %ellipsis;
         max-height: 23px;
         overflow: hidden;
+      }
+
+      .header-clone-item {
+        position: fixed;
+        top: -10000px;
+        left: -10000px;
+        opacity: 0;
+        box-sizing: border-box;
+        font-size: 10px;
+        display: flex;
+
+        &__value {
+          max-height: 23px;
+        }
       }
     }
   }

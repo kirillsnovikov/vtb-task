@@ -8,3 +8,18 @@ body {
   // -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
   // outline: none !important;
 }
+
+.test-item {
+  width: 140px;
+  box-sizing: border-box;
+  font-size: 10px;
+  display: flex;
+  // flex: 140px;
+  // overflow: hidden;
+  padding: 5px;
+  &__value  {
+    max-height: 23px;
+    // overflow: hidden;
+  }
+
+}

@@ -4,6 +4,11 @@
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
       <div class="spinner-vtb"></div>
+      <div class="test-item">
+        <div class="test-item__value">
+          <div>№ карты № картыssssssssssssssssssssssssssssssssssss № карты № карты № карты № карты</div>
+        </div>
+      </div>
       <!-- <icon-base></icon-base> -->
       <div>
         <svg class="icon" width="20" height="20" v-for="icon in icons">

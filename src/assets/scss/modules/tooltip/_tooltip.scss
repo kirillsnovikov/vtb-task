@@ -1,8 +1,10 @@
+@import "./tooltip-sm";
+
 .tooltip {
   color: $white;
   box-sizing: border-box;
   border-radius: 10px;
-  position: fixed;
+  position: absolute;
   background: rgba($black, 0.8);
   padding: 20px 10px;
 

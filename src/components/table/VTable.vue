@@ -3,8 +3,14 @@
     <div class="table-header" :style="{width: tableWidth + 'px'}">
       <div class="table-header__item" v-for="(column, i) in TableColumns" :key="i" :class="column.HtmlHeaderClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
         <div class="table-header__item__value" :class="column.ColAlign">
-          {{column.Display | capitalize}}
+          {{column.Display, i | capitalize}}
         </div>
+        <div class="header-clone-item" :style="{width: column.Width + 'px', padding: config.ColPadding + 'px'}">
+          <div class="header-clone-item__value">
+            <div class="header-clone-item__value__text">{{column.Display | capitalize}}</div>
+          </div>
+        </div>
+        <TooltipTable v-if="column.tooltip" ref="tooltip" position="right" :data="column.tooltip" :isShow="true" />
       </div>
     </div>
     <div class="table-body vtb-collapse" v-if="isLoadedData">
@@ -41,6 +47,7 @@ import { TableConfig, ColumnData, ShowError, ShowLog } from '../../lib/Helper.js
 // import {CompState, tblClass} from '../../lib/CompState.js'
 import VDefCell from './VDefCell.vue';
 import VIconCell from './VIconCell.vue';
+import TooltipTable from '@/components/tooltip/TooltipTable.vue';
 import VUrlCell from './VUrlCell.vue';
 import IconBase from '@/components/utils/IconBase.vue'
 import IconError from '@/components/utils/icons/IconError.vue'
@@ -56,6 +63,7 @@ export default {
   components: {
     VDefCell,
     VIconCell,
+    TooltipTable,
     VUrlCell,
     IconBase,
     IconError,
@@ -129,7 +137,24 @@ export default {
     },
     getSumColumnsWidth() {
       let result = 0;
-      this.TableColumns.forEach(el => {
+      this.TableColumns.forEach((el, k) => {
+        let item = document.querySelectorAll('.table-header__item__value')[k]
+        let clone = document.querySelectorAll('.header-clone-item__value__text')[k].getBoundingClientRect()
+        let value = item.getBoundingClientRect()
+        if (clone.width > value.width || clone.height > value.height) {
+          el.tooltip = new Object()
+          el.tooltip['text'] = el.Display
+          el.tooltip['isActive'] = true
+          document.querySelectorAll('.table-header__item')[k].addEventListener('touchstart', function() {
+            console.log('touch-start')
+            addEventListener('touchend', function() {
+              console.log('touch-end')
+              removeEventListener('touch-end', function() {})
+            })
+          })
+        }
+        console.log(el)
+
         result += parseInt(el.Width) + this.config.GridPadding
       })
       return result;
