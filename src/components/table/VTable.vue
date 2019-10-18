@@ -146,7 +146,7 @@ export default {
         let clone = document.querySelectorAll('.header-clone-item__value__text')[k].getBoundingClientRect()
         let value = item.getBoundingClientRect()
         // console.log(clone, value)
-        if (clone.width > value.width || clone.height > value.height - 10) {
+        if (clone.width > value.width - 10 || clone.height > value.height - 10) {
           el.tooltip = new Object()
           el.tooltip['text'] = el.Display
           // item.addEventListener('touchstart', () => {
