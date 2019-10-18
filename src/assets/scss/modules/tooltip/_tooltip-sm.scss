@@ -5,18 +5,18 @@
   box-sizing: border-box;
   max-width: 300px;
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
   background: rgba($black, 0.8);
   padding: 10px;
   z-index: 1000;
 
-  .tooltip-arrow {
+  &-arrow {
     content: '';
-    position: absolute;
+    position: fixed;
     border-style: solid;
     border-width: 10px;
-    border-top-color: transparent;
-    border-right-color: rgba($black, 0.8);
+    border-top-color: rgba($black, 0.8);
+    border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }

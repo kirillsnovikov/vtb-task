@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VerticalMenu from './components/menu/VerticalMenu.vue'
 import ViewTabPane from './components/tabs/ViewTabPane.vue'
+import ViewTabPaneSmall from './components/tabs/ViewTabPaneSmall.vue'
 import Popup from './components/popups/Popup.vue'
 import PopupSubject from './components/popups/PopupSubject.vue'
 import PopupSubjectFinish from './components/popups/PopupSubjectFinish.vue'
@@ -17,6 +18,7 @@ Vue.config.productionTip = false
 
 Vue.component('vertical-menu', VerticalMenu)
 Vue.component('view-tab-pane', ViewTabPane)
+Vue.component('view-tab-pane-small', ViewTabPaneSmall)
 Vue.component('popup', Popup)
 Vue.component('popup-subject', PopupSubject)
 Vue.component('popup-subject-finish', PopupSubjectFinish)
@@ -29,6 +31,9 @@ Vue.component('sr-registration', SRRegistration)
 // export const eventBus = new Vue()
 Vue.prototype.$eventHub = new Vue()
 
-new Vue({
-  render: h => h(App),
+const myApp = new Vue({
+  render(h) {
+  // console.log(App)
+    return h(App)
+  }
 }).$mount('#app')

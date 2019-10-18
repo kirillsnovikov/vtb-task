@@ -3,7 +3,7 @@
     <div class="popup-main">
       <div class="popup-card">
         <div class="popup-card__close" @click="hide">
-          <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
+          <icon-base :strokeColor="'currentColor'" :width="20" :height="20">
             <icon-close></icon-close>
           </icon-base>
         </div>
@@ -48,7 +48,9 @@
         </div>
         <div class="popup-card__footer"></div>
       </div>
-      <div class="popup-layout"></div>
+      <div class="popup-layout">
+        <div class="popup-layout__dark"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -129,11 +131,11 @@ export default {
       // this.blurContent()
     },
     blurContent() {
-      if (this.isShow) {
-        document.getElementById('_swecontent').classList.add('blur')
-      } else {
-        document.getElementById('_swecontent').classList.remove('blur')
-      }
+      // if (this.isShow) {
+      //   document.getElementById('_swecontent').classList.add('blur')
+      // } else {
+      //   document.getElementById('_swecontent').classList.remove('blur')
+      // }
     },
     clickBySearchValue(parent, child) {
       this.$eventHub.$emit('on-start-thematic', parent, child)

@@ -91,7 +91,7 @@ export default {
   },
   mounted() {
     this.mainContent = document.getElementById('_swecontent')
-    this.listItems = document.querySelectorAll('.menu-item-wrap .menu-item')
+    // this.listItems = document.querySelectorAll('.menu-item-wrap .menu-item')
   },
   updated() {
     this.blurContent
@@ -136,6 +136,7 @@ export default {
       }
     },
     deactivateListItems() {
+      this.listItems = document.querySelectorAll('.menu-item-wrap .menu-item')
       if (this.listItems && this.listItems.length) {
         this.listItems.forEach(el => {
           el.classList.remove('active')

@@ -1,42 +1,44 @@
 <template>
-  <div class="table" :class="{'scroll-x': isScroll}">
-    <div class="table-header" :style="{width: tableWidth + 'px'}">
-      <div class="table-header__item" v-for="(column, i) in TableColumns" :key="i" :class="column.HtmlHeaderClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-        <div class="table-header__item__value" :class="column.ColAlign">
-          {{column.Display, i | capitalize}}
+  <div class="table-wrap" :class="{'table-wrap-scroll': isScroll}">
+    <div class="table" :class="{'scroll-x': isScroll}">
+      <div class="table-header" :style="{width: tableWidth + 'px'}">
+        <div class="table-header__item" @click="setActiveTip(i + column.Display)" v-for="(column, i) in TableColumns" :key="i + column.Display" :class="column.HtmlHeaderClass" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+          <div class="table-header__item__value" :class="column.ColAlign">
+            {{column.Display | capitalize}}
+          </div>
+          <div class="header-clone-item" :style="{width: column.Width + 'px', padding: config.ColPadding + 'px'}">
+            <div class="header-clone-item__value">
+              <div class="header-clone-item__value__text">{{column.Display | capitalize}}</div>
+            </div>
+          </div>
+          <TooltipTable v-if="column.tooltip" ref="tooltip" position="right" :data="column.tooltip" :isActive="activeTip === (i + column.Display)" :key="i + column.Display" />
         </div>
-        <div class="header-clone-item" :style="{width: column.Width + 'px', padding: config.ColPadding + 'px'}">
-          <div class="header-clone-item__value">
-            <div class="header-clone-item__value__text">{{column.Display | capitalize}}</div>
+      </div>
+      <div class="table-body vtb-collapse" v-if="isLoadedData">
+        <div class="table-body__row">
+          <div class="table-body__row__item" v-for="(column, i) in TableColumns" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+            <div class="vtb-dot-loader">
+              <div class="vtb-dot" v-for="i in 3"></div>
+            </div>
           </div>
         </div>
-        <TooltipTable v-if="column.tooltip" ref="tooltip" position="right" :data="column.tooltip" :isShow="true" />
       </div>
-    </div>
-    <div class="table-body vtb-collapse" v-if="isLoadedData">
-      <div class="table-body__row">
-        <div class="table-body__row__item" v-for="(column, i) in TableColumns" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <div class="vtb-dot-loader">
-            <div class="vtb-dot" v-for="i in 3"></div>
+      <div class="table-body vtb-collapse" v-else-if="error">
+        <div class="table-body__row">
+          <div class="table-body__row__error">
+            <icon-base :width="19" :height="21">
+              <icon-error></icon-error>
+            </icon-base>
+            <div class="table-body__row__error__text">{{error}}</div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="table-body vtb-collapse" v-else-if="error">
-      <div class="table-body__row">
-        <div class="table-body__row__error">
-          <icon-base :width="19" :height="21">
-            <icon-error></icon-error>
-          </icon-base>
-          <div class="table-body__row__error__text">{{error}}</div>
-        </div>
-      </div>
-    </div>
-    <div class="table-body vtb-collapse" v-else>
-      <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="getRowClass(tableRow, k)">
-        <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :class="getCellClass(column.HtmlCellClass, tableRow[column.Name])" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
-          <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
-          </component>
+      <div class="table-body vtb-collapse" v-else :class="{'table-body-scroll': isScroll}">
+        <div class="table-body__row" v-for="(tableRow, k) in tableData" :key="k" :style="{width: tableWidth + 'px'}" :class="getRowClass(tableRow, k)">
+          <div class="table-body__row__item" @click="tableClick(k, column)" v-for="(column, i) in TableColumns" :key="i" :class="getCellClass(column.HtmlCellClass, tableRow[column.Name])" :style="{flex: '0 0 ' + column.Width + 'px', margin: '0 ' + (config.GridPadding/2) + 'px', padding: config.ColPadding + 'px'}">
+            <component :is="column.Component" :data="tableRow[column.Name]" :icons="column.IconMap" :class="column.DataAlign || column.ColAlign">
+            </component>
+          </div>
         </div>
       </div>
     </div>
@@ -96,6 +98,8 @@ export default {
       tableWidth: 0,
       isScroll: false,
       isActiveRow: null,
+      tipTimeout: null,
+      activeTip: null,
       isLoadedData: false,
       error: null
     }
@@ -138,23 +142,20 @@ export default {
     getSumColumnsWidth() {
       let result = 0;
       this.TableColumns.forEach((el, k) => {
-        let item = document.querySelectorAll('.table-header__item__value')[k]
+        let item = document.querySelectorAll('.table-header__item')[k]
         let clone = document.querySelectorAll('.header-clone-item__value__text')[k].getBoundingClientRect()
         let value = item.getBoundingClientRect()
-        if (clone.width > value.width || clone.height > value.height) {
+        // console.log(clone, value)
+        if (clone.width > value.width || clone.height > value.height - 10) {
           el.tooltip = new Object()
           el.tooltip['text'] = el.Display
-          el.tooltip['isActive'] = true
-          document.querySelectorAll('.table-header__item')[k].addEventListener('touchstart', function() {
-            console.log('touch-start')
-            addEventListener('touchend', function() {
-              console.log('touch-end')
-              removeEventListener('touch-end', function() {})
-            })
-          })
+          // item.addEventListener('touchstart', () => {
+          //   this.isActiveTip = k + el.Display
+          // })
+          // item.addEventListener('touchend', () => {
+          //   this.isActiveTip = null
+          // })
         }
-        console.log(el)
-
         result += parseInt(el.Width) + this.config.GridPadding
       })
       return result;
@@ -193,6 +194,15 @@ export default {
       }
       res[(tableRow.HtmlRowClass) ? tableRow.HtmlRowClass : ''] = true
       return res
+    },
+    setActiveTip(id) {
+      this.activeTip = id
+      if (this.tipTimeout) {
+        clearTimeout(this.tipTimeout)
+      }
+      this.tipTimeout = setTimeout(() => {
+        this.activeTip = null
+      }, 20000)
     }
   }
 }

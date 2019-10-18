@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
+    <div id="vtb-vertical-menu">
+      <vertical-menu :dataSetJson="ds" ref="vm"></vertical-menu>
+    </div>
     <div id="_swecontent">
       <sr-registration :popupData="popupData"></sr-registration>
       <div class="spinner-vtb"></div>
@@ -16,6 +18,7 @@
         </svg>
       </div>
       <view-tab-pane :tabs="ds.mainMenu.tasks.links"></view-tab-pane>
+      <view-tab-pane-small :tabs="ds.mainMenu.clients.links"></view-tab-pane-small>
       <!-- <radio-button-search @on-change="ChangeSearch" :DataSet="searchValues" :active="defSearch"></radio-button-search> -->
       <div style="width: 1000px">
         <v-table :tableData="tableData" :TableColumns="TableColumns" @table-row-select="tableRowSelect" @table-cell-click="tableCellClick" ref="table"></v-table>
@@ -23,7 +26,6 @@
       <CySelect />
     </div>
     <!-- <test-component></test-component> -->
-    <!-- <popup-subject></popup-subject> -->
     <!-- <Popup /> -->
     <!-- <SvgFilter /> -->
   </div>

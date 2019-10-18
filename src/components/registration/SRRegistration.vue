@@ -17,7 +17,7 @@
       <span class="text" v-if="!isStartThematic">{{'выбрать тематику' | toupper}}</span>
       <span class="text" v-else>{{'новая тематика' | toupper}}</span>
     </div>
-    <popup-subject :popup-data="popupData"></popup-subject>
+    <popup-subject :popupData="popupData"></popup-subject>
     <popup-subject-finish></popup-subject-finish>
   </div>
 </template>

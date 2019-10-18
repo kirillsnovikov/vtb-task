@@ -18,7 +18,9 @@
         </div>
         <div class="popup-card__footer"></div>
       </div>
-      <div class="popup-layout"></div>
+      <div class="popup-layout">
+        <!-- <div class="popup-layout__dark"></div> -->
+      </div>
     </div>
   </div>
 </template>

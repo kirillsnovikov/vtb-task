@@ -15,8 +15,25 @@
       "tabIcon": "icon-users",
       "links": [
         {
-          "captionName": "bbbbbb",
-          "icon": ""
+          "captionName": "просмотр выписки",
+          "icon": "",
+          "active": true,
+          "readOnly": true,
+          "hide": false
+        },
+        {
+          "captionName": "просмотр выписки",
+          "icon": "",
+          "active": true,
+          "readOnly": false,
+          "hide": false
+        },
+        {
+          "captionName": "просмотр графика платежей",
+          "icon": "",
+          "active": false,
+          "readOnly": false,
+          "hide": false
         }
       ]
     },
@@ -37,17 +54,23 @@
         {
           "captionName": "мои задачи",
           "icon": "",
-          "active": true
+          "active": true,
+          "readOnly": true,
+          "hide": false
         },
         {
           "captionName": "список задач",
           "icon": "",
-          "active": true
+          "active": false,
+          "readOnly": false,
+          "hide": false
         },
         {
           "captionName": "задачи на обработку",
           "icon": "",
-          "active": false
+          "active": true,
+          "readOnly": true,
+          "hide": false
         }
       ]
     },

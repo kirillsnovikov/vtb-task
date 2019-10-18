@@ -1,8 +1,13 @@
-.table {
+.table-wrap {
   background: $table-row-color;
   border-radius: 0 0 6px 6px;
   border-left: 1px solid $table-border-color;
   border-right: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.table {
+  // background: $table-row-color;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -26,7 +31,7 @@
       @extend %flex-center;
 
       &__value {
-      position: relative;
+        position: relative;
         // @extend %ellipsis;
         max-height: 23px;
         overflow: hidden;
@@ -100,6 +105,10 @@
           margin-left: 12px;
         }
       }
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     .active {
@@ -107,3 +116,13 @@
     }
   }
 }
+
+.table-wrap-scroll {
+  padding-bottom: 8px;
+}
+
+.table-body-scroll {
+  margin-bottom: 8px;
+}
+
+// }

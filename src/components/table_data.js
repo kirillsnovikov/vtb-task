@@ -9,8 +9,18 @@ import { ColumnData } from '../lib/Helper';
 // Sort: {desc, none, asc} параметры сортировки
 export const TableColumns = [
   new ColumnData({
+    Name: 'availableBalance',
+    Display: 'условия проведения операций',
+    Width: 100
+  }),
+  new ColumnData({
+    Name: 'creditLimit',
+    Display: 'кредитный лимит',
+    Width: 140
+  }),
+  new ColumnData({
     Name: 'confirm',
-    Display: ' ',
+    Display: 'lsajflsajfldsafj',
     Width: 20,
     // HtmlCellClass: 'super-class'
     HtmlCellClass: {
@@ -47,30 +57,20 @@ export const TableColumns = [
     Width: 140,
   }),
   new ColumnData({
+    Name: 'expDate',
+    Display: 'условия проведения операций',
+    Width: 100,
+  }),
+  new ColumnData({
     Name: 'package',
     Display: 'пакет',
     Width: 140,
     DataAlign: 'right'
   }),
   new ColumnData({
-    Name: 'availableBalance',
-    Display: 'доступный остаток',
-    Width: 140
-  }),
-  new ColumnData({
     Name: 'currency',
     Display: 'валюта',
     Width: 140
-  }),
-  new ColumnData({
-    Name: 'creditLimit',
-    Display: 'кредитный лимит',
-    Width: 140
-  }),
-  new ColumnData({
-    Name: 'expDate',
-    Display: 'окончание&действия',
-    Width: 140,
   }),
 ];
 

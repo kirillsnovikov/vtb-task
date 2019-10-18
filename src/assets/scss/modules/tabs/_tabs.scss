@@ -1,4 +1,4 @@
-.tabs-pane {
+%tabs {
   @extend %flex;
   font-size: 10px;
   font-weight: bold;
@@ -7,24 +7,59 @@
   line-height: normal;
   letter-spacing: -0.18px;
   color: rgba(0, 0, 0, 0.85);
-  &__item {
-    @extend %flex-center-center;
-    overflow: hidden;
-    box-sizing: border-box;
-    background: $tab-color;
-    color: $tab-font-color;
-    border-radius: 10px;
-    padding: 10px;
-    height: $tab-item-height;
-    width: $tab-item-width;
-    margin-right: 7px;
-    cursor: pointer;
-    &__value {
-      overflow: hidden;
-    }
-  }
+
   .active {
     background: $white;
     color: $black;
+  }
+
+  .readonly {
+    opacity: .58;
+    cursor: not-allowed;
+  }
+}
+
+%tabs-item {
+  @extend %flex-center-center;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: $tab-color;
+  color: $tab-font-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 7px;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+%tabs-item-value {
+  overflow: hidden;
+}
+
+.tabs-pane {
+  @extend %tabs;
+
+  &__item {
+    @extend %tabs-item;
+    height: $tab-item-height;
+    width: $tab-item-width;
+
+    &__value {
+      @extend %tabs-item-value;
+    }
+  }
+}
+
+.tabs-pane-sm {
+  @extend %tabs;
+
+  &__item {
+    @extend %tabs-item;
+    height: $tab-item-sm-height;
+    min-width: $tab-item-sm-width;
+
+    &__value {
+      @extend %tabs-item-value;
+    }
   }
 }

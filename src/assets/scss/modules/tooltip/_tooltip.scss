@@ -1,101 +1,103 @@
 @import "./tooltip-sm";
 
-.tooltip {
-  color: $white;
-  box-sizing: border-box;
-  border-radius: 10px;
-  position: absolute;
-  background: rgba($black, 0.8);
-  padding: 20px 10px;
+#vtb-vertical-menu #vm {
+  .tooltip {
+    color: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: absolute;
+    background: rgba($black, 0.8);
+    padding: 20px 10px;
 
-  &__header {
-    @extend %flex;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1;
-    letter-spacing: normal;
-    margin-bottom: 7px;
-
-    &__left {
+    &__header {
       @extend %flex;
-
-      &__icon {
-        background: url('/path/idea-icon.svg') no-repeat center;
-        background-size: cover;
-        width: 16px;
-        height: 23px;
-        margin-right: 16px;
-      }
-
-      &__title {
-        margin-right: 10px;
-        white-space: pre-line;
-      }
-
-    }
-
-
-  }
-
-  &__body {
-    font-size: 13px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 19.2px;
-    letter-spacing: normal;
-
-    &__list {
-      font-size: 12px;
+      justify-content: space-between;
+      font-size: 16px;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      margin-bottom: 7px;
+
+      &__left {
+        @extend %flex;
+
+        &__icon {
+          background: url('/path/idea-icon.svg') no-repeat center;
+          background-size: cover;
+          width: 16px;
+          height: 23px;
+          margin-right: 16px;
+        }
+
+        &__title {
+          margin-right: 10px;
+          white-space: pre-line;
+        }
+
+      }
+
+
+    }
+
+    &__body {
+      font-size: 13px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 19.2px;
       letter-spacing: normal;
 
-      .tooltip-list {
-        margin-top: 25px;
+      &__list {
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: normal;
 
-        &__items {
-          height: 18px;
-          line-height: 18px;
-          margin-bottom: 5px;
+        .tooltip-list {
+          margin-top: 25px;
 
-          &__item {
-            display: inline-block;
-            box-sizing: border-box;
+          &__items {
+            height: 18px;
+            line-height: 18px;
+            margin: 0 0 5px 0;
 
-            &__value {
-              padding: 0 7px;
+            &__item {
               display: inline-block;
-              background: rgba(255, 255, 255, 0.5);
-              border-radius: 9px;
-            }
+              box-sizing: border-box;
 
-            span {
-              padding: 0 3px;
+              &__value {
+                padding: 0 7px;
+                display: inline-block;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 9px;
+              }
+
+              span {
+                padding: 0 3px;
+              }
             }
           }
         }
       }
     }
-  }
 
-  .tooltip-arrow {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 10px;
-    border-top-color: transparent;
-    border-right-color: rgba($black, 0.8);
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-  }
+    .tooltip-arrow {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-width: 10px;
+      border-top-color: transparent;
+      border-right-color: rgba($black, 0.8);
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
 
-  .tooltip-close-btn {
-    position: absolute;
-    cursor: pointer;
+    .tooltip-close-btn {
+      position: absolute;
+      cursor: pointer;
+    }
   }
 }

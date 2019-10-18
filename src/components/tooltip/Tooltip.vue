@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="tooltip-arrow" :style="tooltipArrowStyle"></div>
-    <div class="tooltip-close-btn" v-if="data.closeBtn" @click="data.isActive = false" :style="closeStyle">
+    <div class="tooltip-close-btn" @click="data.isActive = false" :style="closeStyle">
       <icon-base :strokeColor="'currentColor'" :width="18" :height="18">
         <icon-close></icon-close>
       </icon-base>

@@ -1,8 +1,8 @@
 <template>
-  <div class="tabs-pane">
+  <div class="tabs-pane-sm">
     <div v-for="(tab, i) in tabs">
-      <div class="tabs-pane__item" v-if="!tab.hide" @click="clickOnTab(i)" :class="{'active': tab.active, 'readonly': tab.readOnly}" :key="`${tab.captionName}_${i}`">
-        <div class="tabs-pane__item__value">
+      <div class="tabs-pane-sm__item" v-if="!tab.hide" @click="clickOnTab(i)" :class="{'active': tab.active, 'readonly': tab.readOnly}" :key="`${tab.captionName}_${i}`">
+        <div class="tabs-pane-sm__item__value">
           {{tab.captionName | capitalize}}
         </div>
       </div>
@@ -24,6 +24,6 @@ export default {
       tab.active = true
       this.$eventHub.$emit('click-on-tab', tab)
     }
-  },
+  }
 }
 </script>

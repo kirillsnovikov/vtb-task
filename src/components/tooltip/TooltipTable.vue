@@ -1,47 +1,58 @@
 <template>
   <div class="tooltip-sm" :style="tooltipStyle">
     <div class="tooltip-sm__body">{{data.text}}</div>
-    <div class="tooltip-sm-arrow" :style=""></div>
+    <div class="tooltip-sm-arrow" :style="tooltipArrowStyle"></div>
   </div>
 </template>
 <script>
 export default {
   props: {
     data: Object,
-    isShow: Boolean
+    isActive: Boolean
   },
   data() {
     return {
       elCoordinates: null,
       parentCoordinates: null,
-      isActive: this.isShow,
-      tooltipStyle: {
-        top: '-1000px'
-      }
     }
   },
-  mounted() {
-    this.configurateTip()
-  },
-  methods: {
-    configurateTip() {
-      if (this.isShow) {
-        this.elCoordinates = this.$el.getBoundingClientRect()
+  computed: {
+    tooltipStyle() {
+      let style = {}
+      console.log(this.elCoordinates)
+      if (this.isActive) {
         this.parentCoordinates = this.$el.parentNode.getBoundingClientRect()
-        console.log(this.elCoordinates.height)
+        this.elCoordinates = this.$el.getBoundingClientRect()
+      console.log(this.elCoordinates)
+        // console.log(this.elCoordinates)
+        style.left = this.parentCoordinates.left - 10 + 'px'
         if (this.parentCoordinates.top <= (10 + this.elCoordinates.height)) {
-          this.tooltipStyle.top = window.pageYOffset + this.parentCoordinates.top + 10 + this.parentCoordinates.height + 'px'
+          // console.log(this.parentCoordinates)
+          style.top = this.parentCoordinates.top + 10 + this.parentCoordinates.height + 'px'
         } else {
-          this.tooltipStyle.top = window.pageYOffset + this.parentCoordinates.top - 10 - this.elCoordinates.height + 'px'
+          // console.log(this.$el.offsetHeight)
+          style.top = this.parentCoordinates.top - 10 - this.elCoordinates.height + 'px'
         }
-
-        // if (this.parentCoordinates.) {}
-        // console.log(this.$el.getBoundingClientRect(), this.parentCoordinates)
+      } else {
+        style.top = '-1000px',
+        this.elCoordinates = null,
+        this.parentCoordinates = null
       }
+      return style
+    },
+    tooltipArrowStyle() {
+      let style = {}
+      if (this.isActive) {
+        style.left = this.parentCoordinates.left + (this.parentCoordinates.width / 2) - 10 + 'px'
+        if (this.parentCoordinates.top <= (10 + this.elCoordinates.height)) {
+          style.transform = 'rotateX(180deg)'
+          style.top = this.parentCoordinates.bottom - 10 + 'px'
+        } else {
+          style.top = this.parentCoordinates.top - 10 + 'px'
+        }
+      }
+      return style
     }
-  },
-  // computed: {
-  //   tooltipStyle() {}
-  // }
+  }
 }
 </script>

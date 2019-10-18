@@ -19,7 +19,9 @@
         </div>
         <div class="popup-card__footer"></div>
       </div>
-      <div class="popup-layout"></div>
+      <div class="popup-layout">
+        <div class="popup-layout__dark"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -65,11 +67,9 @@ export default {
     },
     popupSubject() {
       this.hide()
-      console.log('$emit(\'popup-subject\')')
       this.$eventHub.$emit('popup-subject')
     },
     onClientCard() {
-      console.log('$emit(\'on-client-card\')')
       this.$eventHub.$emit('on-client-card')
     }
   }
