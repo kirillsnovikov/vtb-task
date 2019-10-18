@@ -9,9 +9,10 @@ import { ColumnData } from '../lib/Helper';
 // Sort: {desc, none, asc} параметры сортировки
 export const TableColumns = [
   new ColumnData({
-    Name: 'availableBalance',
-    Display: 'условия проведения операций',
-    Width: 100
+    Name: 'cardNumber',
+    Display: '№ карты № карты № карты № карты № карты № карты № карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты',
+    Width: 140,
+    HtmlHeaderClass: 'HtmlHeaderClass'
   }),
   new ColumnData({
     Name: 'creditLimit',
@@ -19,15 +20,9 @@ export const TableColumns = [
     Width: 140
   }),
   new ColumnData({
-    Name: 'confirm',
-    Display: 'lsajflsajfldsafj',
-    Width: 20,
-    // HtmlCellClass: 'super-class'
-    HtmlCellClass: {
-      "клиент": "client",
-      "не подтв": "cell_vertical",
-      "default": "ttttt"
-    }
+    Name: 'availableBalance',
+    Display: 'условия проведения операций',
+    Width: 100
   }),
   new ColumnData({
     DataAlign: 'center',
@@ -43,23 +38,12 @@ export const TableColumns = [
     ],
   }),
   new ColumnData({
-    Name: 'cardNumber',
-    Display: '№ карты № карты № карты № карты № карты № карты № карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты№ карты № карты',
-    Width: 140,
-    HtmlHeaderClass: 'HtmlHeaderClass'
-  }),
-  new ColumnData({
     ColAlign: 'Right',
     DataAlign: 'center',
     Name: 'type',
     Display: 'тип',
     Component: 'URL',
     Width: 140,
-  }),
-  new ColumnData({
-    Name: 'expDate',
-    Display: 'условия проведения операций',
-    Width: 100,
   }),
   new ColumnData({
     Name: 'package',
@@ -71,6 +55,22 @@ export const TableColumns = [
     Name: 'currency',
     Display: 'валюта',
     Width: 140
+  }),
+  new ColumnData({
+    Name: 'confirm',
+    Display: 'lsajflsajfldsafj',
+    Width: 20,
+    // HtmlCellClass: 'super-class'
+    HtmlCellClass: {
+      "клиент": "client",
+      "не подтв": "cell_vertical",
+      "default": "ttttt"
+    }
+  }),
+  new ColumnData({
+    Name: 'expDate',
+    Display: 'условия прлпрлпрп влаовлаао',
+    Width: 100,
   }),
 ];
 
